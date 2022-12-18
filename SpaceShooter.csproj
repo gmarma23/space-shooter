@@ -9,7 +9,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="utils\" />
+    <Folder Include="resources\" />
+    <Folder Include="src\utils\" />
   </ItemGroup>
 
 </Project>
