@@ -1,6 +1,6 @@
-﻿namespace SpaceShooter
+﻿namespace SpaceShooter.gui
 {
-    partial class Form1
+    partial class GameFrame
     {
         /// <summary>
         ///  Required designer variable.
