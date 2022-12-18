@@ -5,44 +5,41 @@ using Timer = System.Timers.Timer;
 
 namespace SpaceShooter
 {
-    internal static class GameClient
+    internal class GameClient
     {
-        private static GameFrame gameFrame = new();
-        private static Gameplay game = new();
-        private static Timer relocateHeroTimer = new();
-        private static Timer relocateEnemiesTimer = new();
-        private static Timer relocateLaserBlastsTimer = new();
-        private static Timer relocateEnemyMissileTimer = new();
-        private static Timer bringEnemyToViewportTimer = new();
-        private static Timer enemyFireLaserTimer = new();
-        private static Timer enemyLaunchMissileTimer = new();
-        private static Timer enemyTeleportTimer = new();
+        private GameFrame gameFrame;
+        private Gameplay game;
+        private Timer relocateHeroTimer;
+        private Timer relocateEnemiesTimer;
+        private Timer relocateLaserBlastsTimer;
+        private Timer relocateEnemyMissileTimer;
+        private Timer bringEnemyToViewportTimer;
+        private Timer enemyFireLaserTimer;
+        private Timer enemyLaunchMissileTimer;
+        private Timer enemyTeleportTimer;
 
-        public static void StartGame()
+        public GameClient()
         {
-            gameFrame = ;
-            game = ;
-            relocateHeroTimer = new Timer();
-            relocateEnemiesTimer = new Timer();
-            relocateLaserBlastsTimer = new Timer();
-            relocateEnemyMissileTimer = new Timer();
-            bringEnemyToViewportTimer = new Timer();
-            enemyFireLaserTimer = new Timer();
-            enemyLaunchMissileTimer = new Timer();
-            enemyTeleportTimer = new Timer();
+            
+
         }
 
-        public static void OnKeyPress(Keys keys)
+        public void StartGame()
+        {
+            
+        }
+
+        public void OnKeyPress(Keys keys)
         {
  
         }
 
-        public static void OnKeyRelease(Keys keys)
+        public void OnKeyRelease(Keys keys)
         {
 
         }
 
-        public static void OnEnemyDestroy()
+        public void OnEnemyDestroy()
         {
 
         }
