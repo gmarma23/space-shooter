@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpaceShooter.src.gui.pictureboxes
+namespace SpaceShooter.gui
 {
-    internal class MissilePictureBox : PictureBox
+    internal class LaserBlastPictureBox : PictureBox
     {
     }
 }
