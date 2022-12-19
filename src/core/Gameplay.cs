@@ -8,15 +8,22 @@ namespace SpaceShooter.core
 {
     internal class Gameplay
     {
-        HeroSpaceship hero;
-        List<EnemySpaceship> enemies;
-        List<LaserBlast> activeLaserBlasts;
+        private HeroSpaceship hero;
+        private List<EnemySpaceship> enemies;
+        private List<LaserBlast> activeLaserBlasts;
+
+        public int Score { get; private set; }
 
         public Gameplay()
         {
             hero = new HeroSpaceship();
             enemies = new List<EnemySpaceship>();
             activeLaserBlasts = new List<LaserBlast>();
+        }
+
+        public double GetHeroHealthPercentage()
+        {
+            return hero.AvailableHP / hero.TotalHP;
         }
 
         public (int, int) GetHeroDisplacement()
@@ -32,6 +39,12 @@ namespace SpaceShooter.core
         public void FireHeroLaser()
         {
             activeLaserBlasts.Add(new LaserBlast());
+        }
+
+        public double GetEmemyHealthPercentage(int enemyIndex)
+        {
+            EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
+            return enemy.AvailableHP / enemy.TotalHP;
         }
 
         public (int, int) GetEnemyDisplacement(int enemyIndex)
@@ -50,6 +63,12 @@ namespace SpaceShooter.core
         {
             EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
             activeLaserBlasts.Add(new LaserBlast());
+        }
+
+        public void DestroyEnemy(int enemyIndex)
+        {
+            EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
+            enemies.Remove(enemy);
         }
 
         public bool IsGameOver()
