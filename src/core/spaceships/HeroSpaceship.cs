@@ -7,8 +7,11 @@
         public bool GoLeft { get; set; }
         public bool GoRight { get; set; }
 
-        public HeroSpaceship() 
-        { 
+        public HeroSpaceship(
+            int hp, int concurrentLaserBlastsCount, int laserBlastDamage, int laserReload,
+            int missileCount, int missileDamage, int missileReload, bool movesRandomly, int scorePoints) :
+            base(hp, concurrentLaserBlastsCount, laserBlastDamage, laserReload, missileCount, missileDamage, missileReload)
+        {
 
         }
     }
