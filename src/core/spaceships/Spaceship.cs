@@ -12,6 +12,8 @@ namespace SpaceShooter.core
         public int AvailableHP { get; protected set; }
         public int XDisplacement { get; protected set; }
         public int YDisplacement { get; protected set; }
+        public int XVelocity { get; protected set; }
+        public int YVelocity { get; protected set; }
         public int ConcurrentLaserBlastCount { get; protected set; }
         public int LaserBlastDamage { get; protected set; }
         public int LaserReload { get; protected set; }
