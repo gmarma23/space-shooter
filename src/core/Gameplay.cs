@@ -16,7 +16,7 @@ namespace SpaceShooter.core
 
         public Gameplay()
         {
-            hero = new HeroSpaceship();
+            //hero = new HeroSpaceship();
             enemies = new List<EnemySpaceship>();
             activeLaserBlasts = new List<LaserBlast>();
         }
