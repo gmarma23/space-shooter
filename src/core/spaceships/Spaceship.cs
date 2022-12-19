@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace SpaceShooter.core
 {
-    internal abstract class Spaceship
+    internal class Spaceship
     {
-        public int TotalHP { get; init; }
+        public int TotalHP { get; protected init; }
         public int AvailableHP { get; protected set; }
         public int XLocation { get; protected set; }
         public int YLocation { get; protected set; }
@@ -23,8 +23,16 @@ namespace SpaceShooter.core
         public int MissileDamage { get; protected set; }
         public int MissileReload { get; protected set; }
 
-        public abstract void TakeDamage(int damage);
+        public void TakeDamage(int damage) 
+        {
+            AvailableHP -= damage;
+            if (AvailableHP < 0) AvailableHP = 0;
+        }
 
-        public abstract void RestoreHealth(int health);
+        public void RestoreHealth(int health)
+        {
+            AvailableHP += health;
+            if (AvailableHP > TotalHP) AvailableHP = TotalHP;
+        }
     }
 }
