@@ -2,8 +2,6 @@
 {
     internal class Spaceship
     {
-        public int XLocation { get; protected set; }
-        public int YLocation { get; protected set; }
         public int XDisplacement { get; protected set; }
         public int YDisplacement { get; protected set; }
         public int XVelocity { get; protected set; }
@@ -93,18 +91,9 @@
         }
 
         public Spaceship(
-            int xLocation, int yLocation, 
-            int xDisplacement, int yDisplacement, 
-            int xVelocity, int yVelocity,
             int hp, int concurrentLaserBlastsCount, int laserBlastDamage, int laserReload, 
             int missileCount, int missileDamage, int missileReload)
         {
-            XLocation = xLocation;
-            YLocation = yLocation;
-            XDisplacement = xDisplacement;
-            YDisplacement = yDisplacement;
-            XVelocity = xVelocity;
-            YVelocity = yVelocity;
             TotalHP = hp;
             ConcurrentLaserBlastCount = concurrentLaserBlastsCount;
             LaserBlastDamage = laserBlastDamage;
