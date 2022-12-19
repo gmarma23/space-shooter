@@ -9,10 +9,14 @@ namespace SpaceShooter.core
     internal class Spaceship
     {
         public int TotalHP { get; init; }
-        public int AvailableHP { get; private set; }
-        public int LaserBlastCount { get; private set; }
-        public int LaserBlastDamage { get; private set; }
-        public int XDisplacement { get; private set; }
-        public int YDisplacement { get; private set; }
+        public int AvailableHP { get; protected set; }
+        public int XDisplacement { get; protected set; }
+        public int YDisplacement { get; protected set; }
+        public int ConcurrentLaserBlastCount { get; protected set; }
+        public int LaserBlastDamage { get; protected set; }
+        public int LaserReload { get; protected set; }
+        public int MissileCount { get; protected set; }
+        public int MissileDamage { get; protected set; }
+        public int MissileReload { get; protected set; }
     }
 }
