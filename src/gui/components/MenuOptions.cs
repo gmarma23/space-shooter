@@ -33,8 +33,8 @@ namespace SpaceShooter.gui
             Debug.Assert(menuButtonsText.Length == menuButtonsEventHandlers.Length);
             numOfButtons = menuButtonsText.Length;
 
-            Width = (int)(menuFrame.Width * MenuFrame.optionsFrameWidthRatio);
-            Height = (int)(menuFrame.Height * MenuFrame.optionsFrameHeightRatio);
+            Width = (int)(menuFrame.Width * MenuFrame.optionsWidthRatio);
+            Height = (int)(menuFrame.Height * MenuFrame.optionsHeightRatio);
 
             calculateButtonAndMarginSizes();
 
