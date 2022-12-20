@@ -19,10 +19,10 @@ namespace SpaceShooter.gui
         {
             InitializeComponent();
 
-            menuOptions = new MenuOptions(this);
-
             title = new Label();
             setTitleLabel();
+
+            menuOptions = new MenuOptions(this);
         }
 
         private void setTitleLabel()
