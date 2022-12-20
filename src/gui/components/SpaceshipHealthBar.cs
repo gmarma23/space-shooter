@@ -1,12 +1,31 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace SpaceShooter.gui
+﻿namespace SpaceShooter.gui
 {
     internal class SpaceshipHealthBar : Panel
     {
+        private readonly Panel totalHealthBar;
+        private Panel availableHealthBar;
+
+        public SpaceshipHealthBar() 
+        {
+            availableHealthBar = new Panel();
+            setSubBar(availableHealthBar, false);
+
+            totalHealthBar = new Panel();
+            setSubBar(totalHealthBar, true);
+        }
+
+        public void UpdateHealth(double availableHealthPercentage)
+        {
+            availableHealthBar.Width = (int)(totalHealthBar.Width * availableHealthPercentage);
+        }
+
+        private void setSubBar(Panel subBar, bool isAvailableHealthBar)
+        {
+            subBar.Width = Width;
+            subBar.Height = Height;
+            subBar.BackColor = isAvailableHealthBar ? Color.Green : Color.Red;
+            subBar.Parent = isAvailableHealthBar ? totalHealthBar : this;
+            subBar.Location = new Point(0, 0);
+        }
     }
 }
