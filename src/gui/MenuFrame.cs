@@ -13,16 +13,17 @@ namespace SpaceShooter.gui
         public const double optionsHeightRatio = 0.3;
 
         private Label title;
+        private PictureBox heroSpaceshipPicBox;
         private MenuOptions menuOptions;
         
         public MenuFrame()
         {
             InitializeComponent();
 
-            menuOptions = new MenuOptions(this);
-
             title = new Label();
             setTitleLabel();
+
+            menuOptions = new MenuOptions(this);
         }
 
         private void setTitleLabel()
