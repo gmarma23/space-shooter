@@ -1,4 +1,4 @@
-﻿namespace SpaceShooter.src.gui
+﻿namespace SpaceShooter.gui
 {
     partial class CustomFrame
     {

@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Forms.VisualStyles;
 
-namespace SpaceShooter.src.gui
+namespace SpaceShooter.gui
 {
     public partial class CustomFrame : Form
     {
