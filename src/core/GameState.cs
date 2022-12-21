@@ -10,7 +10,9 @@ namespace SpaceShooter.core
     {
         private HeroSpaceship hero;
         private List<EnemySpaceship> enemies;
+        private List<int> activeEnemyIndices;
         private List<LaserBlast> activeLaserBlasts;
+        private List<int> activeLaserBlastIndices;
 
         public int GridXDimension { get; private init; }
         public int GridYDimension { get; private init; }
@@ -25,31 +27,20 @@ namespace SpaceShooter.core
             activeLaserBlasts = new List<LaserBlast>();
         }
 
-        public double GetHeroHealthPercentage()
-        {
-            return hero.AvailableHP / hero.TotalHP;
-        }
-
         public (int, int) GetHeroLocation()
         {
             return (hero.XLocation, hero.YLocation);
-        }
-
-        public void FireHeroLaser()
-        {
-            activeLaserBlasts.Add(new LaserBlast());
-        }
-
-        public double GetEmemyHealthPercentage(int enemyIndex)
-        {
-            EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
-            return enemy.AvailableHP / enemy.TotalHP;
         }
 
         public (int, int) GetEnemyLocation(int enemyIndex)
         {
             EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
             return (enemy.XLocation, enemy.YLocation);
+        }
+
+        public void FireHeroLaser()
+        {
+            activeLaserBlasts.Add(new LaserBlast());
         }
 
         public void FireEnemyLaser(int enemyIndex)
