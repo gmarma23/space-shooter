@@ -20,7 +20,8 @@ namespace SpaceShooter
 
         public GameClient()
         {
-            gameFrame= new GameFrame(800, 600);
+            game = new GameState();
+            gameFrame= new GameFrame(game.GridXDimension, game.GridYDimension);
             gameFrame.Show();
 
         }
