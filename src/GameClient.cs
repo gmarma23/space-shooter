@@ -20,7 +20,8 @@ namespace SpaceShooter
 
         public GameClient()
         {
-            
+            gameFrame= new GameFrame(800, 600);
+            gameFrame.Show();
 
         }
 

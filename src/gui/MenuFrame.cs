@@ -1,5 +1,4 @@
-﻿using SpaceShooter.gui;
-
+﻿
 namespace SpaceShooter.gui
 {
     public partial class MenuFrame : CustomFrame
