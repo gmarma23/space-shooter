@@ -30,14 +30,9 @@ namespace SpaceShooter.core
             return hero.AvailableHP / hero.TotalHP;
         }
 
-        public (int, int) GetHeroDisplacement()
+        public (int, int) GetHeroLocation()
         {
-            return (hero.XDisplacement, hero.YDisplacement);
-        }
-
-        public (int, int) GetHeroVelocity()
-        {
-            return (hero.XVelocity, hero.YVelocity);
+            return (hero.XLocation, hero.YLocation);
         }
 
         public void FireHeroLaser()
@@ -51,16 +46,10 @@ namespace SpaceShooter.core
             return enemy.AvailableHP / enemy.TotalHP;
         }
 
-        public (int, int) GetEnemyDisplacement(int enemyIndex)
+        public (int, int) GetEnemyLocation(int enemyIndex)
         {
             EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
-            return (enemy.XDisplacement, enemy.YDisplacement);
-        }
-
-        public (int, int) GetEnemyVelocity(int enemyIndex)
-        {
-            EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
-            return (enemy.XVelocity, enemy.YVelocity);
+            return (enemy.XLocation, enemy.YLocation);
         }
 
         public void FireEnemyLaser(int enemyIndex)
