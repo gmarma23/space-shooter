@@ -2,6 +2,7 @@
 {
     internal class Spaceship
     {
+        public bool IsEnemy { get; protected init; }
         public int XLocation { get; protected set; }
         public int YLocation { get; protected set; }
         public int XDisplacement { get; protected set; }
@@ -92,10 +93,11 @@
             }
         }
 
-        public Spaceship(int initXLocation, int initYLocation, int width, int height, int hp, 
+        public Spaceship(bool isEnemy, int initXLocation, int initYLocation, int width, int height, int hp, 
                          int concurrentLaserBlastsCount, int laserBlastDamage, int laserReload, 
                          int missileCount, int missileDamage, int missileReload)
         {
+            IsEnemy = isEnemy;
             XLocation = initXLocation;
             YLocation = initYLocation;
             Width = width; 
