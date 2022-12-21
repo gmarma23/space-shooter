@@ -23,10 +23,10 @@
             get => AvailableHP;
             protected set
             {
-                if (value < 0) 
-                    value = 0;
-                else if (value > TotalHP) 
-                    value = TotalHP;
+                if (value < 0)
+                    _ = 0;
+                else if (value > TotalHP)
+                    _ = TotalHP;
             }
         }
 
