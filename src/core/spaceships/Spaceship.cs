@@ -6,35 +6,13 @@
         public int YLocation { get; protected set; }
         public int XDisplacement { get; protected set; }
         public int YDisplacement { get; protected set; }
-        public int XVelocity { get; protected set; }
-        public int YVelocity { get; protected set; }
+        public int Width { get; protected set; }
+        public int Height { get; protected set; }
         public bool IsDestroyed { get; protected set; }
 
-        public int TotalHP 
-        { 
-            get => TotalHP; 
-            protected init 
-            { 
-                if (value < 0) 
-                    throw new ArgumentException(); 
-            } 
-        }
-
-        public int AvailableHP
+        public int ConcurrentLaserBlastsCount
         {
-            get => AvailableHP;
-            protected set
-            {
-                if (value < 0)
-                    _ = 0;
-                else if (value > TotalHP)
-                    _ = TotalHP;
-            }
-        }
-
-        public int ConcurrentLaserBlastCount
-        {
-            get => ConcurrentLaserBlastCount;
+            get => ConcurrentLaserBlastsCount;
             protected set
             {
                 if (value < 0)
@@ -92,20 +70,56 @@
             }
         }
 
-        public Spaceship(
-            int hp, int concurrentLaserBlastsCount, int laserBlastDamage, int laserReload, 
-            int missileCount, int missileDamage, int missileReload)
+        protected int TotalHP
         {
+            get => TotalHP;
+            init
+            {
+                if (value < 0)
+                    throw new ArgumentException();
+            }
+        }
+
+        protected int AvailableHP
+        {
+            get => AvailableHP;
+            set
+            {
+                if (value < 0)
+                    _ = 0;
+                else if (value > TotalHP)
+                    _ = TotalHP;
+            }
+        }
+
+        public Spaceship(int initXLocation, int initYLocation, int width, int height, int hp, 
+                         int concurrentLaserBlastsCount, int laserBlastDamage, int laserReload, 
+                         int missileCount, int missileDamage, int missileReload)
+        {
+            XLocation = initXLocation;
+            YLocation = initYLocation;
+            Width = width; 
+            Height = height;
             TotalHP = hp;
-            ConcurrentLaserBlastCount = concurrentLaserBlastsCount;
+            ConcurrentLaserBlastsCount = concurrentLaserBlastsCount;
             LaserBlastDamage = laserBlastDamage;
             LaserReload = laserReload;
             MissileCount = missileCount;
             MissileDamage = missileDamage;
-            MissileReload = missileReload;  
+            MissileReload = missileReload;
 
             AvailableHP = TotalHP;
             IsDestroyed = false;
+        }
+
+        public void MoveHorizontally()
+        {
+            XLocation += XDisplacement;
+        }
+
+        public void MoveVertically()
+        {
+            YLocation += YDisplacement;
         }
 
         public void TakeDamage(int damage) 
@@ -118,6 +132,11 @@
         public void RestoreHealth(int health)
         {
             AvailableHP += health;
+        }
+
+        public double GetAvailableHealthRatio() 
+        {
+            return AvailableHP / TotalHP;
         }
     }
 }
