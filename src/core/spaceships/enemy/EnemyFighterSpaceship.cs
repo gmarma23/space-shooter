@@ -2,10 +2,12 @@
 {
     internal class EnemyFighterSpaceship : EnemySpaceship
     {
-        public EnemyFighterSpaceship(
-            int hp, int concurrentLaserBlastsCount, int laserBlastDamage, int laserReload,
-            int missileCount, int missileDamage, int missileReload, bool movesRandomly, int scorePoints) : 
-            base(hp, concurrentLaserBlastsCount, laserBlastDamage, laserReload, missileCount, missileDamage, missileReload, movesRandomly, scorePoints)
+        public EnemyFighterSpaceship(int defaultDisplacement, int initXLocation, int initYLocation, int width, int height, int hp,
+            int concurrentLaserBlastsCount, int laserBlastDamage, int laserReload,
+            int missileCount, int missileDamage, int missileReload) :
+            base(defaultDisplacement, initXLocation, initYLocation, width, height, hp,
+                concurrentLaserBlastsCount, laserBlastDamage, laserReload,
+                missileCount, missileDamage, missileReload)
         {
 
         }
