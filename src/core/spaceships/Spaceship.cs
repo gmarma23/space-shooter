@@ -2,6 +2,8 @@
 {
     internal class Spaceship
     {
+        public int XLocation { get; protected set; }
+        public int YLocation { get; protected set; }
         public int XDisplacement { get; protected set; }
         public int YDisplacement { get; protected set; }
         public int XVelocity { get; protected set; }
