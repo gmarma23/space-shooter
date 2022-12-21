@@ -6,16 +6,20 @@ using System.Threading.Tasks;
 
 namespace SpaceShooter.core
 {
-    internal class Gameplay
+    internal class GameState
     {
         private HeroSpaceship hero;
         private List<EnemySpaceship> enemies;
         private List<LaserBlast> activeLaserBlasts;
 
+        public int GridXDimension { get; private init; }
+        public int GridYDimension { get; private init; }
         public int Score { get; private set; }
 
-        public Gameplay()
+        public GameState(int gridXDimension, int gridYDimension)
         {
+            GridXDimension = gridXDimension;
+            GridYDimension = gridYDimension;
             //hero = new HeroSpaceship();
             enemies = new List<EnemySpaceship>();
             activeLaserBlasts = new List<LaserBlast>();
