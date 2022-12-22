@@ -14,8 +14,8 @@ namespace SpaceShooter.core
         public int YDisplacement { get; protected set; }
         public int Width { get; protected set; }
         public int Height { get; protected set; }
-        public bool LaserIsReloading { get; protected set; }
-        public bool MissileIsReloading { get; protected set; }
+        public bool LaserIsReloading { get; set; }
+        public bool MissileIsReloading { get; set; }
         public bool IsDestroyed { get; protected set; }
 
         public int ConcurrentLaserBlastsCount
@@ -135,6 +135,8 @@ namespace SpaceShooter.core
         public List<LaserBlast> FireLaser()
         {
             List<LaserBlast> laserBlasts = new List<LaserBlast>();
+            if (LaserIsReloading) return laserBlasts;
+        
             for (int i = 0; i < ConcurrentLaserBlastsCount; i++)
                 laserBlasts.Add(new LaserBlast(this, i));
             return laserBlasts;
