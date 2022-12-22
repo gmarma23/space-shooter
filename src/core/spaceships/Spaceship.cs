@@ -1,9 +1,11 @@
 ﻿namespace SpaceShooter.core
 {
-    internal class Spaceship
+    internal abstract class Spaceship : IGridItem
     {
-        protected const double widthRatio = 0.05;
-        protected const double heightRatio = 1.05;
+        protected const double defaultWidthRatio = 0.05;
+        protected const double defaultHeightRatio = 1.05;
+
+        protected readonly int absMaxDisplacement;
 
         public bool IsEnemy { get; protected init; }
         public int XLocation { get; protected set; }
@@ -98,13 +100,11 @@
             }
         }
 
-        public Spaceship(bool isEnemy, int initXLocation, int initYLocation, int gridXDimension, int hp, 
-                         int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime, 
-                         int missileCount, int missileDamage, int missileReloadTime)
+        public Spaceship(bool isEnemy, int hp, int absMaxDisplacement,
+            int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime, 
+            int missileCount, int missileDamage, int missileReloadTime)
         {
             IsEnemy = isEnemy;
-            XLocation = initXLocation;
-            YLocation = initYLocation;
             TotalHP = hp;
             ConcurrentLaserBlastsCount = concurrentLaserBlastsCount;
             LaserBlastDamage = laserBlastDamage;
@@ -113,8 +113,7 @@
             MissileDamage = missileDamage;
             MissileReloadTime = missileReloadTime;
 
-            Width = (int)(gridXDimension * widthRatio);
-            Height = (int)(Width * heightRatio);
+            this.absMaxDisplacement = absMaxDisplacement;
 
             AvailableHP = TotalHP;
             IsDestroyed = false;
