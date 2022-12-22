@@ -6,11 +6,11 @@
         public bool MovesRandomly { get; protected init; }
         public int ScorePoints { get; protected init; }
 
-        public EnemySpaceship(int defaultDisplacement, int initXLocation, int initYLocation, int width, int height, int hp,
-            int concurrentLaserBlastsCount, int laserBlastDamage, int laserReload,
-            int missileCount, int missileDamage, int missileReload) :
-            base(true, initXLocation, initYLocation, width, height, hp,
-                concurrentLaserBlastsCount, laserBlastDamage, laserReload,
+        public EnemySpaceship(int defaultDisplacement, int initXLocation, int initYLocation, int gridXDimension, int hp,
+                         int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime,
+                         int missileCount, int missileDamage, int missileReload) :
+            base(true, initXLocation, initYLocation, gridXDimension, hp,
+                concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime,
                 missileCount, missileDamage, missileReload)
         {
 

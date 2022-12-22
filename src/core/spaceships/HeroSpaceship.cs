@@ -11,11 +11,11 @@ namespace SpaceShooter.core
         public bool GoLeft { get; set; }
         public bool GoRight { get; set; }
 
-        public HeroSpaceship(int defaultDisplacement, int initXLocation, int initYLocation, int width, int height, int hp,
-            int concurrentLaserBlastsCount, int laserBlastDamage, int laserReload,
-            int missileCount, int missileDamage, int missileReload) :
-            base (false, initXLocation, initYLocation, width, height, hp, 
-                concurrentLaserBlastsCount, laserBlastDamage, laserReload, 
+        public HeroSpaceship(int defaultDisplacement, int initXLocation, int initYLocation, int gridXDimension, int hp,
+                         int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime,
+                         int missileCount, int missileDamage, int missileReload) :
+            base (false, initXLocation, initYLocation, gridXDimension, hp, 
+                concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, 
                 missileCount, missileDamage, missileReload)
         {
             this.defaultDisplacement = defaultDisplacement;
