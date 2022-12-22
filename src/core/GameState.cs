@@ -8,26 +8,26 @@ namespace SpaceShooter.core
 {
     internal class GameState
     {
+        private GameGrid grid;
         private HeroSpaceship hero;
         private List<EnemySpaceship> enemies;
         private List<int> activeEnemyIndices;
         private List<LaserBlast> activeLaserBlasts;
         private List<int> activeLaserBlastIndices;
 
-        public int GridXDimension { get; private init; }
-        public int GridYDimension { get; private init; }
+        public int GridXDimension { get => grid.XDimension; }
+        public int GridYDimension { get => grid.YDimension; }
         public int Score { get; private set; }
 
         public GameState(int gridXDimension = 1360, int gridYDimension = 760)
         {
-            GridXDimension = gridXDimension;
-            GridYDimension = gridYDimension;
+            grid = new GameGrid(gridXDimension, gridYDimension);
 
             //hero = new HeroSpaceship();
             enemies = new List<EnemySpaceship>();
             activeLaserBlasts = new List<LaserBlast>();
         }
-
+        /*
         public void AddEnemy(EnemySpaceshipType enemyType, bool randomMovement = true)
         {
             EnemySpaceship enemySpaceship;
@@ -45,7 +45,7 @@ namespace SpaceShooter.core
             }
             enemies.Add(enemySpaceship);
         }
-
+        */
         public (int, int) GetHeroLocation()
         {
             return (hero.XLocation, hero.YLocation);
