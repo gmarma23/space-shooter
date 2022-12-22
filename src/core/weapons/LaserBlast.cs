@@ -1,6 +1,6 @@
 ﻿namespace SpaceShooter.core
 {
-    internal class LaserBlast
+    internal class LaserBlast : IGridItem
     {
         private const double laserBlastWidthRatio = 0.05;
         private const double laserBlastHeightRatio = 7;
@@ -10,6 +10,7 @@
         public int XLocation { get; private init; }
         public int Width { get; private init; }
         public int Height { get; private init; }
+        public int XDisplacement { get; private init; }
         public int YDisplacement
         {
             get => YDisplacement;
@@ -26,6 +27,7 @@
         {
             IsEnemy = spaceship.IsEnemy;
             Damage = spaceship.LaserBlastDamage;
+            XDisplacement = 0;
             YDisplacement = 5;
 
             Width = (int)(spaceship.Width * laserBlastWidthRatio);
