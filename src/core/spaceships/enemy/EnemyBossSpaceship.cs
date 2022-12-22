@@ -6,10 +6,10 @@
 
         public EnemyBossSpaceship(int defaultDisplacement, int initXLocation, int initYLocation, int gridXDimension, int hp,
                          int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime,
-                         int missileCount, int missileDamage, int missileReload) :
+                         int missileCount, int missileDamage, int missileReloadTime) :
             base(defaultDisplacement, initXLocation, initYLocation, gridXDimension, hp,
                 concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime,
-                missileCount, missileDamage, missileReload)
+                missileCount, missileDamage, missileReloadTime)
         {
             Width = (int)(Width * bossSpaceshipWidthRatio);
             Height = (int)(Width * spaceshipHeightRatio);
