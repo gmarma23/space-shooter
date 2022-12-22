@@ -26,13 +26,13 @@ namespace SpaceShooter.core
 
         public static bool GridItemsIntersect(IGridItem item1, IGridItem item2)
         {
-            int deltaX = item2.XLocation - item1.XLocation;
-            int deltaY = item2.YLocation - item1.YLocation;
+            int dx = item2.XLocation - item1.XLocation;
+            int dy = item2.YLocation - item1.YLocation;
 
-            if (deltaX == 0 || deltaY == 0) return true;
+            if (dx == 0 || dy == 0) return true;
 
-            bool horizontalIntersect = deltaX > 0 ? deltaX <= item1.Width : - deltaX <= item2.Width;
-            bool verticalIntersect = deltaY > 0 ? deltaY <= item1.Height : - deltaY <= item2.Height;
+            bool horizontalIntersect = dx > 0 ? dx <= item1.Width : - dx <= item2.Width;
+            bool verticalIntersect = dy > 0 ? dy <= item1.Height : - dy <= item2.Height;
 
             return horizontalIntersect || verticalIntersect;
         }
