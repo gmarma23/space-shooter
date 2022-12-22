@@ -1,7 +1,12 @@
-﻿namespace SpaceShooter.core
+﻿using System.Reflection.Metadata.Ecma335;
+
+namespace SpaceShooter.core
 {
     internal class Spaceship
     {
+        protected const double spaceshipWidthRatio = 0.05;
+        protected const double spaceshipHeightRatio = 1.05;
+
         public bool IsEnemy { get; protected init; }
         public int XLocation { get; protected set; }
         public int YLocation { get; protected set; }
@@ -31,9 +36,9 @@
             }
         }
 
-        public int LaserReload
+        public int LaserReloadTime
         {
-            get => LaserReload;
+            get => LaserReloadTime;
             protected set
             {
                 if (value < 0)
@@ -93,22 +98,23 @@
             }
         }
 
-        public Spaceship(bool isEnemy, int initXLocation, int initYLocation, int width, int height, int hp, 
-                         int concurrentLaserBlastsCount, int laserBlastDamage, int laserReload, 
+        public Spaceship(bool isEnemy, int initXLocation, int initYLocation, int gridXDimension, int hp, 
+                         int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime, 
                          int missileCount, int missileDamage, int missileReload)
         {
             IsEnemy = isEnemy;
             XLocation = initXLocation;
             YLocation = initYLocation;
-            Width = width; 
-            Height = height;
             TotalHP = hp;
             ConcurrentLaserBlastsCount = concurrentLaserBlastsCount;
             LaserBlastDamage = laserBlastDamage;
-            LaserReload = laserReload;
+            LaserReloadTime = laserReloadTime;
             MissileCount = missileCount;
             MissileDamage = missileDamage;
             MissileReload = missileReload;
+
+            Width = (int)(gridXDimension * spaceshipWidthRatio);
+            Height = (int)(Width * spaceshipHeightRatio);
 
             AvailableHP = TotalHP;
             IsDestroyed = false;
@@ -122,6 +128,14 @@
         public void MoveVertically()
         {
             YLocation += YDisplacement;
+        }
+
+        public List<LaserBlast> FireLaser()
+        {
+            List<LaserBlast> laserBlasts = new List<LaserBlast>();
+            for (int i = 0; i < ConcurrentLaserBlastsCount; i++)
+                laserBlasts.Add(new LaserBlast(this, i));
+            return laserBlasts;
         }
 
         public void TakeDamage(int damage) 
