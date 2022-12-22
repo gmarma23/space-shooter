@@ -14,6 +14,8 @@ namespace SpaceShooter.core
         public int YDisplacement { get; protected set; }
         public int Width { get; protected set; }
         public int Height { get; protected set; }
+        public bool LaserIsReloading { get; protected set; }
+        public bool MissileIsReloading { get; protected set; }
         public bool IsDestroyed { get; protected set; }
 
         public int ConcurrentLaserBlastsCount
@@ -66,9 +68,9 @@ namespace SpaceShooter.core
             }
         }
 
-        public int MissileReload
+        public int MissileReloadTime
         {
-            get => MissileReload;
+            get => MissileReloadTime;
             protected set
             {
                 if (value < 0)
@@ -100,7 +102,7 @@ namespace SpaceShooter.core
 
         public Spaceship(bool isEnemy, int initXLocation, int initYLocation, int gridXDimension, int hp, 
                          int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime, 
-                         int missileCount, int missileDamage, int missileReload)
+                         int missileCount, int missileDamage, int missileReloadTime)
         {
             IsEnemy = isEnemy;
             XLocation = initXLocation;
@@ -111,7 +113,7 @@ namespace SpaceShooter.core
             LaserReloadTime = laserReloadTime;
             MissileCount = missileCount;
             MissileDamage = missileDamage;
-            MissileReload = missileReload;
+            MissileReloadTime = missileReloadTime;
 
             Width = (int)(gridXDimension * spaceshipWidthRatio);
             Height = (int)(Width * spaceshipHeightRatio);
