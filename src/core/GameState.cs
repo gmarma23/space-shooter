@@ -8,27 +8,11 @@ namespace SpaceShooter.core
 {
     internal class GameState
     {
-        private const double normalSpaceshipWidthRatio = 0.05;
-        private const double bossSpaceshipWidthRatio = 1.5;
-        private const double spaceshipHeightRatio = 1.05;
-        private const double laserBlastWidthRatio = 0.05;
-        private const double laserBlastHeightRatio = 7;
-
         private HeroSpaceship hero;
         private List<EnemySpaceship> enemies;
         private List<int> activeEnemyIndices;
         private List<LaserBlast> activeLaserBlasts;
         private List<int> activeLaserBlastIndices;
-
-        private readonly int normalSpaceshipWidth;
-        private readonly int normalSpaceshipHeight;
-        private readonly int bossSpaceshipWidth;
-        private readonly int bossSpaceshipHeight;
-        private readonly int normalLaserBlastWidth;
-        private readonly int bossLaserBlastWidth;
-        private readonly int normalLaserBlastHeight;
-        private readonly int bossLaserBlastHeight;
-        private readonly int laserBlastDisplacement;
 
         public int GridXDimension { get; private init; }
         public int GridYDimension { get; private init; }
@@ -41,15 +25,6 @@ namespace SpaceShooter.core
 
             enemies = new List<EnemySpaceship>();
             activeLaserBlasts = new List<LaserBlast>();
-
-            normalSpaceshipWidth = (int)(GridXDimension * normalSpaceshipWidthRatio);
-            normalSpaceshipHeight = (int)(normalSpaceshipWidth * spaceshipHeightRatio);
-            bossSpaceshipWidth = (int)(normalSpaceshipWidth * bossSpaceshipWidthRatio);
-            bossSpaceshipHeight = (int)(bossSpaceshipWidth * spaceshipHeightRatio);
-            normalLaserBlastWidth = (int)(normalSpaceshipWidth * laserBlastWidthRatio);
-            normalLaserBlastHeight = (int)(normalLaserBlastWidth * laserBlastHeightRatio);
-            bossLaserBlastWidth = (int)(bossSpaceshipWidth * bossSpaceshipWidthRatio);
-            bossLaserBlastHeight = (int)(bossLaserBlastWidth * laserBlastHeightRatio);
         }
 
         public (int, int) GetHeroLocation()
@@ -65,13 +40,7 @@ namespace SpaceShooter.core
 
         public void FireHeroLaser()
         {
-            int laserBlastXLocation, laserBlastYLocation;
-            for (int i = 0; i < hero.ConcurrentLaserBlastsCount; i++)
-            {
-                laserBlastXLocation = hero.XLocation + (i * hero.Width / (hero.ConcurrentLaserBlastsCount + 1)) - (normalLaserBlastWidth / 2);
-                laserBlastYLocation = hero.YLocation - normalLaserBlastHeight;
-                activeLaserBlasts.Add(new LaserBlast(false, hero.LaserBlastDamage, laserBlastDisplacement, laserBlastXLocation, laserBlastYLocation, normalLaserBlastWidth, normalLaserBlastHeight));
-            }
+            
         }
 
         public void FireEnemyLaser(int enemyIndex)
