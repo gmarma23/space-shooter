@@ -40,13 +40,15 @@ namespace SpaceShooter.core
 
         public void FireHeroLaser()
         {
-            activeLaserBlasts.AddRange(hero.FireLaser());
+            List<LaserBlast> firedHeroLaserBlasts = hero.FireLaser();
+            activeLaserBlasts.AddRange(firedHeroLaserBlasts);
         }
 
         public void FireEnemyLaser(int enemyIndex)
         {
             EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
-            activeLaserBlasts.AddRange(enemy.FireLaser());
+            List<LaserBlast> firedEnemyLaserBlasts = enemy.FireLaser();
+            activeLaserBlasts.AddRange(firedEnemyLaserBlasts);
         }
 
         public bool IsEnemyDestroyed(int enemyIndex)
