@@ -12,7 +12,7 @@
                 missileCount, missileDamage, missileReloadTime)
         {
             Width = (int)(Width * bossSpaceshipWidthRatio);
-            Height = (int)(Width * spaceshipHeightRatio);
+            Height = (int)(Width * heightRatio);
         }
 
         public override void Teleport(int minX, int maxX, int minY, int maxY)

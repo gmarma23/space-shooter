@@ -1,11 +1,9 @@
-﻿using System.Reflection.Metadata.Ecma335;
-
-namespace SpaceShooter.core
+﻿namespace SpaceShooter.core
 {
     internal class Spaceship
     {
-        protected const double spaceshipWidthRatio = 0.05;
-        protected const double spaceshipHeightRatio = 1.05;
+        protected const double widthRatio = 0.05;
+        protected const double heightRatio = 1.05;
 
         public bool IsEnemy { get; protected init; }
         public int XLocation { get; protected set; }
@@ -115,8 +113,8 @@ namespace SpaceShooter.core
             MissileDamage = missileDamage;
             MissileReloadTime = missileReloadTime;
 
-            Width = (int)(gridXDimension * spaceshipWidthRatio);
-            Height = (int)(Width * spaceshipHeightRatio);
+            Width = (int)(gridXDimension * widthRatio);
+            Height = (int)(Width * heightRatio);
 
             AvailableHP = TotalHP;
             IsDestroyed = false;
