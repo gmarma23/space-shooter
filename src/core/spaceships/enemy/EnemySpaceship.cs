@@ -20,4 +20,11 @@
 
         public abstract void RenewDisplacement();
     }
+
+    public enum EnemySpaceshipType 
+    { 
+        Fighter,
+        Teleporter,
+        Boss
+    }
 }

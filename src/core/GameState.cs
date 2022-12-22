@@ -23,8 +23,27 @@ namespace SpaceShooter.core
             GridXDimension = gridXDimension;
             GridYDimension = gridYDimension;
 
+            //hero = new HeroSpaceship();
             enemies = new List<EnemySpaceship>();
             activeLaserBlasts = new List<LaserBlast>();
+        }
+
+        public void AddEnemy(EnemySpaceshipType enemyType, bool randomMovement = true)
+        {
+            EnemySpaceship enemySpaceship;
+            switch(enemyType)
+            {
+                case EnemySpaceshipType.Fighter:
+                    enemySpaceship = new EnemyFighterSpaceship();
+                    break;
+                case EnemySpaceshipType.Teleporter:
+                    enemySpaceship = new EnemyTeleporterSpaceship();
+                    break;
+                case EnemySpaceshipType.Boss:
+                    enemySpaceship = new EnemyBossSpaceship();
+                    break;
+            }
+            enemies.Add(enemySpaceship);
         }
 
         public (int, int) GetHeroLocation()
@@ -54,10 +73,13 @@ namespace SpaceShooter.core
         public bool IsEnemyDestroyed(int enemyIndex)
         {
             EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
-            if (!enemy.IsDestroyed) return false;
+            return enemy.IsDestroyed;
+        }
 
+        public void RemoveEnemy(int enemyIndex)
+        {
+            EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
             enemies.Remove(enemy);
-            return true;
         }
 
         public bool IsGameOver()
