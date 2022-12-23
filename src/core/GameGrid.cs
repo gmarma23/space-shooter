@@ -17,14 +17,35 @@ namespace SpaceShooter.core
             YDimension = yDimension;
         }
 
-        public bool IsValidLocation(IGridItem item, int newX, int newY)
+        public int GetItemMinPossibleX()
         {
-            return newX >= 0 && newY >= 0 &&
-                newX + item.Width <= XDimension &&
-                newY + item.Height <= YDimension;
+            return 0;
         }
 
-        public static bool GridItemsIntersect(IGridItem item1, IGridItem item2)
+        public int GetItemMinPossibleY()
+        {
+            return 0;
+        }
+
+        public int GetItemMaxPossibleX(IGridItem item)
+        {
+            return XDimension - item.Width;
+        }
+
+        public int GetItemMaxPossibleY(IGridItem item)
+        {
+            return YDimension - item.Height;
+        }
+
+        public bool IsValidLocation(IGridItem item, int newX, int newY)
+        {
+            return newX >= GetItemMinPossibleX() && 
+                   newY >= GetItemMinPossibleY() &&
+                   newX <= GetItemMaxPossibleX(item) &&
+                   newY <= GetItemMaxPossibleY(item);
+        }
+
+        public static bool ItemsIntersect(IGridItem item1, IGridItem item2)
         {
             int dx = item2.XLocation - item1.XLocation;
             int dy = item2.YLocation - item1.YLocation;
