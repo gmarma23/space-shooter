@@ -24,7 +24,7 @@
 
         protected override void setBaselineY(GameGrid grid, double baselineYRatio)
         {
-            BaselineY = (int)(grid.DimensionX * baselineYRatio);
+            baselineY = (int)(grid.DimensionX * baselineYRatio);
         }
 
         protected override void initializeLocationX(GameGrid grid)

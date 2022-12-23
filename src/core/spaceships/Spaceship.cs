@@ -6,6 +6,7 @@
         protected const double defaultHeightRatio = 1.05;
 
         protected readonly int absMaxDisplacement;
+        protected int baselineY;
 
         public bool IsEnemy { get; protected init; }
         public int LocationX { get; protected set; }
@@ -14,7 +15,6 @@
         public int DisplacementY { get; protected set; }
         public int Width { get; protected set; }
         public int Height { get; protected set; }
-        public int BaselineY { get; protected set; }
         public bool LaserIsReloading { get; set; }
         public bool MissileIsReloading { get; set; }
         public bool IsDestroyed { get; protected set; }
