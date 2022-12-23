@@ -10,7 +10,7 @@ namespace SpaceShooter.core
     {
         private GameGrid grid;
         private HeroSpaceship hero;
-        private List<EnemySpaceship> enemies;
+        private EnemySpaceship enemy;
         private List<int> activeEnemyIndices;
         private List<LaserBlast> activeLaserBlasts;
         private List<int> activeLaserBlastIndices;
@@ -23,64 +23,37 @@ namespace SpaceShooter.core
         {
             grid = new GameGrid(gridXDimension, gridYDimension);
             hero = new HeroSpaceship(grid);
-            enemies = new List<EnemySpaceship>();
             activeLaserBlasts = new List<LaserBlast>();
         }
         
-        public void AddEnemy(EnemySpaceshipType enemyType)
+        public void RenewEnemySpaceship(EnemySpaceshipType enemyType)
         {
-            EnemySpaceship enemySpaceship;
-            switch(enemyType)
+            enemy = enemyType switch
             {
-                case EnemySpaceshipType.Fighter:
-                    enemySpaceship = new EnemyFighterSpaceship(grid);
-                    break;
-                case EnemySpaceshipType.Teleporter:
-                    enemySpaceship = new EnemyTeleporterSpaceship(grid);
-                    break;
-                case EnemySpaceshipType.Boss:
-                    enemySpaceship = new EnemyBossSpaceship(grid);
-                    break;
-                default:
-                    throw new Exception();
-            }
-            enemies.Add(enemySpaceship);
+                EnemySpaceshipType.Fighter => new EnemyFighterSpaceship(grid),
+                EnemySpaceshipType.Teleporter => new EnemyTeleporterSpaceship(grid),
+                EnemySpaceshipType.Boss => new EnemyBossSpaceship(grid),
+                _ => throw new Exception()
+            };
         }
         
-        public (int, int) GetHeroLocation()
+        public void SpaceshipGetLocation(bool isEnemy, ref int x, ref int y)
         {
-            return (hero.XLocation, hero.YLocation);
+            Spaceship spaceship = getSpaceship(isEnemy);
+            x = spaceship.XLocation;
+            y = spaceship.YLocation;
         }
 
-        public (int, int) GetEnemyLocation(int enemyIndex)
+        public void SpaceshipFireLaser(bool isEnemy)
         {
-            EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
-            return (enemy.XLocation, enemy.YLocation);
+            Spaceship spaceship = getSpaceship(isEnemy);
+            List<LaserBlast> firedLaserBlasts = spaceship.FireLaser();
+            activeLaserBlasts.AddRange(firedLaserBlasts);
         }
 
-        public void FireHeroLaser()
+        public bool IsEnemyDestroyed()
         {
-            List<LaserBlast> firedHeroLaserBlasts = hero.FireLaser();
-            activeLaserBlasts.AddRange(firedHeroLaserBlasts);
-        }
-
-        public void FireEnemyLaser(int enemyIndex)
-        {
-            EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
-            List<LaserBlast> firedEnemyLaserBlasts = enemy.FireLaser();
-            activeLaserBlasts.AddRange(firedEnemyLaserBlasts);
-        }
-
-        public bool IsEnemyDestroyed(int enemyIndex)
-        {
-            EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
             return enemy.IsDestroyed;
-        }
-
-        public void RemoveEnemy(int enemyIndex)
-        {
-            EnemySpaceship enemy = getEnemyByIndex(enemyIndex);
-            enemies.Remove(enemy);
         }
 
         public bool IsGameOver()
@@ -88,13 +61,9 @@ namespace SpaceShooter.core
             return hero.IsDestroyed;
         }
 
-        private EnemySpaceship getEnemyByIndex(int enemyIndex)
+        private Spaceship getSpaceship(bool isEnemy)
         {
-            EnemySpaceship? enemy = enemies.Find(enemy => enemy.Index == enemyIndex);
-            if (enemy == null)
-                throw new Exception();
-            else
-                return enemy;
+            return isEnemy ? enemy : hero;
         }
     }
 }
