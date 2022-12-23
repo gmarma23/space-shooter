@@ -65,5 +65,10 @@ namespace SpaceShooter.core
 
             return horizontalIntersect || verticalIntersect;
         }
+
+        public int GetHorizontallyCenteredItemX(IGridItem item)
+        {
+            return XDimension / 2 - item.Width / 2;
+        }
     }
 }
