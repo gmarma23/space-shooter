@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,16 +30,19 @@ namespace SpaceShooter.core
 
         public int GetItemMaxPossibleX(IGridItem item)
         {
+            Debug.Assert(item != null);
             return XDimension - item.Width;
         }
 
         public int GetItemMaxPossibleY(IGridItem item)
         {
+            Debug.Assert(item != null);
             return YDimension - item.Height;
         }
 
         public bool IsValidLocation(IGridItem item, int newX, int newY)
         {
+            Debug.Assert(item != null);
             return newX >= GetItemMinPossibleX() && 
                    newY >= GetItemMinPossibleY() &&
                    newX <= GetItemMaxPossibleX(item) &&
@@ -47,6 +51,9 @@ namespace SpaceShooter.core
 
         public static bool ItemsIntersect(IGridItem item1, IGridItem item2)
         {
+            Debug.Assert(item1 != null);
+            Debug.Assert(item2 != null);
+
             int dx = item2.XLocation - item1.XLocation;
             int dy = item2.YLocation - item1.YLocation;
 
