@@ -4,9 +4,9 @@
     {
         protected const double bossSpaceshipScaleFactor = 1.5;
 
-        public EnemyBossSpaceship(GameGrid grid, bool randomMotion, int absMaxDisplacement, int hp,
-            int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime,
-            int missileCount, int missileDamage, int missileReloadTime, int scorePoints) :
+        public EnemyBossSpaceship(GameGrid grid, bool randomMotion = false, int absMaxDisplacement = 5, int hp = 1000,
+            int concurrentLaserBlastsCount = 2, int laserBlastDamage = 50, int laserReloadTime = 1,
+            int missileCount = 3, int missileDamage = 100, int missileReloadTime = 10, int scorePoints = 5) :
             base(randomMotion, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime,
                 missileCount, missileDamage, missileReloadTime, scorePoints)
         {

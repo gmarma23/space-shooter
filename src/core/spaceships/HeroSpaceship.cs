@@ -7,9 +7,9 @@
         public bool GoLeft { get; set; }
         public bool GoRight { get; set; }
 
-        public HeroSpaceship(GameGrid grid, int absMaxDisplacement, int hp, 
-            int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime,
-            int missileCount, int missileDamage, int missileReloadTime) :
+        public HeroSpaceship(GameGrid grid, int absMaxDisplacement = 7, int hp = 700, 
+            int concurrentLaserBlastsCount = 2, int laserBlastDamage = 40, int laserReloadTime = 1,
+            int missileCount = 0, int missileDamage = 0, int missileReloadTime = 0) :
             base (false, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, 
                 missileCount, missileDamage, missileReloadTime)
         {
