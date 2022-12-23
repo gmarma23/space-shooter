@@ -2,6 +2,8 @@
 {
     internal class HeroSpaceship : Spaceship
     {
+        protected const double baselineYRatio = 0.1;
+
         public bool GoUp { get; set; }
         public bool GoDown { get; set; }
         public bool GoLeft { get; set; }
@@ -16,6 +18,7 @@
             initializeDirectionBooleans();
 
             setSize(grid);
+            setBaselineY(grid, baselineYRatio);
             setInitXLocation(grid);
             setInitYLocation(grid);
             UpdateDisplacement();
@@ -40,14 +43,19 @@
             GoDown = false;
         }
 
+        protected override void setBaselineY(GameGrid grid, double baselineYRatio)
+        {
+            BaselineY = (int)(grid.XDimension * baselineYRatio) - Height;
+        }
+
         protected override void setInitXLocation(GameGrid grid)
         {
-            throw new NotImplementedException();
+            XLocation = grid.GetHorizontallyCenteredItemX(this);
         }
 
         protected override void setInitYLocation(GameGrid grid)
         {
-            throw new NotImplementedException();
+            YLocation = BaselineY;
         }
     }
 }

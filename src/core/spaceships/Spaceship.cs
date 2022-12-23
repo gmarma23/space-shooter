@@ -14,6 +14,7 @@
         public int YDisplacement { get; protected set; }
         public int Width { get; protected set; }
         public int Height { get; protected set; }
+        public int BaselineY { get; protected set; }
         public bool LaserIsReloading { get; set; }
         public bool MissileIsReloading { get; set; }
         public bool IsDestroyed { get; protected set; }
@@ -161,6 +162,8 @@
             Width = (int)(grid.XDimension * defaultWidthRatio * scaleFactor);
             Height = (int)(Width * defaultHeightRatio);
         }
+
+        protected abstract void setBaselineY(GameGrid grid, double baselineYRatio);
 
         protected abstract void setInitXLocation(GameGrid grid);
 

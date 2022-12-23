@@ -2,6 +2,8 @@
 {
     internal abstract class EnemySpaceship : Spaceship
     {
+        protected const double baselineYRatio = 0.9;
+
         public int Index { get; protected init; }
         public bool RandomMotion { get; protected init; }
         public int ScorePoints { get; protected init; }
@@ -19,6 +21,11 @@
         public abstract void Teleport(int minX, int maxX, int minY, int maxY);
 
         public abstract void RenewDisplacement();
+
+        protected override void setBaselineY(GameGrid grid, double baselineYRatio)
+        {
+            BaselineY = (int)(grid.XDimension * baselineYRatio);
+        }
 
         protected override void setInitXLocation(GameGrid grid)
         {
