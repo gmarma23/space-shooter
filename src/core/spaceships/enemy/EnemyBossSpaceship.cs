@@ -2,7 +2,7 @@
 {
     internal class EnemyBossSpaceship : EnemySpaceship
     {
-        protected const double bossSpaceshipWidthRatio = 1.5 * defaultWidthRatio;
+        protected const double bossSpaceshipScaleFactor = 1.5;
 
         public EnemyBossSpaceship(GameGrid grid, bool randomMotion, int absMaxDisplacement, int hp,
             int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime,
@@ -10,8 +10,7 @@
             base(grid, randomMotion, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime,
                 missileCount, missileDamage, missileReloadTime, scorePoints)
         {
-            Width = (int)(Width * bossSpaceshipWidthRatio);
-            Height = (int)(Width * defaultHeightRatio);
+            setSize(grid.XDimension, bossSpaceshipScaleFactor);
 
             YLocation = -Height;
         }

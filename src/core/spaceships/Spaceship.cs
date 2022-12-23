@@ -155,5 +155,15 @@
         {
             return AvailableHP / TotalHP;
         }
+
+        protected void setSize(GameGrid grid, double scaleFactor = 1)
+        {
+            Width = (int)(grid.XDimension * defaultWidthRatio * scaleFactor);
+            Height = (int)(Width * defaultHeightRatio);
+        }
+
+        protected abstract void setInitXLocation(GameGrid grid);
+
+        protected abstract void setInitYLocation(GameGrid grid);
     }
 }

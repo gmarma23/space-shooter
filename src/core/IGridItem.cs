@@ -14,7 +14,5 @@ namespace SpaceShooter.core
         int YDisplacement { get; }
         int Width { get; }
         int Height { get; }
-
-
     }
 }

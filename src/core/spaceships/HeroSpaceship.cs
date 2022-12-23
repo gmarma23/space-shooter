@@ -13,14 +13,11 @@
             base (false, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, 
                 missileCount, missileDamage, missileReloadTime)
         {
-            Width = (int)(grid.XDimension * defaultWidthRatio);
-            Height = (int)(Width * defaultHeightRatio);
+            initializeDirectionBooleans();
 
-            GoLeft = false;
-            GoRight = false;
-            GoUp = false;
-            GoDown = false;
-
+            setSize(grid);
+            setInitXLocation(grid);
+            setInitYLocation(grid);
             UpdateDisplacement();
         }
 
@@ -33,6 +30,24 @@
             if (GoRight) XDisplacement += absMaxDisplacement;
             if (GoUp) YDisplacement -= absMaxDisplacement;
             if (GoDown) YDisplacement += absMaxDisplacement;
+        }
+
+        protected void initializeDirectionBooleans()
+        {
+            GoLeft = false;
+            GoRight = false;
+            GoUp = false;
+            GoDown = false;
+        }
+
+        protected override void setInitXLocation(GameGrid grid)
+        {
+            throw new NotImplementedException();
+        }
+
+        protected override void setInitYLocation(GameGrid grid)
+        {
+            throw new NotImplementedException();
         }
     }
 }

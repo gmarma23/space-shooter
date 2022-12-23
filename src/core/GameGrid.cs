@@ -43,10 +43,11 @@ namespace SpaceShooter.core
         public bool IsValidLocation(IGridItem item, int newX, int newY)
         {
             Debug.Assert(item != null);
-            return newX >= GetItemMinPossibleX() && 
-                   newY >= GetItemMinPossibleY() &&
-                   newX <= GetItemMaxPossibleX(item) &&
-                   newY <= GetItemMaxPossibleY(item);
+
+            bool isValidNewX = newX >= GetItemMinPossibleX() && newX <= GetItemMaxPossibleX(item);
+            bool isValidNewY = newY >= GetItemMinPossibleY() && newY <= GetItemMaxPossibleY(item);
+
+            return isValidNewX && isValidNewY;
         }
 
         public static bool ItemsIntersect(IGridItem item1, IGridItem item2)
