@@ -8,6 +8,7 @@
         public bool IsEnemy { get; private init; }
         public int Damage { get; private init; }
         public int XLocation { get; private init; }
+        public int YLocation { get; private set; }
         public int Width { get; private init; }
         public int Height { get; private init; }
         public int XDisplacement { get; private init; }
@@ -21,7 +22,6 @@
                 _ = value;
             }
         }
-        public int YLocation { get; private set; }
 
         public LaserBlast(Spaceship spaceship, int index)
         {
