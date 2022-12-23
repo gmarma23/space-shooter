@@ -5,6 +5,9 @@
         private const double laserBlastWidthRatio = 0.05;
         private const double laserBlastHeightRatio = 7;
 
+        private static int nextNumCode = 0; 
+            
+        public int NumCode { get; private init; }
         public bool IsEnemy { get; private init; }
         public int Damage { get; private init; }
         public int LocationX { get; private init; }
@@ -35,6 +38,9 @@
 
             LocationX = spaceship.LocationX + (index * spaceship.Width / (spaceship.ConcurrentLaserBlastsCount + 1)) - (Width / 2);
             LocationY = IsEnemy ? spaceship.LocationY + spaceship.Height : spaceship.LocationY - Height;
+
+            NumCode = nextNumCode;
+            nextNumCode += 1;
         } 
 
         public void MoveVertically()

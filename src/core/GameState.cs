@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,7 +14,7 @@ namespace SpaceShooter.core
         private HeroSpaceship hero;
         private EnemySpaceship enemy;
         private List<LaserBlast> activeLaserBlasts;
-        private List<int> activeLaserBlastIndices;
+        private List<int> activeLaserBlastsNumCodes;
 
         public int GridXDimension { get => grid.DimensionX; }
         public int GridYDimension { get => grid.DimensionY; }
@@ -23,6 +25,12 @@ namespace SpaceShooter.core
             grid = new GameGrid(gridXDimension, gridYDimension);
             hero = new HeroSpaceship(grid);
             activeLaserBlasts = new List<LaserBlast>();
+            activeLaserBlastsNumCodes = new List<int>();
+        }
+
+        public ReadOnlyCollection<int> GetActiveLaserBlastsIndices()
+        {
+            return activeLaserBlastsNumCodes.AsReadOnly();
         }
         
         public void RenewEnemySpaceship(EnemySpaceshipType enemyType)
@@ -48,6 +56,13 @@ namespace SpaceShooter.core
             Spaceship spaceship = getSpaceship(isEnemy);
             List<LaserBlast> firedLaserBlasts = spaceship.FireLaser();
             activeLaserBlasts.AddRange(firedLaserBlasts);
+
+            foreach(LaserBlast laserBlast in firedLaserBlasts)
+            {
+                int newNumCode = laserBlast.NumCode;
+                Debug.Assert(!activeLaserBlastsNumCodes.Contains(newNumCode));
+                activeLaserBlastsNumCodes.Add(newNumCode);
+            }
         }
 
         public bool IsEnemyDestroyed()
