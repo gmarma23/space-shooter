@@ -24,19 +24,19 @@
 
         protected override void setBaselineY(GameGrid grid, double baselineYRatio)
         {
-            BaselineY = (int)(grid.XDimension * baselineYRatio);
+            BaselineY = (int)(grid.DimensionX * baselineYRatio);
         }
 
-        protected override void setInitXLocation(GameGrid grid)
+        protected override void initializeLocationX(GameGrid grid)
         {
             int minX = grid.GetItemMinPossibleX();
             int maxX = grid.GetItemMaxPossibleX(this);
-            XLocation = new Random().Next(minX, maxX);
+            LocationX = new Random().Next(minX, maxX);
         }
 
-        protected override void setInitYLocation(GameGrid grid)
+        protected override void initializeLocationY(GameGrid grid)
         {
-            YLocation = grid.GetItemMinPossibleY() - Height;
+            LocationY = grid.GetItemMinPossibleY() - Height;
         }
     }
 

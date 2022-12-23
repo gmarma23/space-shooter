@@ -19,20 +19,20 @@
 
             setSize(grid);
             setBaselineY(grid, baselineYRatio);
-            setInitXLocation(grid);
-            setInitYLocation(grid);
+            initializeLocationX(grid);
+            initializeLocationY(grid);
             UpdateDisplacement();
         }
 
         public void UpdateDisplacement()
         {
-            XDisplacement = 0;
-            YDisplacement = 0;
+            DisplacementX = 0;
+            DisplacementY = 0;
 
-            if (GoLeft) XDisplacement -= absMaxDisplacement;
-            if (GoRight) XDisplacement += absMaxDisplacement;
-            if (GoUp) YDisplacement -= absMaxDisplacement;
-            if (GoDown) YDisplacement += absMaxDisplacement;
+            if (GoLeft) DisplacementX -= absMaxDisplacement;
+            if (GoRight) DisplacementX += absMaxDisplacement;
+            if (GoUp) DisplacementY -= absMaxDisplacement;
+            if (GoDown) DisplacementY += absMaxDisplacement;
         }
 
         protected void initializeDirectionBooleans()
@@ -45,17 +45,17 @@
 
         protected override void setBaselineY(GameGrid grid, double baselineYRatio)
         {
-            BaselineY = (int)(grid.XDimension * baselineYRatio) - Height;
+            BaselineY = (int)(grid.DimensionX * baselineYRatio) - Height;
         }
 
-        protected override void setInitXLocation(GameGrid grid)
+        protected override void initializeLocationX(GameGrid grid)
         {
-            XLocation = grid.GetHorizontallyCenteredItemX(this);
+            LocationX = grid.GetHorizontallyCenteredItemX(this);
         }
 
-        protected override void setInitYLocation(GameGrid grid)
+        protected override void initializeLocationY(GameGrid grid)
         {
-            YLocation = BaselineY;
+            LocationY = BaselineY;
         }
     }
 }

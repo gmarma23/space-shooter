@@ -7,14 +7,14 @@
 
         public bool IsEnemy { get; private init; }
         public int Damage { get; private init; }
-        public int XLocation { get; private init; }
-        public int YLocation { get; private set; }
+        public int LocationX { get; private init; }
+        public int LocationY { get; private set; }
         public int Width { get; private init; }
         public int Height { get; private init; }
-        public int XDisplacement { get; private init; }
-        public int YDisplacement
+        public int DisplacementX { get; private init; }
+        public int DisplacementY
         {
-            get => YDisplacement;
+            get => DisplacementY;
             private init
             {
                 if (value < 0)
@@ -27,19 +27,19 @@
         {
             IsEnemy = spaceship.IsEnemy;
             Damage = spaceship.LaserBlastDamage;
-            XDisplacement = 0;
-            YDisplacement = 5;
+            DisplacementX = 0;
+            DisplacementY = 5;
 
             Width = (int)(spaceship.Width * laserBlastWidthRatio);
             Height = (int)(Width * laserBlastHeightRatio);
 
-            XLocation = spaceship.XLocation + (index * spaceship.Width / (spaceship.ConcurrentLaserBlastsCount + 1)) - (Width / 2);
-            YLocation = IsEnemy ? spaceship.YLocation + spaceship.Height : spaceship.YLocation - Height;
+            LocationX = spaceship.LocationX + (index * spaceship.Width / (spaceship.ConcurrentLaserBlastsCount + 1)) - (Width / 2);
+            LocationY = IsEnemy ? spaceship.LocationY + spaceship.Height : spaceship.LocationY - Height;
         } 
 
         public void MoveVertically()
         {
-            YLocation = (IsEnemy ? 1 : -1) * YDisplacement; 
+            LocationY = (IsEnemy ? 1 : -1) * DisplacementY; 
         }
     }
 }

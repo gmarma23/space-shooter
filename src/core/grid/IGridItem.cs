@@ -8,10 +8,10 @@ namespace SpaceShooter.core
 {
     internal interface IGridItem
     {
-        int XLocation { get; }
-        int YLocation { get; }
-        int XDisplacement { get; }
-        int YDisplacement { get; }
+        int LocationX { get; }
+        int LocationY { get; }
+        int DisplacementX { get; }
+        int DisplacementY { get; }
         int Width { get; }
         int Height { get; }
     }

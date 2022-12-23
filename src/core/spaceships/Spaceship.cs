@@ -8,10 +8,10 @@
         protected readonly int absMaxDisplacement;
 
         public bool IsEnemy { get; protected init; }
-        public int XLocation { get; protected set; }
-        public int YLocation { get; protected set; }
-        public int XDisplacement { get; protected set; }
-        public int YDisplacement { get; protected set; }
+        public int LocationX { get; protected set; }
+        public int LocationY { get; protected set; }
+        public int DisplacementX { get; protected set; }
+        public int DisplacementY { get; protected set; }
         public int Width { get; protected set; }
         public int Height { get; protected set; }
         public int BaselineY { get; protected set; }
@@ -122,12 +122,12 @@
 
         public void MoveHorizontally()
         {
-            XLocation += XDisplacement;
+            LocationX += DisplacementX;
         }
 
         public void MoveVertically()
         {
-            YLocation += YDisplacement;
+            LocationY += DisplacementY;
         }
 
         public List<LaserBlast> FireLaser()
@@ -159,14 +159,14 @@
 
         protected void setSize(GameGrid grid, double scaleFactor = 1)
         {
-            Width = (int)(grid.XDimension * defaultWidthRatio * scaleFactor);
+            Width = (int)(grid.DimensionX * defaultWidthRatio * scaleFactor);
             Height = (int)(Width * defaultHeightRatio);
         }
 
         protected abstract void setBaselineY(GameGrid grid, double baselineYRatio);
 
-        protected abstract void setInitXLocation(GameGrid grid);
+        protected abstract void initializeLocationX(GameGrid grid);
 
-        protected abstract void setInitYLocation(GameGrid grid);
+        protected abstract void initializeLocationY(GameGrid grid);
     }
 }

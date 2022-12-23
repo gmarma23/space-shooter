@@ -9,13 +9,13 @@ namespace SpaceShooter.core
 {
     internal class GameGrid
     {
-        public int XDimension { get; private init; }
-        public int YDimension { get; private init; }
+        public int DimensionX { get; private init; }
+        public int DimensionY { get; private init; }
 
-        public GameGrid(int xDimension, int yDimension) 
+        public GameGrid(int dimensionX, int dimensionY) 
         { 
-            XDimension = xDimension;
-            YDimension = yDimension;
+            DimensionX = dimensionX;
+            DimensionY = dimensionY;
         }
 
         public int GetItemMinPossibleX()
@@ -31,13 +31,13 @@ namespace SpaceShooter.core
         public int GetItemMaxPossibleX(IGridItem item)
         {
             Debug.Assert(item != null);
-            return XDimension - item.Width;
+            return DimensionX - item.Width;
         }
 
         public int GetItemMaxPossibleY(IGridItem item)
         {
             Debug.Assert(item != null);
-            return YDimension - item.Height;
+            return DimensionY - item.Height;
         }
 
         public bool IsValidLocation(IGridItem item, int newX, int newY)
@@ -55,8 +55,8 @@ namespace SpaceShooter.core
             Debug.Assert(item1 != null);
             Debug.Assert(item2 != null);
 
-            int dx = item2.XLocation - item1.XLocation;
-            int dy = item2.YLocation - item1.YLocation;
+            int dx = item2.LocationX - item1.LocationX;
+            int dy = item2.LocationY - item1.LocationY;
 
             if (dx == 0 || dy == 0) return true;
 
@@ -68,7 +68,7 @@ namespace SpaceShooter.core
 
         public int GetHorizontallyCenteredItemX(IGridItem item)
         {
-            return XDimension / 2 - item.Width / 2;
+            return DimensionX / 2 - item.Width / 2;
         }
     }
 }

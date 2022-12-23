@@ -15,8 +15,8 @@ namespace SpaceShooter.core
         private List<LaserBlast> activeLaserBlasts;
         private List<int> activeLaserBlastIndices;
 
-        public int GridXDimension { get => grid.XDimension; }
-        public int GridYDimension { get => grid.YDimension; }
+        public int GridXDimension { get => grid.DimensionX; }
+        public int GridYDimension { get => grid.DimensionY; }
         public int Score { get; private set; }
 
         public GameState(int gridXDimension = 1360, int gridYDimension = 760)
@@ -40,8 +40,8 @@ namespace SpaceShooter.core
         public void SpaceshipGetLocation(bool isEnemy, ref int x, ref int y)
         {
             Spaceship spaceship = getSpaceship(isEnemy);
-            x = spaceship.XLocation;
-            y = spaceship.YLocation;
+            x = spaceship.LocationX;
+            y = spaceship.LocationY;
         }
 
         public void SpaceshipFireLaser(bool isEnemy)

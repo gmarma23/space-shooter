@@ -12,8 +12,8 @@
         {
             setSize(grid, bossSpaceshipScaleFactor);
             setBaselineY(grid, baselineYRatio);
-            setInitXLocation(grid);
-            setInitYLocation(grid);
+            initializeLocationX(grid);
+            initializeLocationY(grid);
         }
 
         public override void Teleport(int minX, int maxX, int minY, int maxY)
