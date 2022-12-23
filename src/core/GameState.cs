@@ -11,7 +11,6 @@ namespace SpaceShooter.core
         private GameGrid grid;
         private HeroSpaceship hero;
         private EnemySpaceship enemy;
-        private List<int> activeEnemyIndices;
         private List<LaserBlast> activeLaserBlasts;
         private List<int> activeLaserBlastIndices;
 
