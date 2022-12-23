@@ -22,30 +22,31 @@ namespace SpaceShooter.core
         public GameState(int gridXDimension = 1360, int gridYDimension = 760)
         {
             grid = new GameGrid(gridXDimension, gridYDimension);
-
-            //hero = new HeroSpaceship();
+            hero = new HeroSpaceship(grid);
             enemies = new List<EnemySpaceship>();
             activeLaserBlasts = new List<LaserBlast>();
         }
-        /*
-        public void AddEnemy(EnemySpaceshipType enemyType, bool randomMovement = true)
+        
+        public void AddEnemy(EnemySpaceshipType enemyType)
         {
             EnemySpaceship enemySpaceship;
             switch(enemyType)
             {
                 case EnemySpaceshipType.Fighter:
-                    enemySpaceship = new EnemyFighterSpaceship();
+                    enemySpaceship = new EnemyFighterSpaceship(grid);
                     break;
                 case EnemySpaceshipType.Teleporter:
-                    enemySpaceship = new EnemyTeleporterSpaceship();
+                    enemySpaceship = new EnemyTeleporterSpaceship(grid);
                     break;
                 case EnemySpaceshipType.Boss:
-                    enemySpaceship = new EnemyBossSpaceship();
+                    enemySpaceship = new EnemyBossSpaceship(grid);
                     break;
+                default:
+                    throw new Exception();
             }
             enemies.Add(enemySpaceship);
         }
-        */
+        
         public (int, int) GetHeroLocation()
         {
             return (hero.XLocation, hero.YLocation);
