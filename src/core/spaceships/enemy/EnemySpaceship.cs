@@ -1,4 +1,6 @@
-﻿namespace SpaceShooter.core
+﻿using System;
+
+namespace SpaceShooter.core
 {
     internal abstract class EnemySpaceship : Spaceship
     {
@@ -24,12 +26,30 @@
 
         public void RandomUpdateDisplacement()
         {
-            DisplacementX = rand.Next();
+            int randomTargetX = generateRandomTarget(minX, maxX);
+            int randomTargetY = generateRandomTarget(minY, maxY);
+            updateDisplacement(randomTargetX, randomTargetY);
         }
 
-        public void TargetUpdateDisplacement(Spaceship targetSpaceship)
+        protected void updateDisplacement(int targetX, int targetY)
         {
+            DisplacementX = absMaxDisplacement;
+            int dx = targetX - LocationX;
+            if (Math.Sign(dx) != Math.Sign(DisplacementX))
+            {
+                DisplacementX *= -1;
+                if (dx < DisplacementX)
+                    DisplacementX = dx;
+            }
 
+            DisplacementY = absMaxDisplacement;
+            int dy = targetY - LocationY;
+            if (Math.Sign(dy) != Math.Sign(DisplacementY))
+            {
+                DisplacementY *= -1;
+                if (dy < DisplacementY)
+                    DisplacementY = dy;
+            }
         }
 
         protected override void setGridLimits(GameGrid grid)
@@ -40,21 +60,19 @@
             maxY = grid.GetGridMiddleY() - Height;
         }
 
-        protected override void setBaselineY(GameGrid grid, double baselineYRatio)
+        protected override void initializeLocationX()
         {
-            baselineY = (int)(grid.DimensionX * baselineYRatio);
-        }
-
-        protected override void initializeLocationX(GameGrid grid)
-        {
-            int minX = grid.GetItemMinPossibleX();
-            int maxX = grid.GetItemMaxPossibleX(this);
             LocationX = new Random().Next(minX, maxX);
         }
 
-        protected override void initializeLocationY(GameGrid grid)
+        protected override void initializeLocationY()
         {
-            LocationY = grid.GetItemMinPossibleY() - Height;
+            LocationY = (minY + maxY) / 2 - Height / 2;
+        }
+
+        protected int generateRandomTarget(int min, int max)
+        {
+            return rand.Next(min, max);
         }
     }
 
