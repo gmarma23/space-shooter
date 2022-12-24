@@ -11,5 +11,14 @@
             initializeLocationX();
             initializeLocationY();
         }
+
+        public override void Move()
+        {
+            int randomTargetX = generateRandomX();
+            int randomTargetY = generateRandomY();
+            updateDisplacement(randomTargetX, randomTargetY);
+            moveHorizontally();
+            moveVertically();
+        }
     }
 }

@@ -89,7 +89,7 @@
             IsDestroyed = false;
         }
 
-        public void MoveHorizontally()
+        public void moveHorizontally()
         {
             int newLocationX = LocationX + DisplacementX;
             if (newLocationX < minX && newLocationX > maxX)
@@ -97,13 +97,15 @@
             LocationX += DisplacementX;
         }
 
-        public void MoveVertically()
+        public void moveVertically()
         {
             int newLocationY = LocationY + DisplacementY;
             if (newLocationY < minY && newLocationY > maxY)
                 throw new Exception();
             LocationY += DisplacementY;
         }
+
+        public abstract void Move();
 
         public List<LaserBlast> FireLaser()
         {

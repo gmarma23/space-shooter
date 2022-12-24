@@ -39,25 +39,20 @@ namespace SpaceShooter.core
             {
                 EnemySpaceshipType.Fighter => new EnemyFighterSpaceship(grid),
                 EnemySpaceshipType.Teleporter => new EnemyTeleporterSpaceship(grid),
-                EnemySpaceshipType.Boss => new EnemyBossSpaceship(grid),
+                EnemySpaceshipType.Boss => new EnemyBossSpaceship(grid, hero),
                 _ => throw new Exception()
             };
         }
 
-        public void HeroMoveUp(bool isInvoked) => hero.GoUp = isInvoked;
+        public void HeroGoesUp(bool isInvoked) => hero.GoUp = isInvoked;
 
-        public void HeroMoveDown(bool isInvoked) => hero.GoDown = isInvoked;
+        public void HeroGoesDown(bool isInvoked) => hero.GoDown = isInvoked;
 
-        public void HeroMoveLeft(bool isInvoked) => hero.GoLeft = isInvoked;
+        public void HeroGoesLeft(bool isInvoked) => hero.GoLeft = isInvoked;
 
-        public void HeroMoveRight(bool isInvoked) => hero.GoRight = isInvoked;
+        public void HeroGoesRight(bool isInvoked) => hero.GoRight = isInvoked;
 
-        public void MoveSpaceship(bool isEnemy)
-        {
-            Spaceship spaceship = getSpaceship(isEnemy);
-            spaceship.MoveHorizontally();
-            spaceship.MoveVertically();
-        }
+        public void MoveSpaceship(bool isEnemy) => getSpaceship(isEnemy).Move();
 
         public void SpaceshipGetLocation(bool isEnemy, ref int x, ref int y)
         {

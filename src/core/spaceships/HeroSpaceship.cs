@@ -21,7 +21,14 @@
             initializeLocationY();
         }
 
-        public void UpdateDisplacement()
+        public override void Move()
+        {
+            updateDisplacement();
+            moveHorizontally();
+            moveVertically();
+        }
+
+        protected void updateDisplacement()
         {
             DisplacementX = 0;
             DisplacementY = 0;

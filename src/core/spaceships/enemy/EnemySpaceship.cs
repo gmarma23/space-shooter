@@ -8,23 +8,14 @@ namespace SpaceShooter.core
         protected Random rand;
 
         public int Index { get; protected init; }
-        public bool RandomMotion { get; protected init; }
         public int ScorePoints { get; protected init; }
 
-        public EnemySpaceship(bool randomMotion, int absMaxDisplacement, int hp,
+        public EnemySpaceship(int absMaxDisplacement, int hp,
             int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime, int scorePoints) :
             base(true, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
         {
-            RandomMotion = randomMotion;
             ScorePoints = scorePoints;
             rand = new Random();
-        }
-
-        public void RandomUpdateDisplacement()
-        {
-            int randomTargetX = generateRandomX();
-            int randomTargetY = generateRandomY();
-            updateDisplacement(randomTargetX, randomTargetY);
         }
 
         protected void updateDisplacement(int targetX, int targetY)

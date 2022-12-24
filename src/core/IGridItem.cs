@@ -9,8 +9,6 @@
         int Width { get; }
         int Height { get; }
 
-        public void MoveHorizontally();
-
-        public void MoveVertically();
+        public void Move();
     }
 }
