@@ -89,22 +89,6 @@
             IsDestroyed = false;
         }
 
-        public void moveHorizontally()
-        {
-            int newLocationX = LocationX + DisplacementX;
-            if (newLocationX < minX && newLocationX > maxX)
-                throw new Exception();
-            LocationX += DisplacementX;
-        }
-
-        public void moveVertically()
-        {
-            int newLocationY = LocationY + DisplacementY;
-            if (newLocationY < minY && newLocationY > maxY)
-                throw new Exception();
-            LocationY += DisplacementY;
-        }
-
         public abstract void Move();
 
         public List<LaserBlast> FireLaser()
@@ -132,6 +116,22 @@
         public double GetAvailableHealthRatio() 
         {
             return AvailableHP / TotalHP;
+        }
+
+        protected void moveHorizontally()
+        {
+            int newLocationX = LocationX + DisplacementX;
+            if (newLocationX < minX && newLocationX > maxX)
+                throw new Exception();
+            LocationX += DisplacementX;
+        }
+
+        protected void moveVertically()
+        {
+            int newLocationY = LocationY + DisplacementY;
+            if (newLocationY < minY && newLocationY > maxY)
+                throw new Exception();
+            LocationY += DisplacementY;
         }
 
         protected void setSize(GameGrid grid, double scaleFactor = 1)
