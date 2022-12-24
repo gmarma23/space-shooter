@@ -117,6 +117,27 @@ namespace SpaceShooter.core
             return newlaserBlastsNumCodes;
         }
 
+        public void MoveLaserBlast(int numCode)
+        {
+            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
+            Debug.Assert(laserBlast != null);
+
+            laserBlast.Move();
+
+            if (laserBlastHitedTargetSpaceship(laserBlast) || laserBlastIsOutOfBounds(laserBlast))
+            {
+                activeLaserBlastsNumCodes.Remove(laserBlast.NumCode);
+                activeLaserBlasts.Remove(laserBlast);
+            } 
+        }
+
+        public bool IsEnemyLaserBlast(int numCode)
+        {
+            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
+            Debug.Assert(laserBlast != null);
+            return laserBlast.IsEnemy;
+        }
+
         public bool IsEnemyDestroyed()
         {
             return enemy.IsDestroyed;
@@ -125,6 +146,23 @@ namespace SpaceShooter.core
         public bool IsGameOver()
         {
             return hero.IsDestroyed;
+        }
+
+        private bool laserBlastHitedTargetSpaceship(LaserBlast laserBlast)
+        {
+            Spaceship targetSpaceship = getSpaceship(laserBlast.IsEnemy);
+
+            if (!GameGrid.ItemsIntersect(laserBlast, targetSpaceship))
+                return false;
+
+            targetSpaceship.TakeDamage(laserBlast.Damage);
+            return true;
+        }
+
+        private bool laserBlastIsOutOfBounds(LaserBlast laserBlast)
+        {
+            return laserBlast.LocationY < grid.GetItemMinPossibleY() || 
+                laserBlast.LocationY > grid.GetItemMaxPossibleY(laserBlast);
         }
 
         private LaserBlast? getLaserBlastByNumCode(int numCode)
