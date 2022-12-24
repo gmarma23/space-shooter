@@ -47,5 +47,7 @@
         {
             LocationY = (IsEnemy ? 1 : -1) * DisplacementY; 
         }
+
+        public void MoveHorizontally() { }
     }
 }
