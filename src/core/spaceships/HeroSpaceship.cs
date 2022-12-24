@@ -18,6 +18,7 @@
             initializeDirectionBooleans();
 
             setSize(grid);
+            setGridLimits(grid);
             setBaselineY(grid, baselineYRatio);
             initializeLocationX(grid);
             initializeLocationY(grid);
@@ -43,6 +44,14 @@
             GoDown = false;
         }
 
+        protected override void setGridLimits(GameGrid grid)
+        {
+            minX = grid.GetItemMinPossibleX();
+            maxX = grid.GetItemMaxPossibleX(this);
+            minY = grid.GetGridMiddleY();
+            maxY = grid.GetItemMaxPossibleY(this);
+        }
+
         protected override void setBaselineY(GameGrid grid, double baselineYRatio)
         {
             baselineY = (int)(grid.DimensionX * baselineYRatio) - Height;
@@ -50,7 +59,7 @@
 
         protected override void initializeLocationX(GameGrid grid)
         {
-            LocationX = grid.GetHorizontallyCenteredItemX(this);
+            LocationX = grid.GetGridMiddleX() - Width / 2;
         }
 
         protected override void initializeLocationY(GameGrid grid)

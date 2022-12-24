@@ -11,6 +11,7 @@
                 missileCount, missileDamage, missileReloadTime, scorePoints)
         {
             setSize(grid, bossSpaceshipScaleFactor);
+            setGridLimits(grid);
             setBaselineY(grid, baselineYRatio);
             initializeLocationX(grid);
             initializeLocationY(grid);

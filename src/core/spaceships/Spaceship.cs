@@ -6,6 +6,11 @@
         protected const double defaultHeightRatio = 1.05;
 
         protected readonly int absMaxDisplacement;
+
+        protected int minX;
+        protected int maxX;
+        protected int minY;
+        protected int maxY;
         protected int baselineY;
 
         public bool IsEnemy { get; protected init; }
@@ -120,18 +125,18 @@
             IsDestroyed = false;
         }
 
-        public void MoveHorizontally(GameGrid grid)
+        public void MoveHorizontally()
         {
             int newLocationX = LocationX + DisplacementX;
-            if (!grid.IsValidLocation(this, newLocationX, LocationY))
+            if (newLocationX < minX && newLocationX > maxX)
                 throw new Exception();
             LocationX += DisplacementX;
         }
 
-        public void MoveVertically(GameGrid grid)
+        public void MoveVertically()
         {
             int newLocationY = LocationY + DisplacementY;
-            if (!grid.IsValidLocation(this, LocationX, newLocationY))
+            if (newLocationY < minY && newLocationY > maxY)
                 throw new Exception();
             LocationY += DisplacementY;
         }
@@ -168,6 +173,8 @@
             Width = (int)(grid.DimensionX * defaultWidthRatio * scaleFactor);
             Height = (int)(Width * defaultHeightRatio);
         }
+
+        protected abstract void setGridLimits(GameGrid grid);
 
         protected abstract void setBaselineY(GameGrid grid, double baselineYRatio);
 

@@ -3,6 +3,7 @@
     internal abstract class EnemySpaceship : Spaceship
     {
         protected const double baselineYRatio = 0.9;
+        protected Random rand;
 
         public int Index { get; protected init; }
         public bool RandomMotion { get; protected init; }
@@ -16,11 +17,28 @@
         {
             RandomMotion = randomMotion;
             ScorePoints = scorePoints;
+            rand = new Random();
         }
 
         public abstract void Teleport(int minX, int maxX, int minY, int maxY);
 
-        public abstract void RenewDisplacement();
+        public void RandomUpdateDisplacement()
+        {
+            DisplacementX = rand.Next();
+        }
+
+        public void TargetUpdateDisplacement(Spaceship targetSpaceship)
+        {
+
+        }
+
+        protected override void setGridLimits(GameGrid grid)
+        {
+            minX = grid.GetItemMinPossibleX();
+            maxX = grid.GetItemMaxPossibleX(this);
+            minY = grid.GetItemMinPossibleY();
+            maxY = grid.GetGridMiddleY() - Height;
+        }
 
         protected override void setBaselineY(GameGrid grid, double baselineYRatio)
         {

@@ -9,6 +9,7 @@
                 missileCount, missileDamage, missileReloadTime, scorePoints)
         {
             setSize(grid);
+            setGridLimits(grid);
             setBaselineY(grid, baselineYRatio);
             initializeLocationX(grid);
             initializeLocationY(grid);
