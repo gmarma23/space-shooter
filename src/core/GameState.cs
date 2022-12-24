@@ -28,7 +28,7 @@ namespace SpaceShooter.core
             activeLaserBlastsNumCodes = new List<int>();
         }
 
-        public ReadOnlyCollection<int> GetActiveLaserBlastsIndices()
+        public ReadOnlyCollection<int> GetActiveLaserBlastsNumCodes()
         {
             return activeLaserBlastsNumCodes.AsReadOnly();
         }
@@ -74,9 +74,19 @@ namespace SpaceShooter.core
             y = spaceship.LocationY;
         }
 
-        public void SpaceshipFireLaser(bool isEnemy)
+        public void LaserBlastGetLocation(int numCode, ref int x, ref int y)
         {
+            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
+            Debug.Assert(laserBlast != null);
+            x = laserBlast.LocationX;
+            y = laserBlast.LocationY;
+        }
+
+        public List<int> SpaceshipFireLaser(bool isEnemy)
+        {
+            List<int> newlaserBlastsNumCodes = new List<int>();
             Spaceship spaceship = getSpaceship(isEnemy);
+
             List<LaserBlast> firedLaserBlasts = spaceship.FireLaser();
             activeLaserBlasts.AddRange(firedLaserBlasts);
 
@@ -84,8 +94,12 @@ namespace SpaceShooter.core
             {
                 int newNumCode = laserBlast.NumCode;
                 Debug.Assert(!activeLaserBlastsNumCodes.Contains(newNumCode));
-                activeLaserBlastsNumCodes.Add(newNumCode);
+                Debug.Assert(!newlaserBlastsNumCodes.Contains(newNumCode));
+                newlaserBlastsNumCodes.Add(newNumCode);
             }
+
+            activeLaserBlastsNumCodes.AddRange(newlaserBlastsNumCodes);
+            return newlaserBlastsNumCodes;
         }
 
         public bool IsEnemyDestroyed()
@@ -96,6 +110,11 @@ namespace SpaceShooter.core
         public bool IsGameOver()
         {
             return hero.IsDestroyed;
+        }
+
+        private LaserBlast? getLaserBlastByNumCode(int numCode)
+        {
+            return activeLaserBlasts.Find(laserBlast => laserBlast.NumCode == numCode);
         }
 
         private Spaceship getSpaceship(bool isEnemy)
