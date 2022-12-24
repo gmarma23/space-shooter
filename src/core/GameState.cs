@@ -20,9 +20,9 @@ namespace SpaceShooter.core
         public int GridYDimension { get => grid.DimensionY; }
         public int Score { get; private set; }
 
-        public GameState(int gridXDimension = 1360, int gridYDimension = 760)
+        public GameState(int gridDimensionX = 1360, int gridDimensionY = 760)
         {
-            grid = new GameGrid(gridXDimension, gridYDimension);
+            grid = new GameGrid(gridDimensionX, gridDimensionY);
             hero = new HeroSpaceship(grid);
             activeLaserBlasts = new List<LaserBlast>();
             activeLaserBlastsNumCodes = new List<int>();
