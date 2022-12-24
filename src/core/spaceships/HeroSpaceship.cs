@@ -10,10 +10,8 @@
         public bool GoRight { get; set; }
 
         public HeroSpaceship(GameGrid grid, int absMaxDisplacement = 7, int hp = 700, 
-            int concurrentLaserBlastsCount = 2, int laserBlastDamage = 40, int laserReloadTime = 1,
-            int missileCount = 0, int missileDamage = 0, int missileReloadTime = 0) :
-            base (false, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, 
-                missileCount, missileDamage, missileReloadTime)
+            int concurrentLaserBlastsCount = 2, int laserBlastDamage = 40, int laserReloadTime = 1) :
+            base (false, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
         {
             initializeDirectionBooleans();
 

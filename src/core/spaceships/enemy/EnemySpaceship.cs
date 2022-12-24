@@ -12,10 +12,8 @@ namespace SpaceShooter.core
         public int ScorePoints { get; protected init; }
 
         public EnemySpaceship(bool randomMotion, int absMaxDisplacement, int hp,
-            int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime,
-            int missileCount, int missileDamage, int missileReloadTime, int scorePoints) :
-            base(true, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime,
-                missileCount, missileDamage, missileReloadTime)
+            int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime, int scorePoints) :
+            base(true, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
         {
             RandomMotion = randomMotion;
             ScorePoints = scorePoints;

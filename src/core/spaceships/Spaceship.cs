@@ -75,8 +75,7 @@
         }
 
         public Spaceship(bool isEnemy, int hp, int absMaxDisplacement,
-            int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime, 
-            int missileCount, int missileDamage, int missileReloadTime)
+            int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime)
         {
             IsEnemy = isEnemy;
             TotalHP = hp;
