@@ -14,7 +14,6 @@ namespace SpaceShooter.core
         private HeroSpaceship hero;
         private EnemySpaceship enemy;
         private List<LaserBlast> activeLaserBlasts;
-        private List<int> activeLaserBlastsNumCodes;
 
         public int GridXDimension { get => grid.DimensionX; }
         public int GridYDimension { get => grid.DimensionY; }
@@ -25,12 +24,6 @@ namespace SpaceShooter.core
             grid = new GameGrid(gridDimensionX, gridDimensionY);
             hero = new HeroSpaceship(grid);
             activeLaserBlasts = new List<LaserBlast>();
-            activeLaserBlastsNumCodes = new List<int>();
-        }
-
-        public ReadOnlyCollection<int> GetActiveLaserBlastsNumCodes()
-        {
-            return activeLaserBlastsNumCodes.AsReadOnly();
         }
         
         public void RenewEnemySpaceship(EnemySpaceshipType enemyType)
@@ -108,12 +101,10 @@ namespace SpaceShooter.core
             foreach(LaserBlast laserBlast in firedLaserBlasts)
             {
                 int newNumCode = laserBlast.NumCode;
-                Debug.Assert(!activeLaserBlastsNumCodes.Contains(newNumCode));
                 Debug.Assert(!newlaserBlastsNumCodes.Contains(newNumCode));
                 newlaserBlastsNumCodes.Add(newNumCode);
             }
 
-            activeLaserBlastsNumCodes.AddRange(newlaserBlastsNumCodes);
             return newlaserBlastsNumCodes;
         }
 
@@ -151,7 +142,6 @@ namespace SpaceShooter.core
         {
             LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
             Debug.Assert(laserBlast != null);
-            activeLaserBlastsNumCodes.Remove(laserBlast.NumCode);
             activeLaserBlasts.Remove(laserBlast);
         }
 
