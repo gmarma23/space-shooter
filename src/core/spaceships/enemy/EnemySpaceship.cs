@@ -22,12 +22,10 @@ namespace SpaceShooter.core
             rand = new Random();
         }
 
-        public abstract void Teleport(int minX, int maxX, int minY, int maxY);
-
         public void RandomUpdateDisplacement()
         {
-            int randomTargetX = generateRandomTarget(minX, maxX);
-            int randomTargetY = generateRandomTarget(minY, maxY);
+            int randomTargetX = generateRandomX();
+            int randomTargetY = generateRandomY();
             updateDisplacement(randomTargetX, randomTargetY);
         }
 
@@ -70,9 +68,14 @@ namespace SpaceShooter.core
             LocationY = (minY + maxY) / 2 - Height / 2;
         }
 
-        protected int generateRandomTarget(int min, int max)
+        protected int generateRandomX()
         {
-            return rand.Next(min, max);
+            return rand.Next(minX, maxX);
+        }
+
+        protected int generateRandomY()
+        {
+            return rand.Next(minY, maxY);
         }
     }
 
