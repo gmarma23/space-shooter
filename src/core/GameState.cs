@@ -43,7 +43,14 @@ namespace SpaceShooter.core
                 _ => throw new Exception()
             };
         }
-        
+
+        public void MoveSpaceship(bool isEnemy)
+        {
+            Spaceship spaceship = getSpaceship(isEnemy);
+            spaceship.MoveHorizontally();
+            spaceship.MoveVertically();
+        }
+
         public void SpaceshipGetLocation(bool isEnemy, ref int x, ref int y)
         {
             Spaceship spaceship = getSpaceship(isEnemy);
