@@ -54,6 +54,19 @@ namespace SpaceShooter.core
 
         public void MoveSpaceship(bool isEnemy) => getSpaceship(isEnemy).Move();
 
+        public bool TeleportEnemySpaceship()
+        {
+            try
+            {
+                ((ITeleport)enemy).Teleport();
+                return true;
+            }
+            catch (InvalidCastException)
+            {
+                return false;
+            }
+        }
+
         public void SpaceshipGetLocation(bool isEnemy, ref int x, ref int y)
         {
             Spaceship spaceship = getSpaceship(isEnemy);
