@@ -20,7 +20,6 @@
         public int Width { get; protected set; }
         public int Height { get; protected set; }
         public bool LaserIsReloading { get; set; }
-        public bool MissileIsReloading { get; set; }
         public bool IsDestroyed { get; protected set; }
 
         public int ConcurrentLaserBlastsCount
@@ -51,37 +50,7 @@
                 if (value < 0)
                     throw new ArgumentException();
             }
-        }
-
-        public int MissileCount
-        {
-            get => MissileCount;
-            protected set
-            {
-                if (value < 0)
-                    throw new ArgumentException();
-            }
-        }
-
-        public int MissileDamage
-        {
-            get => MissileDamage;
-            protected set
-            {
-                if (value < 0)
-                    throw new ArgumentException();
-            }
-        }
-
-        public int MissileReloadTime
-        {
-            get => MissileReloadTime;
-            protected set
-            {
-                if (value < 0)
-                    throw new ArgumentException();
-            }
-        }
+        }        
 
         protected int TotalHP
         {
@@ -114,9 +83,6 @@
             ConcurrentLaserBlastsCount = concurrentLaserBlastsCount;
             LaserBlastDamage = laserBlastDamage;
             LaserReloadTime = laserReloadTime;
-            MissileCount = missileCount;
-            MissileDamage = missileDamage;
-            MissileReloadTime = missileReloadTime;
 
             this.absMaxDisplacement = absMaxDisplacement;
 
