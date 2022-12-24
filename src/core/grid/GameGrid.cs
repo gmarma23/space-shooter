@@ -18,6 +18,16 @@ namespace SpaceShooter.core
             DimensionY = dimensionY;
         }
 
+        public int GetGridMiddleX()
+        {
+            return DimensionX / 2;
+        }
+
+        public int GetGridMiddleY()
+        {
+            return DimensionY / 2;
+        }
+
         public int GetItemMinPossibleX()
         {
             return 0;
@@ -40,16 +50,6 @@ namespace SpaceShooter.core
             return DimensionY - item.Height;
         }
 
-        public bool IsValidLocation(IGridItem item, int newX, int newY)
-        {
-            Debug.Assert(item != null);
-
-            bool isValidNewX = newX >= GetItemMinPossibleX() && newX <= GetItemMaxPossibleX(item);
-            bool isValidNewY = newY >= GetItemMinPossibleY() && newY <= GetItemMaxPossibleY(item);
-
-            return isValidNewX && isValidNewY;
-        }
-
         public static bool ItemsIntersect(IGridItem item1, IGridItem item2)
         {
             Debug.Assert(item1 != null);
@@ -64,11 +64,6 @@ namespace SpaceShooter.core
             bool verticalIntersect = dy > 0 ? dy <= item1.Height : - dy <= item2.Height;
 
             return horizontalIntersect || verticalIntersect;
-        }
-
-        public int GetHorizontallyCenteredItemX(IGridItem item)
-        {
-            return DimensionX / 2 - item.Width / 2;
         }
     }
 }
