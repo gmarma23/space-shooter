@@ -43,11 +43,9 @@
             nextNumCode += 1;
         } 
 
-        public void MoveVertically()
+        public void Move()
         {
             LocationY = (IsEnemy ? 1 : -1) * DisplacementY; 
         }
-
-        public void MoveHorizontally() { }
     }
 }

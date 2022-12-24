@@ -4,9 +4,9 @@
     {
         protected Random random;
 
-        public EnemyTeleporterSpaceship(GameGrid grid, bool randomMotion = true, int absMaxDisplacement = 7, int hp = 400,
+        public EnemyTeleporterSpaceship(GameGrid grid, int absMaxDisplacement = 7, int hp = 400,
             int concurrentLaserBlastsCount = 1, int laserBlastDamage = 30, int laserReloadTime = 1500, int scorePoints = 2) :
-            base(randomMotion, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
+            base(hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
         {
             random = new Random();
             setSize(grid);

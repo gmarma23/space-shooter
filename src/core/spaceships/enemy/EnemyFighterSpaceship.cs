@@ -2,9 +2,9 @@
 {
     internal class EnemyFighterSpaceship : EnemySpaceship
     {
-        public EnemyFighterSpaceship(GameGrid grid, bool randomMotion = true, int absMaxDisplacement = 7, int hp = 500,
+        public EnemyFighterSpaceship(GameGrid grid, int absMaxDisplacement = 7, int hp = 500,
             int concurrentLaserBlastsCount = 1, int laserBlastDamage = 40, int laserReloadTime = 1500, int scorePoints = 3) :
-            base(randomMotion, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
+            base(hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
         {
             setSize(grid);
             setGridLimits(grid);
