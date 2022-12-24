@@ -11,7 +11,6 @@
         protected int maxX;
         protected int minY;
         protected int maxY;
-        protected int baselineY;
 
         public bool IsEnemy { get; protected init; }
         public int LocationX { get; protected set; }
@@ -176,10 +175,8 @@
 
         protected abstract void setGridLimits(GameGrid grid);
 
-        protected abstract void setBaselineY(GameGrid grid, double baselineYRatio);
+        protected abstract void initializeLocationX();
 
-        protected abstract void initializeLocationX(GameGrid grid);
-
-        protected abstract void initializeLocationY(GameGrid grid);
+        protected abstract void initializeLocationY();
     }
 }
