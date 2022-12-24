@@ -120,13 +120,19 @@
             IsDestroyed = false;
         }
 
-        public void MoveHorizontally()
+        public void MoveHorizontally(GameGrid grid)
         {
+            int newLocationX = LocationX + DisplacementX;
+            if (!grid.IsValidLocation(this, newLocationX, LocationY))
+                throw new Exception();
             LocationX += DisplacementX;
         }
 
-        public void MoveVertically()
+        public void MoveVertically(GameGrid grid)
         {
+            int newLocationY = LocationY + DisplacementY;
+            if (!grid.IsValidLocation(this, LocationX, newLocationY))
+                throw new Exception();
             LocationY += DisplacementY;
         }
 
