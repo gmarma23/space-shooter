@@ -74,12 +74,27 @@ namespace SpaceShooter.core
             y = spaceship.LocationY;
         }
 
+        public void SpaceshipGetSize(bool isEnemy, ref int width, ref int height)
+        {
+            Spaceship spaceship = getSpaceship(isEnemy);
+            width = spaceship.Width;
+            height = spaceship.Height;
+        }
+
         public void LaserBlastGetLocation(int numCode, ref int x, ref int y)
         {
             LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
             Debug.Assert(laserBlast != null);
             x = laserBlast.LocationX;
             y = laserBlast.LocationY;
+        }
+
+        public void LaserBlastGetSize(int numCode, ref int width, ref int height)
+        {
+            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
+            Debug.Assert(laserBlast != null);
+            width = laserBlast.Width;
+            height = laserBlast.Height;
         }
 
         public List<int> SpaceshipFireLaser(bool isEnemy)
