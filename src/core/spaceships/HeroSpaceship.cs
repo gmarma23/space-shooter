@@ -19,10 +19,8 @@
 
             setSize(grid);
             setGridLimits(grid);
-            setBaselineY(grid, baselineYRatio);
-            initializeLocationX(grid);
-            initializeLocationY(grid);
-            UpdateDisplacement();
+            initializeLocationX();
+            initializeLocationY();
         }
 
         public void UpdateDisplacement()
@@ -52,19 +50,14 @@
             maxY = grid.GetItemMaxPossibleY(this);
         }
 
-        protected override void setBaselineY(GameGrid grid, double baselineYRatio)
+        protected override void initializeLocationX()
         {
-            baselineY = (int)(grid.DimensionX * baselineYRatio) - Height;
+            LocationX = (minX + maxX) / 2 - Width / 2;
         }
 
-        protected override void initializeLocationX(GameGrid grid)
+        protected override void initializeLocationY()
         {
-            LocationX = grid.GetGridMiddleX() - Width / 2;
-        }
-
-        protected override void initializeLocationY(GameGrid grid)
-        {
-            LocationY = baselineY;
+            LocationY = (minY + maxY) / 2 - Height / 2;
         }
     }
 }
