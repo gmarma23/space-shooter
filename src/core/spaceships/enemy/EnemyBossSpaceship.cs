@@ -15,10 +15,5 @@
             initializeLocationX();
             initializeLocationY();
         }
-
-        public override void Teleport(int minX, int maxX, int minY, int maxY)
-        {
-
-        }
     }
 }
