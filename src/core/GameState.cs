@@ -123,12 +123,36 @@ namespace SpaceShooter.core
             Debug.Assert(laserBlast != null);
 
             laserBlast.Move();
+        }
 
-            if (laserBlastHitedTargetSpaceship(laserBlast) || laserBlastIsOutOfBounds(laserBlast))
-            {
-                activeLaserBlastsNumCodes.Remove(laserBlast.NumCode);
-                activeLaserBlasts.Remove(laserBlast);
-            } 
+        public bool LaserBlastHitedTargetSpaceship(int numCode)
+        {
+            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
+            Debug.Assert(laserBlast != null);
+            Spaceship targetSpaceship = getSpaceship(laserBlast.IsEnemy);
+
+            if (!GameGrid.ItemsIntersect(laserBlast, targetSpaceship))
+                return false;
+
+            targetSpaceship.TakeDamage(laserBlast.Damage);
+            return true;
+        }
+
+        public bool LaserBlastIsOutOfBounds(int numCode)
+        {
+            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
+            Debug.Assert(laserBlast != null);
+
+            return laserBlast.LocationY < grid.GetItemMinPossibleY() ||
+                laserBlast.LocationY > grid.GetItemMaxPossibleY(laserBlast);
+        }
+
+        public void DisposeLaserBlast(int numCode)
+        {
+            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
+            Debug.Assert(laserBlast != null);
+            activeLaserBlastsNumCodes.Remove(laserBlast.NumCode);
+            activeLaserBlasts.Remove(laserBlast);
         }
 
         public bool IsEnemyLaserBlast(int numCode)
@@ -146,23 +170,6 @@ namespace SpaceShooter.core
         public bool IsGameOver()
         {
             return hero.IsDestroyed;
-        }
-
-        private bool laserBlastHitedTargetSpaceship(LaserBlast laserBlast)
-        {
-            Spaceship targetSpaceship = getSpaceship(laserBlast.IsEnemy);
-
-            if (!GameGrid.ItemsIntersect(laserBlast, targetSpaceship))
-                return false;
-
-            targetSpaceship.TakeDamage(laserBlast.Damage);
-            return true;
-        }
-
-        private bool laserBlastIsOutOfBounds(LaserBlast laserBlast)
-        {
-            return laserBlast.LocationY < grid.GetItemMinPossibleY() || 
-                laserBlast.LocationY > grid.GetItemMaxPossibleY(laserBlast);
         }
 
         private LaserBlast? getLaserBlastByNumCode(int numCode)
