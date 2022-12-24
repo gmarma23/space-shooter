@@ -44,6 +44,14 @@ namespace SpaceShooter.core
             };
         }
 
+        public void HeroMoveUp(bool isInvoked) => hero.GoUp = isInvoked;
+
+        public void HeroMoveDown(bool isInvoked) => hero.GoDown = isInvoked;
+
+        public void HeroMoveLeft(bool isInvoked) => hero.GoLeft = isInvoked;
+
+        public void HeroMoveRight(bool isInvoked) => hero.GoRight = isInvoked;
+
         public void MoveSpaceship(bool isEnemy)
         {
             Spaceship spaceship = getSpaceship(isEnemy);
