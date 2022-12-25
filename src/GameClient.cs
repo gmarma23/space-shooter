@@ -7,12 +7,10 @@ namespace SpaceShooter
 {
     internal class GameClient
     {
-        private GameFrame gameFrame;
         private GameState game;
-        private Timer relocateHeroTimer;
-        private Timer relocateEnemiesTimer;
-        private Timer relocateLaserBlastsTimer;
-        private Timer relocateEnemyMissileTimer;
+        private GameFrame gameFrame;
+
+        private Timer relocateGridItemsTimer;
         private Timer bringEnemyToViewportTimer;
         private Timer enemyFireLaserTimer;
         private Timer enemyLaunchMissileTimer;
