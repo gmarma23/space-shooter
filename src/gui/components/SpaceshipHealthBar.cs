@@ -5,8 +5,11 @@
         private readonly Panel totalHealthBar;
         private Panel availableHealthBar;
 
-        public SpaceshipHealthBar() 
+        public SpaceshipHealthBar(int width, int height) 
         {
+            Width = width;
+            Height = height;
+
             availableHealthBar = new Panel();
             setSubBar(availableHealthBar, false);
 
