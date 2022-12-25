@@ -19,11 +19,13 @@ namespace SpaceShooter.gui
 
             FormBorderStyle = FormBorderStyle.FixedSingle;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Space Shooter";
             AutoSize = false;
             MaximizeBox = false;
             BackColor = Color.Black;
             Size = new Size(400, 500);
+
+            Text = "Space Shooter";
+            Icon = resources.Resources.space_shooter;
         }
     }
 }
