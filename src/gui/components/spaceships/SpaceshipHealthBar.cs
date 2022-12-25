@@ -24,6 +24,7 @@
 
         private void setSubBar(Panel subBar, bool isAvailableHealthBar)
         {
+            Controls.Add(subBar);
             subBar.Width = Width;
             subBar.Height = Height;
             subBar.BackColor = isAvailableHealthBar ? Color.Green : Color.Red;
