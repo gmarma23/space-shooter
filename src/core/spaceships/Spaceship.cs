@@ -20,7 +20,7 @@
         protected int minY;
         protected int maxY;
 
-        public bool IsEnemy { get; protected init; }
+        public bool IsHero { get; protected init; }
         public int LocationX { get; protected set; }
         public int LocationY { get; protected set; }
         public int Width { get; protected set; }
@@ -94,10 +94,10 @@
             }
         }
 
-        public Spaceship(bool isEnemy, int hp, int absMaxDisplacement,
+        public Spaceship(bool isHero, int hp, int absMaxDisplacement,
             int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime)
         {
-            IsEnemy = isEnemy;
+            IsHero = isHero;
             TotalHP = hp;
             ConcurrentLaserBlastsCount = concurrentLaserBlastsCount;
             LaserBlastDamage = laserBlastDamage;

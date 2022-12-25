@@ -25,7 +25,7 @@ namespace SpaceShooter.gui
         public void RenderHeroSpaceship(GameState gameState)
         {
             int width = 0, height = 0;
-            gameState.SpaceshipGetSize(false, ref width, ref height);
+            gameState.SpaceshipGetSize(true, ref width, ref height);
             hero = new HeroSpaceshipGui(width, height);
             Controls.Add(hero);
         }

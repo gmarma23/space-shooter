@@ -45,7 +45,7 @@ namespace SpaceShooter.core
 
         public void HeroGoesRight(bool isInvoked) => hero.GoRight = isInvoked;
 
-        public void MoveSpaceship(bool isEnemy) => getSpaceship(isEnemy).Move();
+        public void MoveSpaceship(bool isHero) => getSpaceship(isHero).Move();
 
         public bool TeleportEnemySpaceship()
         {
@@ -60,16 +60,16 @@ namespace SpaceShooter.core
             }
         }
 
-        public void SpaceshipGetLocation(bool isEnemy, ref int x, ref int y)
+        public void SpaceshipGetLocation(bool isHero, ref int x, ref int y)
         {
-            Spaceship spaceship = getSpaceship(isEnemy);
+            Spaceship spaceship = getSpaceship(isHero);
             x = spaceship.LocationX;
             y = spaceship.LocationY;
         }
 
-        public void SpaceshipGetSize(bool isEnemy, ref int width, ref int height)
+        public void SpaceshipGetSize(bool isHero, ref int width, ref int height)
         {
-            Spaceship spaceship = getSpaceship(isEnemy);
+            Spaceship spaceship = getSpaceship(isHero);
             width = spaceship.Width;
             height = spaceship.Height;
         }
@@ -95,10 +95,10 @@ namespace SpaceShooter.core
             height = laserBlast.Height;
         }
 
-        public List<int> SpaceshipFireLaser(bool isEnemy)
+        public List<int> SpaceshipFireLaser(bool isHero)
         {
             List<int> newlaserBlastsNumCodes = new List<int>();
-            Spaceship spaceship = getSpaceship(isEnemy);
+            Spaceship spaceship = getSpaceship(isHero);
 
             List<LaserBlast> firedLaserBlasts = spaceship.FireLaser();
             activeLaserBlasts.AddRange(firedLaserBlasts);
@@ -125,7 +125,7 @@ namespace SpaceShooter.core
         {
             LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
             Debug.Assert(laserBlast != null);
-            Spaceship targetSpaceship = getSpaceship(laserBlast.IsEnemy);
+            Spaceship targetSpaceship = getSpaceship(!laserBlast.IsHero);
 
             if (!GameGrid.ItemsIntersect(laserBlast, targetSpaceship))
                 return false;
@@ -150,11 +150,11 @@ namespace SpaceShooter.core
             activeLaserBlasts.Remove(laserBlast);
         }
 
-        public bool IsEnemyLaserBlast(int numCode)
+        public bool IsHeroLaserBlast(int numCode)
         {
             LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
             Debug.Assert(laserBlast != null);
-            return laserBlast.IsEnemy;
+            return laserBlast.IsHero;
         }
 
         public bool IsEnemyDestroyed()
@@ -172,9 +172,9 @@ namespace SpaceShooter.core
             return activeLaserBlasts.Find(laserBlast => laserBlast.NumCode == numCode);
         }
 
-        private Spaceship getSpaceship(bool isEnemy)
+        private Spaceship getSpaceship(bool isHero)
         {
-            return isEnemy ? enemy : hero;
+            return isHero ? hero : enemy;
         }
     }
 }

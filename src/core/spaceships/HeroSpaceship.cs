@@ -11,7 +11,7 @@
 
         public HeroSpaceship(GameGrid grid, int absMaxDisplacement = 7, int hp = 700, 
             int concurrentLaserBlastsCount = 2, int laserBlastDamage = 40, int laserReloadTime = 1) :
-            base (false, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
+            base (true, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
         {
             initializeDirectionBooleans();
 

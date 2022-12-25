@@ -27,7 +27,7 @@ namespace SpaceShooter
         public void StartGame()
         {
             gameFrame.RenderHeroSpaceship(game);
-            gameFrame.RelocateHeroSpaceship(game);
+            gameFrame.RelocateSpaceship(game, true);
         }
 
         public void OnKeyPress(Keys keys)

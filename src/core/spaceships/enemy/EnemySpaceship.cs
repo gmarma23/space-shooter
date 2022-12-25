@@ -12,7 +12,7 @@ namespace SpaceShooter.core
 
         public EnemySpaceship(EnemySpaceshipType enemyType, int absMaxDisplacement, int hp,
             int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime, int scorePoints) :
-            base(true, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
+            base(false, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
         {
             ScorePoints = scorePoints;
             rand = new Random();
