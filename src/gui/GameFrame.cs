@@ -2,11 +2,11 @@ namespace SpaceShooter.gui
 {
     public partial class GameFrame : CustomFrame
     {
-        public GameFrame(int gridXDimension, int gridYDimension)
+        public GameFrame(int gridDimensionX, int gridDimensionY)
         {
             InitializeComponent();
-            Width = gridXDimension;
-            Height = gridYDimension;
+            Width = gridDimensionX;
+            Height = gridDimensionY;
             FormClosed += AppClient.OnSubFrameClose;
         }
     }
