@@ -27,8 +27,6 @@
             subBar.Width = Width;
             subBar.Height = Height;
             subBar.BackColor = isAvailableHealthBar ? Color.Green : Color.Red;
-            subBar.Parent = this;
-            subBar.Location = new Point(0, 0);
             if (isAvailableHealthBar) subBar.BringToFront();
         }
     }
