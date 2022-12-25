@@ -2,8 +2,8 @@
 {
     internal abstract class Spaceship : IGridItem
     {
-        protected const double defaultWidthRatio = 0.05;
-        protected const double defaultHeightRatio = 1.05;
+        protected const double defaultWidthRatio = 0.065;
+        protected const double defaultHeightRatio = 1.04;
 
         protected readonly int absMaxDisplacement;
         protected readonly int totalHP;
