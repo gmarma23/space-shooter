@@ -19,7 +19,7 @@ namespace SpaceShooter.gui
         {
             int newX = 0, newY = 0;
             gameState.SpaceshipGetLocation(isHero, ref newX, ref newY);
-            hero.Location = new Point(newX, newY);
+            getSpaceship(isHero).UpdateLocation(newX, newY);
         }
 
         public void RenderHeroSpaceship(GameState gameState)
@@ -37,6 +37,11 @@ namespace SpaceShooter.gui
             EnemySpaceshipType enemyType = gameState.GetEnemySpaceshipType();
             enemy = new EnemySpaceshipGui(enemyType, width, height);
             Controls.Add(enemy);
+        }
+
+        public SpaceshipGui getSpaceship(bool isHero)
+        {
+            return isHero ? hero : enemy;
         }
     }
 }
