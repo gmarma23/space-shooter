@@ -43,7 +43,7 @@ namespace SpaceShooter.core
         public EnemyBossSpaceship(GameGrid grid, Spaceship targetSpaceship, int absMaxDisplacement = 5, int hp = 1000,
             int concurrentLaserBlastsCount = 2, int laserBlastDamage = 50, int laserReloadTime = 1,
             int missileCount = 3, int missileDamage = 100, int missileReloadTime = 10, int scorePoints = 5) :
-            base(hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
+            base(EnemySpaceshipType.Boss, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
         {
             MissileCount = missileCount;
             MissileDamage = missileDamage;

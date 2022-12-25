@@ -4,7 +4,7 @@
     {
         public EnemyFighterSpaceship(GameGrid grid, int absMaxDisplacement = 7, int hp = 500,
             int concurrentLaserBlastsCount = 1, int laserBlastDamage = 40, int laserReloadTime = 1500, int scorePoints = 3) :
-            base(hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
+            base(EnemySpaceshipType.Fighter, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
         {
             setSize(grid);
             setGridLimits(grid);

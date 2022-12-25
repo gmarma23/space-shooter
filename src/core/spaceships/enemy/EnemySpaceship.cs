@@ -7,10 +7,10 @@ namespace SpaceShooter.core
         protected const double baselineYRatio = 0.9;
         protected Random rand;
 
-        public int Index { get; protected init; }
+        public EnemySpaceshipType Type { get; protected init; }
         public int ScorePoints { get; protected init; }
 
-        public EnemySpaceship(int absMaxDisplacement, int hp,
+        public EnemySpaceship(EnemySpaceshipType enemyType, int absMaxDisplacement, int hp,
             int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime, int scorePoints) :
             base(true, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
         {
