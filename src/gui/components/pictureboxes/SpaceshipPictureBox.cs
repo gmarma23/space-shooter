@@ -16,13 +16,13 @@
             Height = height;
             Image = spaceshipImages[type];
         }
+    }
 
-        public enum SpaceshipType
-        {
-            Hero,
-            EnemyFighter,
-            EnemyTeleporter,
-            EnemyBoss
-        }
+    public enum SpaceshipType
+    {
+        Hero,
+        EnemyFighter,
+        EnemyTeleporter,
+        EnemyBoss
     }
 }
