@@ -9,10 +9,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="resources\audio\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Update="resources\Resources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
