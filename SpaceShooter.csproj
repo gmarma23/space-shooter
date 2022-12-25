@@ -10,8 +10,6 @@
 
   <ItemGroup>
     <Folder Include="resources\audio\" />
-    <Folder Include="resources\images\" />
-    <Folder Include="resources\icons\" />
   </ItemGroup>
 
   <ItemGroup>
