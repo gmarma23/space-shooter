@@ -7,6 +7,7 @@
             Width = width;
             Height = height;
             SizeMode = PictureBoxSizeMode.StretchImage;
+            BackColor = Color.Transparent;
         }
     }
 }
