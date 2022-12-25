@@ -15,7 +15,7 @@
         private const double heroPicBoxLocationYRatio = 0.335;
 
         private Label title;
-        private SpaceshipPictureBox heroPicBox;
+        private HeroSpaceshipPictureBox heroPicBox;
         private MenuOptions menuOptions;
         
         public MenuFrame()
@@ -51,7 +51,7 @@
         {
             int heroPicBoxWidth = (int)(ClientRectangle.Width * heroPicBoxWidthRatio);
             int heroPicBoxHeight = (int)(ClientRectangle.Height * heroPicBoxHeightRatio);
-            heroPicBox = new SpaceshipPictureBox(SpaceshipType.Hero, heroPicBoxWidth, heroPicBoxHeight);
+            heroPicBox = new HeroSpaceshipPictureBox(heroPicBoxWidth, heroPicBoxHeight);
             Controls.Add(heroPicBox);
             heroPicBox.Location = new Point(
                 ClientRectangle.Width / 2 - heroPicBox.Width / 2,
