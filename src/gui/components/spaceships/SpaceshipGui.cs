@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace SpaceShooter.gui
 {
-    internal class SpaceshipPanel : Panel
+    internal class SpaceshipGui : Panel
     {
-        private const double healthBarHeightRatio = 0.05;
-        private const double healthBarMarginRatio = 0.05;
+        protected const double healthBarHeightRatio = 0.05;
+        protected const double healthBarMarginRatio = 0.07;
 
-        private SpaceshipPictureBox spaceshipPictureBox;
-        private SpaceshipHealthBar spaceshipHealthBar;
+        protected SpaceshipHealthBar spaceshipHealthBar;
 
-        public SpaceshipPanel(SpaceshipType type, int spaceshipPicBoxWidth, int spaceshipPicBoxHeight) 
+        public SpaceshipGui(int spaceshipPicBoxWidth, int spaceshipPicBoxHeight) 
         {
             Width = spaceshipPicBoxWidth;
             Height = spaceshipPicBoxHeight + (int)((healthBarHeightRatio + healthBarMarginRatio) * spaceshipPicBoxHeight);
