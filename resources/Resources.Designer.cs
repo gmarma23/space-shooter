@@ -73,9 +73,9 @@ namespace SpaceShooter.resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy_boss_spaceship_boss {
+        internal static System.Drawing.Bitmap enemy_boss_spaceship {
             get {
-                object obj = ResourceManager.GetObject("enemy_boss_spaceship_boss", resourceCulture);
+                object obj = ResourceManager.GetObject("enemy_boss_spaceship", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
