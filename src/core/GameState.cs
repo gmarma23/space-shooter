@@ -15,8 +15,8 @@ namespace SpaceShooter.core
         private EnemySpaceship enemy;
         private List<LaserBlast> activeLaserBlasts;
 
-        public int GridXDimension { get => grid.DimensionX; }
-        public int GridYDimension { get => grid.DimensionY; }
+        public int GridDimensionX { get => grid.DimensionX; }
+        public int GridDimensionY { get => grid.DimensionY; }
         public int Score { get; private set; }
 
         public GameState(int gridDimensionX = 1360, int gridDimensionY = 760)
