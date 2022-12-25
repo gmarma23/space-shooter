@@ -6,7 +6,15 @@
         protected const double defaultHeightRatio = 1.05;
 
         protected readonly int absMaxDisplacement;
+        protected readonly int totalHP;
 
+        protected int displacementX;
+        protected int displacementY;
+        protected int concurrentLaserBlastsCount;
+        protected int laserBlastDamage;
+        protected int laserReloadTime;
+        protected int availableHP;
+        
         protected int minX;
         protected int maxX;
         protected int minY;
@@ -15,8 +23,6 @@
         public bool IsEnemy { get; protected init; }
         public int LocationX { get; protected set; }
         public int LocationY { get; protected set; }
-        public int DisplacementX { get; protected set; }
-        public int DisplacementY { get; protected set; }
         public int Width { get; protected set; }
         public int Height { get; protected set; }
         public bool LaserIsReloading { get; set; }
@@ -24,53 +30,67 @@
 
         public int ConcurrentLaserBlastsCount
         {
-            get => ConcurrentLaserBlastsCount;
+            get => concurrentLaserBlastsCount;
             protected set
             {
                 if (value < 0)
                     throw new ArgumentException();
+                concurrentLaserBlastsCount = value;
             }
         }
 
         public int LaserBlastDamage
         {
-            get => LaserBlastDamage;
+            get => laserBlastDamage;
             protected set
             {
                 if (value < 0)
                     throw new ArgumentException();
+                laserBlastDamage = value;
             }
         }
 
         public int LaserReloadTime
         {
-            get => LaserReloadTime;
+            get => laserReloadTime;
             protected set
             {
                 if (value < 0)
                     throw new ArgumentException();
+                laserReloadTime = value;
             }
-        }        
+        }
 
-        protected int TotalHP
+        protected int AbsMaxDisplacement
         {
-            get => TotalHP;
             init
             {
                 if (value < 0)
                     throw new ArgumentException();
+                absMaxDisplacement = value;
+            }
+        }
+
+        protected int TotalHP
+        {
+            init
+            {
+                if (value < 0)
+                    throw new ArgumentException();
+                totalHP = value;
             }
         }
 
         protected int AvailableHP
         {
-            get => AvailableHP;
             set
             {
                 if (value < 0)
-                    _ = 0;
-                else if (value > TotalHP)
-                    _ = TotalHP;
+                    availableHP = 0;
+                else if (value > totalHP)
+                    availableHP = totalHP;
+                else
+                    availableHP = value;
             }
         }
 
@@ -85,7 +105,7 @@
 
             this.absMaxDisplacement = absMaxDisplacement;
 
-            AvailableHP = TotalHP;
+            AvailableHP = totalHP;
             IsDestroyed = false;
         }
 
@@ -103,35 +123,35 @@
 
         public void TakeDamage(int damage) 
         {
-            AvailableHP -= damage;
-            if(AvailableHP == 0) 
+            AvailableHP = availableHP - damage;
+            if(availableHP == 0) 
                 IsDestroyed = true;
         }
 
         public void RestoreHealth(int health)
         {
-            AvailableHP += health;
+            AvailableHP = availableHP + health;
         }
 
         public double GetAvailableHealthRatio() 
         {
-            return AvailableHP / TotalHP;
+            return availableHP / totalHP;
         }
 
         protected void moveHorizontally()
         {
-            int newLocationX = LocationX + DisplacementX;
+            int newLocationX = LocationX + displacementX;
             if (newLocationX < minX && newLocationX > maxX)
                 throw new Exception();
-            LocationX += DisplacementX;
+            LocationX += displacementX;
         }
 
         protected void moveVertically()
         {
-            int newLocationY = LocationY + DisplacementY;
+            int newLocationY = LocationY + displacementY;
             if (newLocationY < minY && newLocationY > maxY)
                 throw new Exception();
-            LocationY += DisplacementY;
+            LocationY += displacementY;
         }
 
         protected void setSize(GameGrid grid, double scaleFactor = 1)

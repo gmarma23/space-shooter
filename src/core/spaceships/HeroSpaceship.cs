@@ -30,13 +30,13 @@
 
         protected void updateDisplacement()
         {
-            DisplacementX = 0;
-            DisplacementY = 0;
+            displacementX = 0;
+            displacementY = 0;
 
-            if (GoLeft) DisplacementX -= absMaxDisplacement;
-            if (GoRight) DisplacementX += absMaxDisplacement;
-            if (GoUp) DisplacementY -= absMaxDisplacement;
-            if (GoDown) DisplacementY += absMaxDisplacement;
+            if (GoLeft) displacementX -= absMaxDisplacement;
+            if (GoRight) displacementX += absMaxDisplacement;
+            if (GoUp) displacementY -= absMaxDisplacement;
+            if (GoDown) displacementY += absMaxDisplacement;
         }
 
         protected void initializeDirectionBooleans()

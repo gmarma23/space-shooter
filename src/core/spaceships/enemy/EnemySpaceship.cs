@@ -20,22 +20,22 @@ namespace SpaceShooter.core
 
         protected void updateDisplacement(int targetX, int targetY)
         {
-            DisplacementX = absMaxDisplacement;
+            displacementX = absMaxDisplacement;
             int dx = targetX - LocationX;
-            if (Math.Sign(dx) != Math.Sign(DisplacementX))
+            if (Math.Sign(dx) != Math.Sign(displacementX))
             {
-                DisplacementX *= -1;
-                if (dx < DisplacementX)
-                    DisplacementX = dx;
+                displacementX *= -1;
+                if (dx < displacementX)
+                    displacementX = dx;
             }
 
-            DisplacementY = absMaxDisplacement;
+            displacementY = absMaxDisplacement;
             int dy = targetY - LocationY;
-            if (Math.Sign(dy) != Math.Sign(DisplacementY))
+            if (Math.Sign(dy) != Math.Sign(displacementY))
             {
-                DisplacementY *= -1;
-                if (dy < DisplacementY)
-                    DisplacementY = dy;
+                displacementY *= -1;
+                if (dy < displacementY)
+                    displacementY = dy;
             }
         }
 
