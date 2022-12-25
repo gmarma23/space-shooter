@@ -11,10 +11,10 @@
             Height = height;
 
             availableHealthBar = new Panel();
-            setSubBar(availableHealthBar, false);
+            setSubBar(availableHealthBar, true);
 
             totalHealthBar = new Panel();
-            setSubBar(totalHealthBar, true);
+            setSubBar(totalHealthBar, false);
         }
 
         public void UpdateHealth(double availableHealthPercentage)
@@ -27,8 +27,9 @@
             subBar.Width = Width;
             subBar.Height = Height;
             subBar.BackColor = isAvailableHealthBar ? Color.Green : Color.Red;
-            subBar.Parent = isAvailableHealthBar ? totalHealthBar : this;
+            subBar.Parent = this;
             subBar.Location = new Point(0, 0);
+            if (isAvailableHealthBar) subBar.BringToFront();
         }
     }
 }
