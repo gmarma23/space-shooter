@@ -25,10 +25,7 @@ namespace SpaceShooter.gui
             Controls.Add(spaceshipHealthBar);
         }
 
-        public void UpdateLocation(int newSpaceshipLocationX, int newSpaceshipLocationY)
-        {
-            Location = new Point(newSpaceshipLocationX, newSpaceshipLocationY);
-        }
+        public abstract void UpdateLocation(int newSpaceshipLocationX, int newSpaceshipLocationY);
 
         protected abstract void arrangeItems();
     }

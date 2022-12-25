@@ -12,6 +12,11 @@
             arrangeItems();
         }
 
+        public override void UpdateLocation(int newSpaceshipLocationX, int newSpaceshipLocationY)
+        {
+            Location = new Point(newSpaceshipLocationX, newSpaceshipLocationY);
+        }
+
         protected override void arrangeItems()
         {
             heroPicBox.Top = 0;

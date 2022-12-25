@@ -14,6 +14,11 @@ namespace SpaceShooter.gui
             arrangeItems();
         }
 
+        public override void UpdateLocation(int newSpaceshipLocationX, int newSpaceshipLocationY)
+        {
+            Location = new Point(newSpaceshipLocationX, newSpaceshipLocationY + enemyPicBox.Height - Height);
+        }
+
         protected override void arrangeItems()
         {
             enemyPicBox.Top = (int)((healthBarHeightRatio + healthBarMarginRatio) * enemyPicBox.Height);
