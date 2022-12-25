@@ -74,6 +74,11 @@ namespace SpaceShooter.core
             height = spaceship.Height;
         }
 
+        public EnemySpaceshipType GetEnemySpaceshipType()
+        {
+            return enemy.Type;
+        }
+
         public void LaserBlastGetLocation(int numCode, ref int x, ref int y)
         {
             LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
