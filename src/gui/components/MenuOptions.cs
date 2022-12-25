@@ -42,7 +42,7 @@ namespace SpaceShooter.gui
 
             Location = new Point(
                 menuFrame.ClientRectangle.Width / 2 - Width / 2, 
-                (int)(menuFrame.ClientRectangle.Height * MenuFrame.optionsYLocationRatio) - Height / 2);
+                (int)(menuFrame.ClientRectangle.Height * MenuFrame.optionsLocationYRatio) - Height / 2);
 
             initializeMenuButtons(); 
             arrangeMenuButtons();

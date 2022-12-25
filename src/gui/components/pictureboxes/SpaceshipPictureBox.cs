@@ -15,6 +15,7 @@
             Width = width;
             Height = height;
             Image = spaceshipImages[type];
+            SizeMode = PictureBoxSizeMode.StretchImage;
         }
     }
 
