@@ -1,4 +1,6 @@
-﻿namespace SpaceShooter.core
+﻿using SpaceShooter.utils;
+
+namespace SpaceShooter.core
 {
     internal abstract class Spaceship : IGridItem
     {
@@ -142,7 +144,7 @@
         {
             int newLocationX = LocationX + displacementX;
             if (newLocationX < minX || newLocationX > maxX)
-                throw new Exception();
+                throw new InvalidMoveException("Invalid horizontal move");
             LocationX += displacementX;
         }
 
@@ -150,7 +152,7 @@
         {
             int newLocationY = LocationY + displacementY;
             if (newLocationY < minY || newLocationY > maxY)
-                throw new Exception();
+                throw new InvalidMoveException("Invalid vertical move");
             LocationY += displacementY;
         }
 

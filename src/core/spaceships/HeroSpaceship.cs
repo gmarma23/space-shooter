@@ -1,4 +1,6 @@
-﻿namespace SpaceShooter.core
+﻿using SpaceShooter.utils;
+
+namespace SpaceShooter.core
 {
     internal class HeroSpaceship : Spaceship
     {
@@ -25,8 +27,18 @@
         public override void Move()
         {
             updateDisplacement();
-            moveHorizontally();
-            moveVertically();
+
+            try
+            {
+                moveHorizontally();
+            }
+            catch (InvalidMoveException) { }
+
+            try
+            {
+                moveVertically();
+            }
+            catch (InvalidMoveException) { }
         }
 
         protected void updateDisplacement()
