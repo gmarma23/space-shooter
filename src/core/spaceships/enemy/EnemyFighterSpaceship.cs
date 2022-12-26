@@ -6,6 +6,8 @@
             int concurrentLaserBlastsCount = 1, int laserBlastDamage = 40, int laserReloadTime = 1500, int scorePoints = 3) :
             base(EnemySpaceshipType.Fighter, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
         {
+            AbsMaxDisplacement = absMaxDisplacement;
+
             setSize(grid);
             setGridLimits(grid);
             initializeLocationX();

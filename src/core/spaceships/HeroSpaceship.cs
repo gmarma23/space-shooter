@@ -13,6 +13,7 @@
             int concurrentLaserBlastsCount = 2, int laserBlastDamage = 40, int laserReloadTime = 1) :
             base (true, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
         {
+            AbsMaxDisplacement = absMaxDisplacement;
             initializeDirectionBooleans();
 
             setSize(grid);
