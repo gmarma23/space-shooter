@@ -8,6 +8,7 @@ namespace SpaceShooter.core
         protected Random rand;
 
         public EnemySpaceshipType Type { get; protected init; }
+        public bool IsReadyForBattle { get; protected set; }
         public int ScorePoints { get; protected init; }
 
         public EnemySpaceship(EnemySpaceshipType enemyType, int absMaxDisplacement, int hp,
@@ -16,7 +17,16 @@ namespace SpaceShooter.core
         {
             Type = enemyType;
             ScorePoints = scorePoints;
+            IsReadyForBattle = false;
             rand = new Random();
+        }
+
+        public void BringToBattle()
+        {
+            if (LocationY < (minY + maxY) / 2 - Height / 2)
+                LocationY += absMaxDisplacement;
+            else
+                IsReadyForBattle = true;
         }
 
         protected void updateDisplacement(int targetX, int targetY)
@@ -55,7 +65,7 @@ namespace SpaceShooter.core
 
         protected override void initializeLocationY()
         {
-            LocationY = (minY + maxY) / 2 - Height / 2;
+            LocationY = minY - Height;
         }
 
         protected int generateRandomX()
