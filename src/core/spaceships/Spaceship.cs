@@ -144,7 +144,7 @@ namespace SpaceShooter.core
         {
             int newLocationX = LocationX + displacementX;
             if (newLocationX < minX || newLocationX > maxX)
-                throw new InvalidMoveException("Invalid horizontal move");
+                throw new InvalidMoveException();
             LocationX += displacementX;
         }
 
@@ -152,7 +152,7 @@ namespace SpaceShooter.core
         {
             int newLocationY = LocationY + displacementY;
             if (newLocationY < minY || newLocationY > maxY)
-                throw new InvalidMoveException("Invalid vertical move");
+                throw new InvalidMoveException();
             LocationY += displacementY;
         }
 
