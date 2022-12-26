@@ -5,7 +5,9 @@
         private const double laserBlastWidthRatio = 0.05;
         private const double laserBlastHeightRatio = 7;
 
-        private static int nextNumCode = 0; 
+        private static int nextNumCode = 0;
+        private int displacementX;
+        private int displacementY;
             
         public int NumCode { get; private init; }
         public bool IsHero { get; private init; }
@@ -14,15 +16,13 @@
         public int LocationY { get; private set; }
         public int Width { get; private init; }
         public int Height { get; private init; }
-        public int DisplacementX { get; private init; }
-        public int DisplacementY
+        private int DisplacementY
         {
-            get => DisplacementY;
-            private init
+            init
             {
                 if (value < 0)
                     throw new ArgumentException();
-                _ = value;
+                displacementY = value;
             }
         }
 
@@ -30,7 +30,7 @@
         {
             IsHero = spaceship.IsHero;
             Damage = spaceship.LaserBlastDamage;
-            DisplacementX = 0;
+            displacementX = 0;
             DisplacementY = 5;
 
             Width = (int)(spaceship.Width * laserBlastWidthRatio);
@@ -45,7 +45,7 @@
 
         public void Move()
         {
-            LocationY = (IsHero ? -1 : 1) * DisplacementY; 
+            LocationY += (IsHero ? -1 : 1) * displacementY; 
         }
     }
 }
