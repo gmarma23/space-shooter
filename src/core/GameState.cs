@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 
 namespace SpaceShooter.core
 {
-    internal class GameState
+    internal class GameState : IDrawGameStateUI
     {
         private GameGrid grid;
         private HeroSpaceship hero;
@@ -60,25 +54,6 @@ namespace SpaceShooter.core
             }
         }
 
-        public void SpaceshipGetLocation(bool isHero, ref int x, ref int y)
-        {
-            Spaceship spaceship = getSpaceship(isHero);
-            x = spaceship.LocationX;
-            y = spaceship.LocationY;
-        }
-
-        public void SpaceshipGetSize(bool isHero, ref int width, ref int height)
-        {
-            Spaceship spaceship = getSpaceship(isHero);
-            width = spaceship.Width;
-            height = spaceship.Height;
-        }
-
-        public EnemySpaceshipType GetEnemySpaceshipType()
-        {
-            return enemy.Type;
-        }
-
         public bool IsEnemyReadyForBattle()
         {
             return enemy.IsReadyForBattle;
@@ -87,22 +62,6 @@ namespace SpaceShooter.core
         public void BringEnemyToBattle()
         {
             enemy.BringToBattle();
-        }
-
-        public void LaserBlastGetLocation(int numCode, ref int x, ref int y)
-        {
-            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
-            Debug.Assert(laserBlast != null);
-            x = laserBlast.LocationX;
-            y = laserBlast.LocationY;
-        }
-
-        public void LaserBlastGetSize(int numCode, ref int width, ref int height)
-        {
-            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
-            Debug.Assert(laserBlast != null);
-            width = laserBlast.Width;
-            height = laserBlast.Height;
         }
 
         public List<int> SpaceshipFireLaser(bool isHero)
@@ -160,13 +119,6 @@ namespace SpaceShooter.core
             activeLaserBlasts.Remove(laserBlast);
         }
 
-        public bool IsHeroLaserBlast(int numCode)
-        {
-            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
-            Debug.Assert(laserBlast != null);
-            return laserBlast.IsHero;
-        }
-
         public bool IsEnemyDestroyed()
         {
             return enemy.IsDestroyed;
@@ -175,6 +127,44 @@ namespace SpaceShooter.core
         public bool IsGameOver()
         {
             return hero.IsDestroyed;
+        }
+
+        public (int, int) GetSpaceshipSize(bool isHero)
+        {
+            Spaceship spaceship = getSpaceship(isHero);
+            return (spaceship.Width, spaceship.Height);
+        }
+
+        public (int, int) GetSpaceshipLocation(bool isHero)
+        {
+            Spaceship spaceship = getSpaceship(isHero);
+            return (spaceship.LocationX, spaceship.LocationY);
+        }
+
+        public EnemySpaceshipType GetEnemySpaceshipType()
+        {
+            return enemy.Type;
+        }
+
+        public (int, int) GetLaserBlastSize(int numCode)
+        {
+            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
+            Debug.Assert(laserBlast != null);
+            return (laserBlast.Width, laserBlast.Height);
+        }
+
+        public (int, int) GetLaserBlastLocation(int numCode)
+        {
+            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
+            Debug.Assert(laserBlast != null);
+            return (laserBlast.LocationX, laserBlast.LocationY);
+        }
+
+        public bool IsHeroLaserBlast(int numCode)
+        {
+            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
+            Debug.Assert(laserBlast != null);
+            return laserBlast.IsHero;
         }
 
         private LaserBlast? getLaserBlastByNumCode(int numCode)
