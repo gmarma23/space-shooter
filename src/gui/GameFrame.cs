@@ -18,25 +18,22 @@ namespace SpaceShooter.gui
             KeyUp += keyEventHandlers["OnKeyUp"];
         }
 
-        public void RelocateSpaceship(GameState gameState, bool isHero)
+        public void RelocateSpaceship(IDrawGameStateUI gameState, bool isHero)
         {
-            int newX = 0, newY = 0;
-            gameState.SpaceshipGetLocation(isHero, ref newX, ref newY);
-            getSpaceship(isHero).UpdateLocation(newX, newY);
+            (int x, int y) = gameState.GetSpaceshipLocation(isHero);
+            getSpaceship(isHero).UpdateLocation(x, y);
         }
 
-        public void RenderHeroSpaceship(GameState gameState)
+        public void RenderHeroSpaceship(IDrawGameStateUI gameState)
         {
-            int width = 0, height = 0;
-            gameState.SpaceshipGetSize(true, ref width, ref height);
+            (int width, int height) = gameState.GetSpaceshipSize(true);
             hero = new HeroSpaceshipGui(width, height);
             Controls.Add(hero);
         }
 
-        public void RenderEnemySpaceship(GameState gameState)
+        public void RenderEnemySpaceship(IDrawGameStateUI gameState)
         {
-            int width = 0, height = 0;
-            gameState.SpaceshipGetSize(false, ref width, ref height);
+            (int width, int height) = gameState.GetSpaceshipSize(false);
             EnemySpaceshipType enemyType = gameState.GetEnemySpaceshipType();
             enemy = new EnemySpaceshipGui(enemyType, width, height);
             Controls.Add(enemy);
