@@ -14,6 +14,7 @@ namespace SpaceShooter.core
             int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime, int scorePoints) :
             base(false, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
         {
+            Type = enemyType;
             ScorePoints = scorePoints;
             rand = new Random();
         }
