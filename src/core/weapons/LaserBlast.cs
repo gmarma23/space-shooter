@@ -36,7 +36,7 @@
             Width = (int)(spaceship.Width * laserBlastWidthRatio);
             Height = (int)(Width * laserBlastHeightRatio);
 
-            LocationX = spaceship.LocationX + (index * spaceship.Width / (spaceship.ConcurrentLaserBlastsCount + 1)) - (Width / 2);
+            LocationX = spaceship.LocationX + ((index + 1) * spaceship.Width / (spaceship.ConcurrentLaserBlastsCount + 1)) - (Width / 2);
             LocationY = IsHero ? spaceship.LocationY - Height : spaceship.LocationY + spaceship.Height;
 
             NumCode = nextNumCode;

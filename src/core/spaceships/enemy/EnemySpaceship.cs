@@ -23,7 +23,7 @@ namespace SpaceShooter.core
 
         public void BringToBattle()
         {
-            if (LocationY < (minY + maxY) / 2 - Height / 2)
+            if (LocationY < (minY + maxY) / 2)
                 LocationY += absMaxDisplacement;
             else
                 IsReadyForBattle = true;

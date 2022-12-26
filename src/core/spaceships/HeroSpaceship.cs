@@ -58,12 +58,12 @@
 
         protected override void initializeLocationX()
         {
-            LocationX = (minX + maxX) / 2 - Width / 2;
+            LocationX = (minX + maxX) / 2;
         }
 
         protected override void initializeLocationY()
         {
-            LocationY = (minY + maxY) / 2 - Height / 2;
+            LocationY = (minY + maxY) / 2;
         }
     }
 }

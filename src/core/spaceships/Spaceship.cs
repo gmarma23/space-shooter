@@ -141,7 +141,7 @@
         protected void moveHorizontally()
         {
             int newLocationX = LocationX + displacementX;
-            if (newLocationX < minX && newLocationX > maxX)
+            if (newLocationX < minX || newLocationX > maxX)
                 throw new Exception();
             LocationX += displacementX;
         }
@@ -149,7 +149,7 @@
         protected void moveVertically()
         {
             int newLocationY = LocationY + displacementY;
-            if (newLocationY < minY && newLocationY > maxY)
+            if (newLocationY < minY || newLocationY > maxY)
                 throw new Exception();
             LocationY += displacementY;
         }
