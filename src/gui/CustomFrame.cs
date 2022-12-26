@@ -22,7 +22,7 @@ namespace SpaceShooter.gui
             AutoSize = false;
             MaximizeBox = false;
             BackColor = Color.Black;
-            ClientSize = new Size(400, 500);
+            Size = new Size(400, 500);
 
             Text = "Space Shooter";
             Icon = resources.Resources.space_shooter;

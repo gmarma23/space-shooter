@@ -11,8 +11,7 @@ namespace SpaceShooter.gui
         public GameFrame(int gridDimensionX, int gridDimensionY, Dictionary<string, KeyEventHandler> keyEventHandlers)
         {
             InitializeComponent();
-            Width = gridDimensionX;
-            Height = gridDimensionY;
+            ClientSize = new Size(gridDimensionX, gridDimensionY);
 
             activeLaserBlasts = new List<LaserBlastPictureBox>();
 
