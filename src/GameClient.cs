@@ -56,6 +56,7 @@ namespace SpaceShooter
                 List<int> firedLaserBlastsNumCodes = game.SpaceshipFireLaser(true);
                 foreach (int numCode in firedLaserBlastsNumCodes)
                     gameFrame.RenderLaserBlast(game, numCode);
+                gameFrame.RelocateLaserBlasts(game);
             }
             else
                 toggleHeroMotionControls(e, true);
