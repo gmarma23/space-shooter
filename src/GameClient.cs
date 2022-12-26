@@ -53,7 +53,9 @@ namespace SpaceShooter
         {
             if (e.KeyCode == Keys.Space)
             {
-                game.SpaceshipFireLaser(true);
+                List<int> firedLaserBlastsNumCodes = game.SpaceshipFireLaser(true);
+                foreach (int numCode in firedLaserBlastsNumCodes)
+                    gameFrame.RenderLaserBlast(game, numCode);
             }
             else
                 toggleHeroMotionControls(e, true);
@@ -84,6 +86,9 @@ namespace SpaceShooter
         {
             game.MoveSpaceship(true);
             gameFrame.RelocateSpaceship(game, true);
+
+            game.MoveLaserBlasts();
+            gameFrame.RelocateLaserBlasts(game);
         }
     }
 }

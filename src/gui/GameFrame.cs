@@ -6,12 +6,15 @@ namespace SpaceShooter.gui
     {
         private HeroSpaceshipGui hero;
         private EnemySpaceshipGui enemy;
+        private List<LaserBlastPictureBox> activeLaserBlasts;
 
         public GameFrame(int gridDimensionX, int gridDimensionY, Dictionary<string, KeyEventHandler> keyEventHandlers)
         {
             InitializeComponent();
             Width = gridDimensionX;
             Height = gridDimensionY;
+
+            activeLaserBlasts = new List<LaserBlastPictureBox>();
 
             FormClosed += AppClient.OnSubFrameClose;
             KeyDown += keyEventHandlers["OnKeyDown"];
@@ -37,6 +40,24 @@ namespace SpaceShooter.gui
             EnemySpaceshipType enemyType = gameState.GetEnemySpaceshipType();
             enemy = new EnemySpaceshipGui(enemyType, width, height);
             Controls.Add(enemy);
+        }
+
+        public void RenderLaserBlast(IDrawGameStateUI gameState, int laserBlastNumCode)
+        {
+            bool isHero = gameState.IsHeroLaserBlast(laserBlastNumCode);
+            (int width, int height) = gameState.GetLaserBlastSize(laserBlastNumCode);
+            LaserBlastPictureBox newLaserBlast = new LaserBlastPictureBox(isHero, laserBlastNumCode, width, height);
+            activeLaserBlasts.Add(newLaserBlast);
+            Controls.Add(newLaserBlast);
+        }
+
+        public void RelocateLaserBlasts(IDrawGameStateUI gameState)
+        {
+            foreach(LaserBlastPictureBox laserBlast in activeLaserBlasts)
+            {
+                (int x, int y) = gameState.GetLaserBlastLocation(laserBlast.NumCode);
+                laserBlast.UpdateLocation(x, y);
+            }
         }
 
         public SpaceshipGui getSpaceship(bool isHero)

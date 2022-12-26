@@ -82,12 +82,10 @@ namespace SpaceShooter.core
             return newlaserBlastsNumCodes;
         }
 
-        public void MoveLaserBlast(int numCode)
+        public void MoveLaserBlasts()
         {
-            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
-            Debug.Assert(laserBlast != null);
-
-            laserBlast.Move();
+            foreach(LaserBlast laserBlast in activeLaserBlasts)
+                laserBlast.Move();
         }
 
         public bool LaserBlastHitedTargetSpaceship(int numCode)
