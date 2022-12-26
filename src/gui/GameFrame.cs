@@ -7,12 +7,15 @@ namespace SpaceShooter.gui
         private HeroSpaceshipGui hero;
         private EnemySpaceshipGui enemy;
 
-        public GameFrame(int gridDimensionX, int gridDimensionY)
+        public GameFrame(int gridDimensionX, int gridDimensionY, Dictionary<string, KeyEventHandler> keyEventHandlers)
         {
             InitializeComponent();
             Width = gridDimensionX;
             Height = gridDimensionY;
+
             FormClosed += AppClient.OnSubFrameClose;
+            KeyDown += keyEventHandlers["OnKeyDown"];
+            KeyUp += keyEventHandlers["OnKeyUp"];
         }
 
         public void RelocateSpaceship(GameState gameState, bool isHero)
