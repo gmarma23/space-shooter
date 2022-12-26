@@ -79,6 +79,16 @@ namespace SpaceShooter.core
             return enemy.Type;
         }
 
+        public bool IsEnemyReadyForBattle()
+        {
+            return enemy.IsReadyForBattle;
+        }
+
+        public void BringEnemyToBattle()
+        {
+            enemy.BringToBattle();
+        }
+
         public void LaserBlastGetLocation(int numCode, ref int x, ref int y)
         {
             LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
