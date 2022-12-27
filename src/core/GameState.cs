@@ -69,7 +69,7 @@ namespace SpaceShooter.core
             List<int> newlaserBlastsNumCodes = new List<int>();
             Spaceship spaceship = getSpaceship(isHero);
 
-            List<LaserBlast> firedLaserBlasts = spaceship.FireLaser();
+            List<LaserBlast> firedLaserBlasts = spaceship.FireLaser(grid);
             activeLaserBlasts.AddRange(firedLaserBlasts);
 
             foreach(LaserBlast laserBlast in firedLaserBlasts)

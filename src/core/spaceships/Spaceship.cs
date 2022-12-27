@@ -113,13 +113,13 @@ namespace SpaceShooter.core
 
         public abstract void Move();
 
-        public List<LaserBlast> FireLaser()
+        public List<LaserBlast> FireLaser(GameGrid grid)
         {
             List<LaserBlast> laserBlasts = new List<LaserBlast>();
             if (LaserIsReloading) return laserBlasts;
         
             for (int i = 0; i < ConcurrentLaserBlastsCount; i++)
-                laserBlasts.Add(new LaserBlast(this, i));
+                laserBlasts.Add(new LaserBlast(this, grid, i));
             return laserBlasts;
         }
 

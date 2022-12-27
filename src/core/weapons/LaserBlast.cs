@@ -1,4 +1,6 @@
-﻿namespace SpaceShooter.core
+﻿using System.Diagnostics;
+
+namespace SpaceShooter.core
 {
     internal class LaserBlast : IGridItem
     {
@@ -8,7 +10,11 @@
         private static int nextNumCode = 0;
         private int displacementX;
         private int displacementY;
-            
+        private int minY;
+        private int maxY;
+
+        public bool HasHitedTarget { get; set; }
+        public bool IsOutOfBounds { get; private set; }
         public int NumCode { get; private init; }
         public bool IsHero { get; private init; }
         public int Damage { get; private init; }
@@ -26,12 +32,14 @@
             }
         }
 
-        public LaserBlast(Spaceship spaceship, int index)
+        public LaserBlast(Spaceship spaceship, GameGrid grid, int index)
         {
             IsHero = spaceship.IsHero;
             Damage = spaceship.LaserBlastDamage;
             displacementX = 0;
             DisplacementY = 5;
+            minY = grid.GetItemMinPossibleY();
+            maxY = grid.GetItemMaxPossibleY(this);
 
             Width = (int)(spaceship.Width * laserBlastWidthRatio);
             Height = (int)(Width * laserBlastHeightRatio);
@@ -41,11 +49,19 @@
 
             NumCode = nextNumCode;
             nextNumCode += 1;
-        } 
+        }
 
         public void Move()
         {
-            LocationY += (IsHero ? -1 : 1) * displacementY; 
+            Debug.Assert(!IsOutOfBounds || !HasHitedTarget);
+            LocationY += (IsHero ? -1 : 1) * displacementY;
+            checkIsOutOfBounds();
+        }
+
+        public void checkIsOutOfBounds()
+        {
+            if (LocationY < minY || LocationY > maxY)
+                IsOutOfBounds = true;
         }
     }
 }
