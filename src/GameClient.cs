@@ -1,6 +1,6 @@
 ﻿using SpaceShooter.core;
 using SpaceShooter.gui;
-using System.Reflection.Metadata.Ecma335;
+
 using Timer = System.Windows.Forms.Timer;
 
 namespace SpaceShooter
@@ -43,6 +43,7 @@ namespace SpaceShooter
 
         public void StartGame()
         {
+            game.RenewEnemySpaceship(EnemySpaceshipType.Fighter);
             gameFrame.RenderHeroSpaceship(game);
             gameFrame.RelocateSpaceship(game, true);
 
@@ -83,13 +84,30 @@ namespace SpaceShooter
             };
         }
 
-        private void onRelocateGridItemsTimerTick(object sender, EventArgs e)
+        private void MoveSpaceships()
         {
             game.MoveSpaceship(true);
             gameFrame.RelocateSpaceship(game, true);
+        }
 
+        private void MoveActiveLaserBlasts()
+        {
             game.MoveLaserBlasts();
             gameFrame.RelocateLaserBlasts(game);
+        }
+
+        private void RemoveInactiveLaserBlasts()
+        {
+            List<int> disposedLaserBlastsNumCodes = game.DisposeInactiveLaserBlast();
+            foreach (int numCode in disposedLaserBlastsNumCodes)
+                gameFrame.DisposeInactiveLaserBlast(numCode);
+        }
+
+        private void onRelocateGridItemsTimerTick(object sender, EventArgs e)
+        {
+            MoveSpaceships();
+            MoveActiveLaserBlasts();
+            RemoveInactiveLaserBlasts();
         }
     }
 }

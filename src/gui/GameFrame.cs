@@ -1,4 +1,5 @@
 using SpaceShooter.core;
+using System.Diagnostics;
 
 namespace SpaceShooter.gui
 {
@@ -57,6 +58,14 @@ namespace SpaceShooter.gui
                 (int x, int y) = gameState.GetLaserBlastLocation(laserBlast.NumCode);
                 laserBlast.UpdateLocation(x, y);
             }
+        }
+
+        public void DisposeInactiveLaserBlast(int laserBlastNumCode)
+        {
+            LaserBlastPictureBox? laserBlast = activeLaserBlasts.Find(laserBlast => laserBlast.NumCode == laserBlastNumCode);
+            Debug.Assert(laserBlast != null);
+            activeLaserBlasts.Remove(laserBlast);
+            laserBlast.Dispose();
         }
 
         public SpaceshipGui getSpaceship(bool isHero)

@@ -91,18 +91,17 @@ namespace SpaceShooter.core
             }
         }
 
-        public void DisposeLaserBlast(int numCode)
+        public List<int> DisposeInactiveLaserBlast()
         {
-            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
-            Debug.Assert(laserBlast != null);
-            activeLaserBlasts.Remove(laserBlast);
-        }
-
-        public bool IsActiveLaserBlast(int numCode)
-        {
-            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
-            Debug.Assert(laserBlast != null);
-            return !laserBlast.HasHitedTarget && !laserBlast.IsOutOfBounds;
+            List<int> disposedLaserBlastsNumCodes = new List<int>();
+            for (int i = activeLaserBlasts.Count - 1; i >= 0; i--)
+            {
+                if (isActiveLaserBlast(activeLaserBlasts[i]))
+                    continue;
+                disposedLaserBlastsNumCodes.Add(activeLaserBlasts[i].NumCode);
+                activeLaserBlasts.RemoveAt(i);
+            }
+            return disposedLaserBlastsNumCodes;
         }
 
         public bool IsEnemyDestroyed()
@@ -151,6 +150,11 @@ namespace SpaceShooter.core
             LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
             Debug.Assert(laserBlast != null);
             return laserBlast.IsHero;
+        }
+
+        private bool isActiveLaserBlast(LaserBlast laserBlast)
+        {
+            return !laserBlast.HasHitedTarget && !laserBlast.IsOutOfBounds;
         }
 
         private void checkLaserBlastHitedTargetSpaceship(LaserBlast laserBlast)
