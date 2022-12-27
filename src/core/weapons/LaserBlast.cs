@@ -58,7 +58,7 @@ namespace SpaceShooter.core
             checkIsOutOfBounds();
         }
 
-        public void checkIsOutOfBounds()
+        private void checkIsOutOfBounds()
         {
             if (LocationY < minY || LocationY > maxY)
                 IsOutOfBounds = true;
