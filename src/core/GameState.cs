@@ -85,29 +85,10 @@ namespace SpaceShooter.core
         public void MoveLaserBlasts()
         {
             foreach(LaserBlast laserBlast in activeLaserBlasts)
+            {
                 laserBlast.Move();
-        }
-
-        public bool LaserBlastHitedTargetSpaceship(int numCode)
-        {
-            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
-            Debug.Assert(laserBlast != null);
-            Spaceship targetSpaceship = getSpaceship(!laserBlast.IsHero);
-
-            if (!GameGrid.ItemsIntersect(laserBlast, targetSpaceship))
-                return false;
-
-            targetSpaceship.TakeDamage(laserBlast.Damage);
-            return true;
-        }
-
-        public bool LaserBlastIsOutOfBounds(int numCode)
-        {
-            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
-            Debug.Assert(laserBlast != null);
-
-            return laserBlast.LocationY < grid.GetItemMinPossibleY() ||
-                laserBlast.LocationY > grid.GetItemMaxPossibleY(laserBlast);
+                checkLaserBlastHitedTargetSpaceship(laserBlast);
+            }
         }
 
         public void DisposeLaserBlast(int numCode)
@@ -115,6 +96,13 @@ namespace SpaceShooter.core
             LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
             Debug.Assert(laserBlast != null);
             activeLaserBlasts.Remove(laserBlast);
+        }
+
+        public bool IsActiveLaserBlast(int numCode)
+        {
+            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
+            Debug.Assert(laserBlast != null);
+            return !laserBlast.HasHitedTarget && !laserBlast.IsOutOfBounds;
         }
 
         public bool IsEnemyDestroyed()
@@ -163,6 +151,20 @@ namespace SpaceShooter.core
             LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
             Debug.Assert(laserBlast != null);
             return laserBlast.IsHero;
+        }
+
+        private void checkLaserBlastHitedTargetSpaceship(LaserBlast laserBlast)
+        {
+            if (laserBlast.IsOutOfBounds || laserBlast.HasHitedTarget)
+                return;
+
+            Spaceship targetSpaceship = getSpaceship(!laserBlast.IsHero);
+
+            if (!GameGrid.ItemsIntersect(laserBlast, targetSpaceship))
+                return;
+
+            targetSpaceship.TakeDamage(laserBlast.Damage);
+            laserBlast.HasHitedTarget = true;
         }
 
         private LaserBlast? getLaserBlastByNumCode(int numCode)
