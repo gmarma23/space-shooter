@@ -22,8 +22,8 @@ namespace SpaceShooter
         {
             keyEventHandlers = new Dictionary<string, KeyEventHandler>
             {
-                { "OnKeyDown", InvokeHeroControls},
-                { "OnKeyUp", FreeHeroControls}
+                { "OnKeyDown", invokeHeroControls },
+                { "OnKeyUp", freeHeroControls }
             };
 
             game = new GameState();
@@ -36,7 +36,7 @@ namespace SpaceShooter
             enemyTeleportTimer = new Timer();
 
             relocateGridItemsTimer.Interval = 20;
-            relocateGridItemsTimer.Tick += onRelocateGridItemsTimerTick;
+            relocateGridItemsTimer.Tick += onMoveGridItemsTimerTick;
 
             gameFrame.Show();
         }
@@ -50,7 +50,7 @@ namespace SpaceShooter
             relocateGridItemsTimer.Enabled = true;
         }
 
-        private void InvokeHeroControls(object sender, KeyEventArgs e)
+        private void invokeHeroControls(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Space)
             {
@@ -63,7 +63,7 @@ namespace SpaceShooter
                 toggleHeroMotionControls(e, true);
         }
 
-        private void FreeHeroControls(object sender, KeyEventArgs e) => toggleHeroMotionControls(e, false);
+        private void freeHeroControls(object sender, KeyEventArgs e) => toggleHeroMotionControls(e, false);
 
         private void toggleHeroMotionControls(KeyEventArgs e, bool invoke)
         {
@@ -84,30 +84,30 @@ namespace SpaceShooter
             };
         }
 
-        private void MoveSpaceships()
+        private void moveSpaceships()
         {
             game.MoveSpaceship(true);
             gameFrame.RelocateSpaceship(game, true);
         }
 
-        private void MoveActiveLaserBlasts()
+        private void moveActiveLaserBlasts()
         {
             game.MoveLaserBlasts();
             gameFrame.RelocateLaserBlasts(game);
         }
 
-        private void RemoveInactiveLaserBlasts()
+        private void removeInactiveLaserBlasts()
         {
             List<int> disposedLaserBlastsNumCodes = game.DisposeInactiveLaserBlast();
             foreach (int numCode in disposedLaserBlastsNumCodes)
                 gameFrame.DisposeInactiveLaserBlast(numCode);
         }
 
-        private void onRelocateGridItemsTimerTick(object sender, EventArgs e)
+        private void onMoveGridItemsTimerTick(object sender, EventArgs e)
         {
-            MoveSpaceships();
-            MoveActiveLaserBlasts();
-            RemoveInactiveLaserBlasts();
+            moveSpaceships();
+            moveActiveLaserBlasts();
+            removeInactiveLaserBlasts();
         }
     }
 }
