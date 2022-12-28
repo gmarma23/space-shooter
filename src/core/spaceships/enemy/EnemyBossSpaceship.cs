@@ -4,7 +4,7 @@ namespace SpaceShooter.core
 {
     internal class EnemyBossSpaceship : EnemySpaceship, ILaunchMissile
     {
-        protected const double bossSpaceshipScaleFactor = 1.5;
+        protected const double bossSpaceshipScaleFactor = 2;
 
         protected Spaceship targetSpaceship;
 
@@ -41,10 +41,11 @@ namespace SpaceShooter.core
         }
 
         public EnemyBossSpaceship(GameGrid grid, Spaceship targetSpaceship, int absMaxDisplacement = 5, int hp = 1000,
-            int concurrentLaserBlastsCount = 2, int laserBlastDamage = 50, int laserReloadTime = 1,
+            int concurrentLaserBlastsCount = 2, int laserBlastDamage = 50, int laserReloadTime = 1500,
             int missileCount = 3, int missileDamage = 100, int missileReloadTime = 10, int scorePoints = 5) :
             base(EnemySpaceshipType.Boss, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
         {
+            this.targetSpaceship = targetSpaceship;
             MissileCount = missileCount;
             MissileDamage = missileDamage;
             MissileReloadTime = missileReloadTime;
