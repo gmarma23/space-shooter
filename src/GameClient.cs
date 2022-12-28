@@ -70,11 +70,7 @@ namespace SpaceShooter
         {
             if (e.KeyCode == Keys.Space)
             {
-                List<int> firedLaserBlastsNumCodes = game.SpaceshipFireLaser(true);
-                foreach (int numCode in firedLaserBlastsNumCodes)
-                    gameFrame.RenderLaserBlast(game, numCode);
-                gameFrame.RelocateLaserBlasts(game);
-
+                fireAndRenderSpaceshipLaser(true);
                 game.IsHeroLaserReloading(true);
                 heroLaserReloadTimer.Enabled = true;
             }
@@ -101,6 +97,14 @@ namespace SpaceShooter
                     game.HeroGoesDown(invoke);
                     break;
             };
+        }
+
+        private void fireAndRenderSpaceshipLaser(bool isHero)
+        {
+            List<int> firedLaserBlastsNumCodes = game.SpaceshipFireLaser(isHero);
+            foreach (int numCode in firedLaserBlastsNumCodes)
+                gameFrame.RenderLaserBlast(game, numCode);
+            gameFrame.RelocateLaserBlasts(game);
         }
 
         private void moveSpaceships()
@@ -137,10 +141,7 @@ namespace SpaceShooter
 
         private void onEnemyFireLaserTimerTick(object sender, EventArgs e)
         {
-            List<int> firedLaserBlastsNumCodes = game.SpaceshipFireLaser(false);
-            foreach (int numCode in firedLaserBlastsNumCodes)
-                gameFrame.RenderLaserBlast(game, numCode);
-            gameFrame.RelocateLaserBlasts(game);
+            fireAndRenderSpaceshipLaser(false);
         }
     }
 }
