@@ -58,12 +58,12 @@ namespace SpaceShooter.core
             int dx = item2.LocationX - item1.LocationX;
             int dy = item2.LocationY - item1.LocationY;
 
-            if (dx == 0 || dy == 0) return true;
+            if (dx == 0 && dy == 0) return true;
 
             bool horizontalIntersect = dx > 0 ? dx <= item1.Width : - dx <= item2.Width;
             bool verticalIntersect = dy > 0 ? dy <= item1.Height : - dy <= item2.Height;
 
-            return horizontalIntersect || verticalIntersect;
+            return horizontalIntersect && verticalIntersect;
         }
     }
 }
