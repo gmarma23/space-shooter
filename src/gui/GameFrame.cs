@@ -65,6 +65,9 @@ namespace SpaceShooter.gui
             LaserBlastPictureBox? laserBlast = activeLaserBlasts.Find(laserBlast => laserBlast.NumCode == laserBlastNumCode);
             Debug.Assert(laserBlast != null);
             activeLaserBlasts.Remove(laserBlast);
+            Image laserBlastImage = laserBlast.Image;
+            laserBlast.Image = null;
+            laserBlastImage.Dispose();
             laserBlast.Dispose();
         }
 
