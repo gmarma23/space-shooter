@@ -18,6 +18,7 @@ namespace SpaceShooter.core
             Type = enemyType;
             ScorePoints = scorePoints;
             IsReadyForBattle = false;
+            LaserIsReloading = false;
             rand = new Random();
         }
 
