@@ -104,6 +104,16 @@ namespace SpaceShooter.core
             return disposedLaserBlastsNumCodes;
         }
 
+        public void IsHeroLaserReloading(bool isReloading)
+        {
+            hero.LaserIsReloading = isReloading;
+        }
+
+        public int GetSpaceshipLaserReloadTime(bool isHero)
+        {
+            return getSpaceship(isHero).LaserReloadTime;
+        }
+
         public bool IsEnemyDestroyed()
         {
             return enemy.IsDestroyed;

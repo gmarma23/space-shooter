@@ -12,7 +12,7 @@ namespace SpaceShooter.core
         public bool GoRight { get; set; }
 
         public HeroSpaceship(GameGrid grid, int absMaxDisplacement = 7, int hp = 700, 
-            int concurrentLaserBlastsCount = 2, int laserBlastDamage = 40, int laserReloadTime = 1) :
+            int concurrentLaserBlastsCount = 2, int laserBlastDamage = 40, int laserReloadTime = 1000) :
             base (true, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
         {
             AbsMaxDisplacement = absMaxDisplacement;

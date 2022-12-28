@@ -17,6 +17,7 @@ namespace SpaceShooter
         private Timer enemyFireLaserTimer;
         private Timer enemyLaunchMissileTimer;
         private Timer enemyTeleportTimer;
+        private Timer heroLaserReloadTimer;
 
         public GameClient()
         {
@@ -34,9 +35,13 @@ namespace SpaceShooter
             enemyFireLaserTimer = new Timer();
             enemyLaunchMissileTimer = new Timer();
             enemyTeleportTimer = new Timer();
+            heroLaserReloadTimer = new Timer();
 
             relocateGridItemsTimer.Interval = 20;
             relocateGridItemsTimer.Tick += onMoveGridItemsTimerTick;
+
+            heroLaserReloadTimer.Interval = game.GetSpaceshipLaserReloadTime(true);
+            heroLaserReloadTimer.Tick += onHeroLaserReloadTimerTick;
 
             gameFrame.Show();
         }
@@ -58,6 +63,9 @@ namespace SpaceShooter
                 foreach (int numCode in firedLaserBlastsNumCodes)
                     gameFrame.RenderLaserBlast(game, numCode);
                 gameFrame.RelocateLaserBlasts(game);
+
+                game.IsHeroLaserReloading(true);
+                heroLaserReloadTimer.Enabled = true;
             }
             else
                 toggleHeroMotionControls(e, true);
@@ -108,6 +116,12 @@ namespace SpaceShooter
             moveSpaceships();
             moveActiveLaserBlasts();
             removeInactiveLaserBlasts();
+        }
+
+        private void onHeroLaserReloadTimerTick(object sender, EventArgs e)
+        {
+            game.IsHeroLaserReloading(false);
+            heroLaserReloadTimer.Enabled = false;
         }
     }
 }
