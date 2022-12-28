@@ -7,6 +7,8 @@ namespace SpaceShooter
 {
     internal class GameClient
     {
+        private const int relocateGridItemsTime = 20;
+
         private readonly Dictionary<string, KeyEventHandler> keyEventHandlers;
 
         private GameState game;
@@ -37,7 +39,7 @@ namespace SpaceShooter
             enemyTeleportTimer = new Timer();
             heroLaserReloadTimer = new Timer();
 
-            relocateGridItemsTimer.Interval = 20;
+            relocateGridItemsTimer.Interval = relocateGridItemsTime;
             relocateGridItemsTimer.Tick += onMoveGridItemsTimerTick;
 
             heroLaserReloadTimer.Interval = game.GetSpaceshipLaserReloadTime(true);
