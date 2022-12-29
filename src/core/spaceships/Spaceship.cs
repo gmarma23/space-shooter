@@ -7,9 +7,9 @@ namespace SpaceShooter.core
         protected const double defaultWidthRatio = 0.065;
         protected const double defaultHeightRatio = 1.04;
 
-        protected readonly int absMaxDisplacement;
         protected readonly int totalHP;
 
+        protected int absMaxDisplacement;
         protected int displacementX;
         protected int displacementY;
         protected int concurrentLaserBlastsCount;
@@ -96,7 +96,7 @@ namespace SpaceShooter.core
             }
         }
 
-        public Spaceship(bool isHero, int hp, int absMaxDisplacement,
+        public Spaceship(bool isHero, int absMaxDisplacement, int hp,
             int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime)
         {
             IsHero = isHero;

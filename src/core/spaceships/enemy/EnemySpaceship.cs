@@ -1,25 +1,28 @@
 ﻿using System;
+using System.CodeDom.Compiler;
 
 namespace SpaceShooter.core
 {
     internal abstract class EnemySpaceship : Spaceship
     {
-        protected const double baselineYRatio = 0.9;
-        protected Random rand;
+        protected const int updateDisplacementFrequency = 30;
+
+        protected int moveCount;
+        protected Random random;
 
         public EnemySpaceshipType Type { get; protected init; }
         public bool IsReadyForBattle { get; protected set; }
         public int ScorePoints { get; protected init; }
 
-        public EnemySpaceship(EnemySpaceshipType enemyType, int absMaxDisplacement, int hp,
+        public EnemySpaceship(EnemySpaceshipType enemyType, int hp,
             int concurrentLaserBlastsCount, int laserBlastDamage, int laserReloadTime, int scorePoints) :
-            base(false, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
+            base(false, 7, hp, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
         {
             Type = enemyType;
             ScorePoints = scorePoints;
             IsReadyForBattle = false;
             LaserIsReloading = false;
-            rand = new Random();
+            random = new Random();
         }
 
         public void BringToBattle()
@@ -28,27 +31,6 @@ namespace SpaceShooter.core
                 LocationY += absMaxDisplacement;
             else
                 IsReadyForBattle = true;
-        }
-
-        protected void updateDisplacement(int targetX, int targetY)
-        {
-            displacementX = absMaxDisplacement;
-            int dx = targetX - LocationX;
-            if (Math.Sign(dx) != Math.Sign(displacementX))
-            {
-                displacementX *= -1;
-                if (dx < displacementX)
-                    displacementX = dx;
-            }
-
-            displacementY = absMaxDisplacement;
-            int dy = targetY - LocationY;
-            if (Math.Sign(dy) != Math.Sign(displacementY))
-            {
-                displacementY *= -1;
-                if (dy < displacementY)
-                    displacementY = dy;
-            }
         }
 
         protected override void setGridLimits(GameGrid grid)
@@ -61,22 +43,19 @@ namespace SpaceShooter.core
 
         protected override void initializeLocationX()
         {
-            LocationX = new Random().Next(minX, maxX);
+            LocationX = random.Next(minX, maxX);
         }
 
         protected override void initializeLocationY()
         {
-            LocationY = minY - Height;
+            LocationY = minY; //- Height;
         }
 
-        protected int generateRandomX()
+        protected int generateRandomDisplacement(bool isAbsVal = false)
         {
-            return rand.Next(minX, maxX);
-        }
-
-        protected int generateRandomY()
-        {
-            return rand.Next(minY, maxY);
+            return random.Next(
+                isAbsVal ? 0 : -absMaxDisplacement, 
+                absMaxDisplacement);
         }
     }
 

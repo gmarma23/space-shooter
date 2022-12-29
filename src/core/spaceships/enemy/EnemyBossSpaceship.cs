@@ -1,4 +1,5 @@
 ﻿using SpaceShooter.src.core.spaceships;
+using SpaceShooter.utils;
 
 namespace SpaceShooter.core
 {
@@ -40,10 +41,10 @@ namespace SpaceShooter.core
             }
         }
 
-        public EnemyBossSpaceship(GameGrid grid, Spaceship targetSpaceship, int absMaxDisplacement = 5, int hp = 1000,
+        public EnemyBossSpaceship(GameGrid grid, Spaceship targetSpaceship, int hp = 1000,
             int concurrentLaserBlastsCount = 2, int laserBlastDamage = 50, int laserReloadTime = 1500,
             int missileCount = 3, int missileDamage = 100, int missileReloadTime = 10, int scorePoints = 5) :
-            base(EnemySpaceshipType.Boss, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
+            base(EnemySpaceshipType.Boss, hp, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
         {
             this.targetSpaceship = targetSpaceship;
             MissileCount = missileCount;
@@ -58,11 +59,35 @@ namespace SpaceShooter.core
 
         public override void Move()
         {
-            int targetX = targetSpaceship.LocationX;
-            int randomTargetY = generateRandomY();
-            updateDisplacement(targetX, randomTargetY);
-            moveHorizontally();
-            moveVertically();
+            if (moveCount == updateDisplacementFrequency)
+            {
+                int dx = targetSpaceship.LocationX - LocationX;
+                int nexDisplacementX = Math.Sign(dx) * generateRandomDisplacement(true);
+                if (Math.Abs(dx) >= nexDisplacementX)
+                    displacementX = nexDisplacementX;
+                else 
+                    displacementX = dx;
+
+                displacementY = generateRandomDisplacement();
+                moveCount = 0;
+            }
+
+            try
+            {
+                moveHorizontally();
+            }
+            catch (InvalidMoveException) { }
+
+            try
+            {
+                moveVertically();
+            }
+            catch (InvalidMoveException)
+            {
+                displacementY = generateRandomDisplacement();
+            }
+
+            moveCount++;
         }
     }
 }

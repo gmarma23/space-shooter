@@ -4,8 +4,6 @@ namespace SpaceShooter.core
 {
     internal class HeroSpaceship : Spaceship
     {
-        protected const double baselineYRatio = 0.1;
-
         public bool GoUp { get; set; }
         public bool GoDown { get; set; }
         public bool GoLeft { get; set; }
@@ -13,9 +11,8 @@ namespace SpaceShooter.core
 
         public HeroSpaceship(GameGrid grid, int absMaxDisplacement = 7, int hp = 700, 
             int concurrentLaserBlastsCount = 2, int laserBlastDamage = 40, int laserReloadTime = 1000) :
-            base (true, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
+            base (true, 6, hp, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime)
         {
-            AbsMaxDisplacement = absMaxDisplacement;
             initializeDirectionBooleans();
 
             setSize(grid);

@@ -1,14 +1,13 @@
-﻿namespace SpaceShooter.core
+﻿using SpaceShooter.utils;
+
+namespace SpaceShooter.core
 {
     internal class EnemyTeleporterSpaceship : EnemySpaceship, ITeleport
     {
-        protected Random random;
-
-        public EnemyTeleporterSpaceship(GameGrid grid, int absMaxDisplacement = 7, int hp = 400,
+        public EnemyTeleporterSpaceship(GameGrid grid, int hp = 400,
             int concurrentLaserBlastsCount = 1, int laserBlastDamage = 30, int laserReloadTime = 1500, int scorePoints = 2) :
-            base(EnemySpaceshipType.Teleporter, hp, absMaxDisplacement, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
+            base(EnemySpaceshipType.Teleporter, hp, concurrentLaserBlastsCount, laserBlastDamage, laserReloadTime, scorePoints)
         {
-            random = new Random();
             setSize(grid);
             setGridLimits(grid);
             initializeLocationX();
@@ -17,17 +16,38 @@
 
         public override void Move()
         {
-            int randomTargetX = generateRandomX();
-            int randomTargetY = generateRandomY();
-            updateDisplacement(randomTargetX, randomTargetY);
-            moveHorizontally();
-            moveVertically();
+            if (moveCount == updateDisplacementFrequency)
+            {
+                displacementX = generateRandomDisplacement();
+                displacementY = generateRandomDisplacement();
+                moveCount = 0;
+            }
+
+            try
+            {
+                moveHorizontally();
+            }
+            catch (InvalidMoveException)
+            {
+                displacementX = generateRandomDisplacement();
+            }
+
+            try
+            {
+                moveVertically();
+            }
+            catch (InvalidMoveException)
+            {
+                displacementY = generateRandomDisplacement();
+            }
+
+            moveCount++;
         }
 
         public void Teleport()
         {
-            LocationX = generateRandomX();
-            LocationY = generateRandomY();
+            LocationX = random.Next(minX, maxX);
+            LocationY = random.Next(minY, maxY);
         }
     }
 }
