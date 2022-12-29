@@ -8,6 +8,7 @@ namespace SpaceShooter
     internal class GameClient
     {
         private const int relocateGridItemsTime = 20;
+        private const int spaceshipTeleportTime = 7000;
 
         private readonly Dictionary<string, KeyEventHandler> keyEventHandlers;
 
@@ -18,7 +19,7 @@ namespace SpaceShooter
         private Timer bringEnemyToViewportTimer;
         private Timer enemyFireLaserTimer;
         private Timer enemyLaunchMissileTimer;
-        private Timer enemyTeleportTimer;
+        private Timer teleportSpaceshipsTimer;
         private Timer heroLaserReloadTimer;
 
         public GameClient()
@@ -36,16 +37,17 @@ namespace SpaceShooter
             bringEnemyToViewportTimer = new Timer();
             enemyFireLaserTimer = new Timer();
             enemyLaunchMissileTimer = new Timer();
-            enemyTeleportTimer = new Timer();
+            teleportSpaceshipsTimer = new Timer();
             heroLaserReloadTimer = new Timer();
 
             relocateGridItemsTimer.Interval = relocateGridItemsTime;
             relocateGridItemsTimer.Tick += onMoveGridItemsTimerTick;
 
+            teleportSpaceshipsTimer.Interval = spaceshipTeleportTime;
+            teleportSpaceshipsTimer.Tick += onSpaceshipTeleportTimerTick;
+
             heroLaserReloadTimer.Interval = game.GetSpaceshipLaserReloadTime(true);
             heroLaserReloadTimer.Tick += onHeroLaserReloadTimerTick;
-
-            
 
             gameFrame.Show();
         }
@@ -55,7 +57,7 @@ namespace SpaceShooter
             gameFrame.RenderHeroSpaceship(game);
             gameFrame.RelocateSpaceship(game, true);
 
-            game.RenewEnemySpaceship(EnemySpaceshipType.Fighter);
+            game.RenewEnemySpaceship(EnemySpaceshipType.Teleporter);
             gameFrame.RenderEnemySpaceship(game);
             gameFrame.RelocateSpaceship(game, false);
 
@@ -64,6 +66,7 @@ namespace SpaceShooter
             enemyFireLaserTimer.Enabled = true;
 
             relocateGridItemsTimer.Enabled = true;
+            teleportSpaceshipsTimer.Enabled = true;
         }
 
         private void invokeHeroControls(object sender, KeyEventArgs e)
@@ -111,6 +114,9 @@ namespace SpaceShooter
         {
             game.MoveSpaceship(true);
             gameFrame.RelocateSpaceship(game, true);
+
+            game.MoveSpaceship(false);
+            gameFrame.RelocateSpaceship(game, false);
         }
 
         private void moveActiveLaserBlasts()
@@ -131,6 +137,12 @@ namespace SpaceShooter
             moveSpaceships();
             moveActiveLaserBlasts();
             removeInactiveLaserBlasts();
+        }
+
+        private void onSpaceshipTeleportTimerTick(object sender, EventArgs e)
+        {
+            game.TeleportEnemySpaceship();
+            gameFrame.RelocateSpaceship(game, false);
         }
 
         private void onHeroLaserReloadTimerTick(object sender, EventArgs e)
