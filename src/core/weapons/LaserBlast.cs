@@ -7,8 +7,10 @@ namespace SpaceShooter.core
         private const double laserBlastWidthRatio = 0.05;
         private const double laserBlastHeightRatio = 7;
 
+        private const int absMaxDisplacement = 10;
+
         private static int nextNumCode = 0;
-        private int displacementX;
+
         private int displacementY;
         private int minY;
         private int maxY;
@@ -36,8 +38,7 @@ namespace SpaceShooter.core
         {
             IsHero = spaceship.IsHero;
             Damage = spaceship.LaserBlastDamage;
-            displacementX = 0;
-            DisplacementY = 5;
+            DisplacementY = absMaxDisplacement;
             minY = grid.GetItemMinPossibleY();
             maxY = grid.GetItemMaxPossibleY(this);
 
