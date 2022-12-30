@@ -27,6 +27,8 @@ namespace SpaceShooter.gui
 
         public abstract void UpdateLocation(int newSpaceshipLocationX, int newSpaceshipLocationY);
 
+        public void UpdateAvailableHealth(double availableHealthRatio) => spaceshipHealthBar.UpdateAvailableHealth(availableHealthRatio);
+
         protected abstract void arrangeItems();
     }
 }

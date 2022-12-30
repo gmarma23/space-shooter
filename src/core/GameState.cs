@@ -136,6 +136,11 @@ namespace SpaceShooter.core
             return (spaceship.LocationX, spaceship.LocationY);
         }
 
+        public double GetSpaceshipAvailableHealthRatio(bool isHero)
+        {
+            return getSpaceship(isHero).GetAvailableHealthRatio();
+        }
+
         public EnemySpaceshipType GetEnemySpaceshipType()
         {
             return enemy.Type;

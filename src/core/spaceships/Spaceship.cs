@@ -137,7 +137,7 @@ namespace SpaceShooter.core
 
         public double GetAvailableHealthRatio() 
         {
-            return availableHP / totalHP;
+            return (double)availableHP / (double)totalHP;
         }
 
         protected void moveHorizontally()

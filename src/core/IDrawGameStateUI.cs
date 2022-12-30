@@ -6,6 +6,8 @@
 
         public (int, int) GetSpaceshipLocation(bool isHero);
 
+        public double GetSpaceshipAvailableHealthRatio(bool isHero);
+
         public EnemySpaceshipType GetEnemySpaceshipType();
 
         public (int, int) GetLaserBlastSize(int numCode);

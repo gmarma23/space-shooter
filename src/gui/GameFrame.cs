@@ -27,6 +27,12 @@ namespace SpaceShooter.gui
             getSpaceship(isHero).UpdateLocation(x, y);
         }
 
+        public void UpdateSpaceshipAvailableHealth(IDrawGameStateUI gameState, bool isHero)
+        {
+            double availableHealthRatio = gameState.GetSpaceshipAvailableHealthRatio(isHero);
+            getSpaceship(isHero).UpdateAvailableHealth(availableHealthRatio);
+        }
+
         public void RenderHeroSpaceship(IDrawGameStateUI gameState)
         {
             (int width, int height) = gameState.GetSpaceshipSize(true);

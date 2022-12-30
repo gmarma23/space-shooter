@@ -15,7 +15,7 @@ namespace SpaceShooter
         private GameState game;
         private GameFrame gameFrame;
 
-        private Timer relocateGridItemsTimer;
+        private Timer updateGridItemsTimer;
         private Timer bringEnemyToViewportTimer;
         private Timer enemyFireLaserTimer;
         private Timer enemyLaunchMissileTimer;
@@ -33,15 +33,15 @@ namespace SpaceShooter
             game = new GameState();
             gameFrame= new GameFrame(game.GridDimensionX, game.GridDimensionY, keyEventHandlers);
 
-            relocateGridItemsTimer = new Timer();
+            updateGridItemsTimer = new Timer();
             bringEnemyToViewportTimer = new Timer();
             enemyFireLaserTimer = new Timer();
             enemyLaunchMissileTimer = new Timer();
             teleportSpaceshipsTimer = new Timer();
             heroLaserReloadTimer = new Timer();
 
-            relocateGridItemsTimer.Interval = relocateGridItemsTime;
-            relocateGridItemsTimer.Tick += onMoveGridItemsTimerTick;
+            updateGridItemsTimer.Interval = relocateGridItemsTime;
+            updateGridItemsTimer.Tick += onUpdateGridItemsTimerTick;
 
             teleportSpaceshipsTimer.Interval = spaceshipTeleportTime;
             teleportSpaceshipsTimer.Tick += onSpaceshipTeleportTimerTick;
@@ -65,7 +65,7 @@ namespace SpaceShooter
             enemyFireLaserTimer.Tick += onEnemyFireLaserTimerTick;
             enemyFireLaserTimer.Enabled = true;
 
-            relocateGridItemsTimer.Enabled = true;
+            updateGridItemsTimer.Enabled = true;
             teleportSpaceshipsTimer.Enabled = true;
         }
 
@@ -119,6 +119,12 @@ namespace SpaceShooter
             gameFrame.RelocateSpaceship(game, false);
         }
 
+        private void updateSpaceshipsAvailableHealth()
+        {
+            gameFrame.UpdateSpaceshipAvailableHealth(game, true);
+            gameFrame.UpdateSpaceshipAvailableHealth(game, false);
+        }
+
         private void moveActiveLaserBlasts()
         {
             game.MoveLaserBlasts();
@@ -132,10 +138,11 @@ namespace SpaceShooter
                 gameFrame.DisposeInactiveLaserBlast(numCode);
         }
 
-        private void onMoveGridItemsTimerTick(object sender, EventArgs e)
+        private void onUpdateGridItemsTimerTick(object sender, EventArgs e)
         {
             moveSpaceships();
             moveActiveLaserBlasts();
+            updateSpaceshipsAvailableHealth();
             removeInactiveLaserBlasts();
         }
 

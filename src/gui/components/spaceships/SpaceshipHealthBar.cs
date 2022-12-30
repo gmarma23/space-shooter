@@ -17,7 +17,7 @@
             setSubBar(totalHealthBar, false);
         }
 
-        public void UpdateHealth(double availableHealthPercentage)
+        public void UpdateAvailableHealth(double availableHealthPercentage)
         {
             availableHealthBar.Width = (int)(totalHealthBar.Width * availableHealthPercentage);
         }
