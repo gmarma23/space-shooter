@@ -41,17 +41,10 @@ namespace SpaceShooter.core
 
         public void MoveSpaceship(bool isHero) => getSpaceship(isHero).Move();
 
-        public bool TeleportEnemySpaceship()
+        public void TeleportEnemySpaceship()
         {
-            try
-            {
-                ((ITeleport)enemy).Teleport();
-                return true;
-            }
-            catch (InvalidCastException)
-            {
-                return false;
-            }
+            if (enemy is ITeleport tEnemy) 
+                tEnemy.Teleport();
         }
 
         public bool IsEnemyReadyForBattle()
