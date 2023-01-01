@@ -144,6 +144,14 @@ namespace SpaceShooter
             moveActiveLaserBlasts();
             updateSpaceshipsAvailableHealth();
             removeInactiveLaserBlasts();
+
+            if (game.IsGameOver())
+            {
+                gameFrame.SpaceshipExplode(true);
+                updateGridItemsTimer.Enabled = false;
+            }
+                
+
         }
 
         private void onSpaceshipTeleportTimerTick(object sender, EventArgs e)

@@ -4,24 +4,22 @@ namespace SpaceShooter.gui
 {
     internal class EnemySpaceshipGui : SpaceshipGui
     {
-        private EnemySpaceshipPictureBox enemyPicBox;
-
         public EnemySpaceshipGui(EnemySpaceshipType type, int spaceshipPicBoxWidth, int spaceshipPicBoxHeight) :
             base(spaceshipPicBoxWidth, spaceshipPicBoxHeight)
         {
-            enemyPicBox = new EnemySpaceshipPictureBox(type, spaceshipPicBoxWidth, spaceshipPicBoxHeight);
-            Controls.Add(enemyPicBox);
+            spaceshipPicBox = new EnemySpaceshipPictureBox(type, spaceshipPicBoxWidth, spaceshipPicBoxHeight);
+            Controls.Add(spaceshipPicBox);
             arrangeItems();
         }
 
         public override void UpdateLocation(int newSpaceshipLocationX, int newSpaceshipLocationY)
         {
-            Location = new Point(newSpaceshipLocationX, newSpaceshipLocationY + enemyPicBox.Height - Height);
+            Location = new Point(newSpaceshipLocationX, newSpaceshipLocationY + spaceshipPicBox.Height - Height);
         }
 
         protected override void arrangeItems()
         {
-            enemyPicBox.Top = (int)((healthBarHeightRatio + healthBarMarginRatio) * enemyPicBox.Height);
+            spaceshipPicBox.Top = (int)((healthBarHeightRatio + healthBarMarginRatio) * spaceshipPicBox.Height);
             spaceshipHealthBar.Top = 0;
         }
     }

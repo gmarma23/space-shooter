@@ -33,6 +33,11 @@ namespace SpaceShooter.gui
             getSpaceship(isHero).UpdateAvailableHealth(availableHealthRatio);
         }
 
+        public void SpaceshipExplode(bool isHero)
+        {
+            getSpaceship(isHero).Explode();
+        }
+
         public void RenderHeroSpaceship(IDrawGameStateUI gameState)
         {
             (int width, int height) = gameState.GetSpaceshipSize(true);
