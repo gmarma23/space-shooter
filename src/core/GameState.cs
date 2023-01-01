@@ -184,6 +184,9 @@ namespace SpaceShooter.core
 
             targetSpaceship.TakeDamage(laserBlast.Damage);
             laserBlast.HasHitedTarget = true;
+
+            if (!targetSpaceship.IsHero && targetSpaceship.IsDestroyed)
+                Score += ((EnemySpaceship)targetSpaceship).ScorePoints;
         }
 
         private LaserBlast? getLaserBlastByNumCode(int numCode)
