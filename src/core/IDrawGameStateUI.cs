@@ -2,6 +2,8 @@
 {
     internal interface IDrawGameStateUI
     {
+        public int Score { get; }
+
         public (int, int) GetSpaceshipSize(bool isHero);
 
         public (int, int) GetSpaceshipLocation(bool isHero);
