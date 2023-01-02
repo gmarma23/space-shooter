@@ -68,8 +68,8 @@ namespace SpaceShooter
         {
             var eventField = timer.GetType().GetField("Tick", BindingFlags.NonPublic | BindingFlags.Instance);
             var eventDelegate = (Delegate)eventField.GetValue(timer);
-            var invocatationList = eventDelegate.GetInvocationList();
-            return invocatationList.Length;
+            var invocationList = eventDelegate.GetInvocationList();
+            return invocationList.Length;
         }
     }
 }
