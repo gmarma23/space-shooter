@@ -6,7 +6,7 @@ namespace SpaceShooter.utils
     {
         public static Bitmap SetOpacity(Bitmap inputBitmap, float opacity)
         {
-            float o = (opacity < 0 || opacity > 1) ? 1f : opacity;
+            float o = (opacity < 0 || opacity > 1) ? 1 : opacity;
 
             Bitmap outputBitmap = new Bitmap(inputBitmap.Width, inputBitmap.Height);
             Rectangle imageArea = new Rectangle(0, 0, inputBitmap.Width, inputBitmap.Height);
