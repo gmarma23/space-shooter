@@ -18,7 +18,7 @@ namespace SpaceShooter
             intervals = new Dictionary<RecurringAction, int>();
             lastUpdateTimeSpan = new Dictionary<RecurringAction, int>();
 
-            gameUpdateTimer.Interval = 1000 / gameTargetFPS;
+            gameUpdateTimer.Interval = (int)Math.Ceiling((decimal)(1000 / gameTargetFPS));
             gameUpdateTimer.Tick += onGameUpdate;
         }
 
