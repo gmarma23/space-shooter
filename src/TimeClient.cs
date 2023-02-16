@@ -5,8 +5,6 @@ namespace SpaceShooter
 {
     public static class TimeClient
     {
-        public delegate void RecurringAction();
-
         private const int gameTargetFPS = 65;
 
         private static readonly Timer gameUpdateTimer = new();
