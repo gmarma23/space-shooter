@@ -1,4 +1,5 @@
-﻿using Timer = System.Windows.Forms.Timer;
+﻿using System.Reflection;
+using Timer = System.Windows.Forms.Timer;
 
 namespace SpaceShooter
 {
@@ -6,50 +7,70 @@ namespace SpaceShooter
     {
         public delegate void RecurringAction();
 
-        private const int gameTargetFPS = 60;
+        private const int gameTargetFPS = 65;
 
         private static readonly Timer gameUpdateTimer = new();
-        private static readonly Dictionary<RecurringAction, int> intervals = new();
-        private static readonly Dictionary<RecurringAction, int> lastUpdateTimeSpan = new();
+        private static readonly List<Timer> customActionTimers = new();
 
         static TimeClient()
         {
-            gameUpdateTimer.Interval = (int)Math.Ceiling((decimal)(1000 / gameTargetFPS));
-            gameUpdateTimer.Tick += onGameUpdate;
+            gameUpdateTimer.Interval = (int)Math.Floor((decimal)(1000 / gameTargetFPS));
             DisableTime();
         }
 
-        public static void EnableTime() => gameUpdateTimer.Enabled = true;
-
-        public static void DisableTime() => gameUpdateTimer.Enabled = false;
-
-        public static void AddRecurringAction(RecurringAction action, int interval = 0)
+        public static void EnableTime()
         {
-            if (gameUpdateTimer.Interval > interval)
-                interval = gameUpdateTimer.Interval;
-
-            intervals.Add(action, interval);
-            lastUpdateTimeSpan.Add(action, 0);
+            gameUpdateTimer.Enabled = true;
+            foreach (Timer timer in customActionTimers)
+                timer.Enabled = true;
         }
 
-        public static void RemoveRecurringAction(RecurringAction action)
+        public static void DisableTime()
         {
-            intervals.Remove(action);
-            lastUpdateTimeSpan.Remove(action);
+            gameUpdateTimer.Enabled = false;
+            foreach (Timer timer in customActionTimers)
+                timer.Enabled = false;
         }
 
-        private static void onGameUpdate(object? sender, EventArgs e)
+        public static void AddGameUpdateAction(EventHandler gameUpdateAction)
         {
-            foreach (RecurringAction action in intervals.Keys)
+            gameUpdateTimer.Tick += gameUpdateAction;
+        }
+
+        public static void AddCustomRecurringAction(EventHandler customAction, int interval)
+        {
+            Timer? existingTimer = customActionTimers.Find(timer => timer.Interval == interval);
+            if (existingTimer != null)
+                existingTimer.Tick += customAction;
+            else
             {
-                if (lastUpdateTimeSpan[action] < intervals[action])
+                Timer newTimer = new Timer()
                 {
-                    lastUpdateTimeSpan[action] += gameUpdateTimer.Interval;
-                    continue;
-                }
-                action();
-                lastUpdateTimeSpan[action] = 0;
+                    Interval = interval
+                };
+                newTimer.Tick += customAction;
+                customActionTimers.Add(newTimer);
             }
+        }
+
+        public static void RemoveCustomRecurringAction(EventHandler customAction)
+        {
+            foreach (Timer timer in customActionTimers)
+                timer.Tick -= customAction;
+            removeUnusedCustomTimers();
+        }
+
+        private static void removeUnusedCustomTimers()
+        {
+            customActionTimers.RemoveAll(timer => getTimerTickInvocationListLength(timer) == 0);
+        }
+
+        private static int getTimerTickInvocationListLength(Timer timer)
+        {
+            var eventField = timer.GetType().GetField("Tick", BindingFlags.NonPublic | BindingFlags.Instance);
+            var eventDelegate = (Delegate)eventField.GetValue(timer);
+            var invocatationList = eventDelegate.GetInvocationList();
+            return invocatationList.Length;
         }
     }
 }
