@@ -2,31 +2,28 @@
 
 namespace SpaceShooter
 {
-    public class TimeClient
+    public static class TimeClient
     {
-        private Timer gameUpdateTimer;
-
         public delegate void RecurringAction();
 
-        private Dictionary<RecurringAction, int> intervals;
-        private Dictionary<RecurringAction, int> lastUpdateTimeSpan;
+        private const int gameTargetFPS = 60;
 
-        public TimeClient(int gameTargetFPS)
+        private static readonly Timer gameUpdateTimer = new();
+        private static readonly Dictionary<RecurringAction, int> intervals = new();
+        private static readonly Dictionary<RecurringAction, int> lastUpdateTimeSpan = new();
+
+        static TimeClient()
         {
-            gameUpdateTimer = new Timer();
-
-            intervals = new Dictionary<RecurringAction, int>();
-            lastUpdateTimeSpan = new Dictionary<RecurringAction, int>();
-
             gameUpdateTimer.Interval = (int)Math.Ceiling((decimal)(1000 / gameTargetFPS));
             gameUpdateTimer.Tick += onGameUpdate;
+            DisableTime();
         }
 
-        public void EnableTime() => gameUpdateTimer.Enabled = true;
+        public static void EnableTime() => gameUpdateTimer.Enabled = true;
 
-        public void DisableTime() => gameUpdateTimer.Enabled = false;
+        public static void DisableTime() => gameUpdateTimer.Enabled = false;
 
-        public void AddRecurringAction(RecurringAction action, int interval = 0)
+        public static void AddRecurringAction(RecurringAction action, int interval = 0)
         {
             if (gameUpdateTimer.Interval > interval)
                 interval = gameUpdateTimer.Interval;
@@ -35,13 +32,13 @@ namespace SpaceShooter
             lastUpdateTimeSpan.Add(action, 0);
         }
 
-        public void RemoveRecurringAction(RecurringAction action)
+        public static void RemoveRecurringAction(RecurringAction action)
         {
             intervals.Remove(action);
             lastUpdateTimeSpan.Remove(action);
         }
 
-        private void onGameUpdate(object sender, EventArgs e)
+        private static void onGameUpdate(object? sender, EventArgs e)
         {
             foreach (RecurringAction action in intervals.Keys)
             {
@@ -50,7 +47,6 @@ namespace SpaceShooter
                     lastUpdateTimeSpan[action] += gameUpdateTimer.Interval;
                     continue;
                 }
-
                 action();
                 lastUpdateTimeSpan[action] = 0;
             }
