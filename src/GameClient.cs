@@ -104,16 +104,16 @@ namespace SpaceShooter
             switch (e.KeyCode)
             {
                 case Keys.Left:
-                    game.HeroGoesLeft(invoke);
+                    game.GetControlableHero().GoLeft = invoke;
                     break;
                 case Keys.Right:
-                    game.HeroGoesRight(invoke);
+                    game.GetControlableHero().GoRight = invoke;
                     break;
                 case Keys.Up:
-                    game.HeroGoesUp(invoke);
+                    game.GetControlableHero().GoUp = invoke;
                     break;
                 case Keys.Down:
-                    game.HeroGoesDown(invoke);
+                    game.GetControlableHero().GoDown = invoke;
                     break;
             };
         }

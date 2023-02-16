@@ -137,14 +137,17 @@ namespace SpaceShooter.core
 
         public double GetAvailableHealthRatio() 
         {
-            return (double)availableHP / (double)totalHP;
+            return availableHP / totalHP;
         }
 
         protected void moveHorizontally()
         {
             int newLocationX = LocationX + displacementX;
             if (newLocationX < minX || newLocationX > maxX)
-                throw new InvalidMoveException();
+            {
+                displacementX *= -1;
+                return;
+            }
             LocationX += displacementX;
         }
 
@@ -152,7 +155,10 @@ namespace SpaceShooter.core
         {
             int newLocationY = LocationY + displacementY;
             if (newLocationY < minY || newLocationY > maxY)
-                throw new InvalidMoveException();
+            {
+                displacementY *= -1;
+                return;
+            }
             LocationY += displacementY;
         }
 

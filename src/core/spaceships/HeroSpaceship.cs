@@ -2,7 +2,7 @@
 
 namespace SpaceShooter.core
 {
-    internal class HeroSpaceship : Spaceship
+    internal class HeroSpaceship : Spaceship, IControls
     {
         public bool GoUp { get; set; }
         public bool GoDown { get; set; }

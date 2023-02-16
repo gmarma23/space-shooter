@@ -6,7 +6,5 @@
         int LocationY { get; }
         int Width { get; }
         int Height { get; }
-
-        public void Move();
     }
 }
