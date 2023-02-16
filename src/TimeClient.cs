@@ -30,7 +30,7 @@ namespace SpaceShooter
                 timer.Enabled = false;
         }
 
-        public static void AddGameUpdateAction(EventHandler gameUpdateAction)
+        public static void AddMainRecurringAction(EventHandler gameUpdateAction)
         {
             gameUpdateTimer.Tick += gameUpdateAction;
         }
