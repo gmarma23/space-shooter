@@ -73,6 +73,16 @@ namespace SpaceShooter.resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap enemy_bomber_spaceship {
+            get {
+                object obj = ResourceManager.GetObject("enemy_bomber_spaceship", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap enemy_boss_spaceship {
             get {
                 object obj = ResourceManager.GetObject("enemy_boss_spaceship", resourceCulture);
@@ -131,24 +141,6 @@ namespace SpaceShooter.resources {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream laser_blast {
-            get {
-                return ResourceManager.GetStream("laser_blast", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream launch_missile {
-            get {
-                return ResourceManager.GetStream("launch_missile", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
         internal static System.Drawing.Bitmap red_laser_blast {
@@ -165,15 +157,6 @@ namespace SpaceShooter.resources {
             get {
                 object obj = ResourceManager.GetObject("space_shooter", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream teleport {
-            get {
-                return ResourceManager.GetStream("teleport", resourceCulture);
             }
         }
     }

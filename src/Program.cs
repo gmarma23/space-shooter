@@ -9,7 +9,7 @@ namespace SpaceShooter
         static void Main()
         {
             ApplicationConfiguration.Initialize();
-            AppClient.Start();
+            AppManager.Start();
         }
     }
 }

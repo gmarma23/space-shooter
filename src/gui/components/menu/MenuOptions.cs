@@ -15,9 +15,9 @@ namespace SpaceShooter.gui
 
         private readonly EventHandler[] menuButtonsEventHandlers =
         {
-            AppClient.OnMenuOptionPlayClick,
-            AppClient.OnMenuOptionHighscoresClick,
-            AppClient.OnMenuOptionControlsClick
+            AppManager.OnMenuOptionPlayClick,
+            AppManager.OnMenuOptionHighscoresClick,
+            AppManager.OnMenuOptionControlsClick
         };
 
         private MenuButton[] menuButtons;

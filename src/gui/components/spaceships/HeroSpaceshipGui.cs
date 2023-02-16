@@ -2,18 +2,11 @@
 {
     internal class HeroSpaceshipGui : SpaceshipGui
     {
-        public HeroSpaceshipGui(int spaceshipPicBoxWidth, int spaceshipPicBoxHeight) : 
-            base(spaceshipPicBoxWidth, spaceshipPicBoxHeight)
-        {
-            spaceshipPicBox = new HeroSpaceshipPictureBox(spaceshipPicBoxWidth, spaceshipPicBoxHeight);
-            Controls.Add(spaceshipPicBox);
-            arrangeItems();
-        }
+        public HeroSpaceshipGui(int width, int height, Image image) : base(width, height, image)
+            => arrangeItems();
 
-        public override void UpdateLocation(int newSpaceshipLocationX, int newSpaceshipLocationY)
-        {
-            Location = new Point(newSpaceshipLocationX, newSpaceshipLocationY);
-        }
+        public override void UpdateLocation(int newLocationX, int newLocationY)
+            => Location = new Point(newLocationX, newLocationY);
 
         protected override void arrangeItems()
         {

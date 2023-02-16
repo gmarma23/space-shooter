@@ -1,162 +1,88 @@
-﻿using System.Diagnostics;
+﻿using SpaceShooter.src.core.grid;
 
 namespace SpaceShooter.core
 {
-    internal class GameState
+    public class GameState : IGameStateUI
     {
-        private readonly GameGrid grid;
-        
         private EnemySpaceship enemy;
         private readonly HeroSpaceship hero;
-        private readonly List<LaserBlast> activeLaserBlasts;
+        private readonly List<Weapon> activeWeapons;
 
-        public int GridDimensionX { get => grid.DimensionX; }
-        public int GridDimensionY { get => grid.DimensionY; }
+        public GameGrid Grid { get; private init; }
         public int Score { get; private set; }
 
         public GameState(int gridDimensionX = 1360, int gridDimensionY = 760)
         {
-            grid = new GameGrid(gridDimensionX, gridDimensionY);
-            hero = new HeroSpaceship(grid);
-            activeLaserBlasts = new List<LaserBlast>();
+            Grid = new GameGrid(gridDimensionX, gridDimensionY);
+            hero = new HeroSpaceship(Grid);
+            activeWeapons = new List<Weapon>();
         }
         
-        public void RenewEnemySpaceship(EnemySpaceshipType enemyType)
+        public void RenewEnemySpaceship()
         {
-            enemy = enemyType switch
-            {
-                EnemySpaceshipType.Fighter => new EnemyFighterSpaceship(grid),
-                EnemySpaceshipType.Teleporter => new EnemyTeleporterSpaceship(grid),
-                EnemySpaceshipType.Boss => new EnemyBossSpaceship(grid, hero),
-                _ => throw new Exception()
-            };
+            if (enemy != null && enemy.IsActive)
+                return;
+
+            enemy = new EnemyFighterSpaceship(Grid);
         }
 
-        public IGridItem GetSpaceshipToDraw(bool isHero) => getSpaceship(isHero);
+        public IHPGridItem GetSpaceshipToDraw(bool isHero) => getSpaceship(isHero);
 
-        public IGridItem? GetLaserBlastToDraw(int numCode) => getLaserBlastByNumCode(numCode);
+        public IGridItem? GetWeaponToDraw(int id) 
+            => activeWeapons.Single(weapon => weapon.ID == id);
+
+        public List<int> GetActiveWeaponIDs() 
+            => activeWeapons.Select(weapon => weapon.ID).ToList();
 
         public IControls GetControlableHero() => (IControls)getSpaceship(true);
 
-        public void MoveSpaceship(bool isHero) => getSpaceship(isHero).Move();
-
-        public void TeleportEnemySpaceship()
+        public void SpaceshipFireLaser(bool isHero)
         {
-            Debug.Assert(enemy is ITeleport); 
-            ((ITeleport)enemy).Teleport();
-        }
-
-        public bool IsEnemyReadyForBattle() => enemy.IsReadyForBattle;
-
-        public void BringEnemyToBattle() => enemy.BringToBattle();
-
-        public List<int> SpaceshipFireLaser(bool isHero)
-        {
-            List<int> newlaserBlastsNumCodes = new List<int>();
             Spaceship spaceship = getSpaceship(isHero);
+            List<LaserBlast>? firedLaserBlasts = spaceship.FireLaser(Grid);
 
-            List<LaserBlast> firedLaserBlasts = spaceship.FireLaser(grid);
-            activeLaserBlasts.AddRange(firedLaserBlasts);
-
-            foreach(LaserBlast laserBlast in firedLaserBlasts)
-            {
-                int newNumCode = laserBlast.NumCode;
-                Debug.Assert(!newlaserBlastsNumCodes.Contains(newNumCode));
-                newlaserBlastsNumCodes.Add(newNumCode);
-            }
-
-            return newlaserBlastsNumCodes;
-        }
-
-        public void MoveLaserBlasts()
-        {
-            foreach(LaserBlast laserBlast in activeLaserBlasts)
-            {
-                laserBlast.Move();
-                checkLaserBlastHitedTargetSpaceship(laserBlast);
-            }
-        }
-
-        public List<int> DisposeInactiveLaserBlast()
-        {
-            List<int> disposedLaserBlastsNumCodes = new List<int>();
-            for (int i = activeLaserBlasts.Count - 1; i >= 0; i--)
-            {
-                if (isActiveLaserBlast(activeLaserBlasts[i]))
-                    continue;
-                disposedLaserBlastsNumCodes.Add(activeLaserBlasts[i].NumCode);
-                activeLaserBlasts.RemoveAt(i);
-            }
-            return disposedLaserBlastsNumCodes;
-        }
-
-        public void IsHeroLaserReloading(bool isReloading)
-        {
-            hero.LaserIsReloading = isReloading;
-        }
-
-        public int GetSpaceshipLaserReloadTime(bool isHero)
-        {
-            return getSpaceship(isHero).LaserReloadTime;
-        }
-
-        public bool IsEnemyDestroyed()
-        {
-            return enemy.IsDestroyed;
-        }
-
-        public bool IsGameOver()
-        {
-            return hero.IsDestroyed;
-        }
-
-        public double GetSpaceshipAvailableHealthRatio(bool isHero)
-        {
-            return getSpaceship(isHero).GetAvailableHealthRatio();
-        }
-
-        public EnemySpaceshipType GetEnemySpaceshipType()
-        {
-            return enemy.Type;
-        }
-
-        public bool IsHeroLaserBlast(int numCode)
-        {
-            LaserBlast? laserBlast = getLaserBlastByNumCode(numCode);
-            Debug.Assert(laserBlast != null);
-            return laserBlast.IsHero;
-        }
-
-        private bool isActiveLaserBlast(LaserBlast laserBlast)
-        {
-            return !laserBlast.HasHitedTarget && !laserBlast.IsOutOfBounds;
-        }
-
-        private void checkLaserBlastHitedTargetSpaceship(LaserBlast laserBlast)
-        {
-            if (laserBlast.IsOutOfBounds || laserBlast.HasHitedTarget)
+            if (firedLaserBlasts == null)
                 return;
 
-            Spaceship targetSpaceship = getSpaceship(!laserBlast.IsHero);
+            foreach (var laserBlast in firedLaserBlasts)
+                laserBlast.Target = getSpaceship(!isHero);
 
-            if (!GameGrid.ItemsIntersect(laserBlast, targetSpaceship))
+            activeWeapons.AddRange(firedLaserBlasts);
+        }
+
+        public void MoveGridItems()
+        {
+            hero.Move(); 
+            enemy.Move();
+            foreach (var weapon in activeWeapons)
+                weapon.Move();
+        }
+
+        public void EnemyTeleport() => enemy.Teleport();
+
+        public void EnemyLaunchMissile()
+        {
+            Missile? launchedMissile = enemy.LaunchMissile(Grid);
+
+            if (launchedMissile == null)
                 return;
 
-            targetSpaceship.TakeDamage(laserBlast.Damage);
-            laserBlast.HasHitedTarget = true;
+            launchedMissile.Target = hero;
 
-            if (!targetSpaceship.IsHero && targetSpaceship.IsDestroyed)
-                Score += ((EnemySpaceship)targetSpaceship).ScorePoints;
+            activeWeapons.Add(launchedMissile);
         }
 
-        private LaserBlast? getLaserBlastByNumCode(int numCode)
+        public bool IsEnemyDestroyed() => !enemy.IsActive;
+
+        public bool IsGameOver() => !hero.IsActive;
+
+        public void DisposeInactiveWeapons()
         {
-            return activeLaserBlasts.Find(laserBlast => laserBlast.NumCode == numCode);
+            for (int i = activeWeapons.Count - 1; i >= 0; i--)
+                if (!activeWeapons[i].IsActive)
+                    activeWeapons.RemoveAt(i);
         }
-
-        private Spaceship getSpaceship(bool isHero)
-        {
-            return isHero ? hero : enemy;
-        }
+        
+        private Spaceship getSpaceship(bool isHero) => isHero ? hero : enemy;
     }
 }

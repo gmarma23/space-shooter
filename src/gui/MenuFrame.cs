@@ -15,7 +15,7 @@
         private const double heroPicBoxLocationYRatio = 0.335;
 
         private Label title;
-        private HeroSpaceshipPictureBox heroPicBox;
+        private PictureBox heroPicBox;
         private MenuOptions menuOptions;
         
         public MenuFrame()
@@ -51,11 +51,19 @@
         {
             int heroPicBoxWidth = (int)(ClientRectangle.Width * heroPicBoxWidthRatio);
             int heroPicBoxHeight = (int)(ClientRectangle.Height * heroPicBoxHeightRatio);
-            heroPicBox = new HeroSpaceshipPictureBox(heroPicBoxWidth, heroPicBoxHeight);
+            heroPicBox = new PictureBox()
+            {
+                Width = heroPicBoxWidth,
+                Height = heroPicBoxHeight,
+                Image = resources.Resources.hero_spaceship,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                BackColor = Color.Transparent
+            };
             Controls.Add(heroPicBox);
-            heroPicBox.Location = new Point(
-                ClientRectangle.Width / 2 - heroPicBox.Width / 2,
-                (int)(ClientRectangle.Height * heroPicBoxLocationYRatio));
+
+            int heroPicBoxLocationX = ClientRectangle.Width / 2 - heroPicBox.Width / 2;
+            int heroPicBoxLocationY = (int)(ClientRectangle.Height * heroPicBoxLocationYRatio);
+            heroPicBox.Location = new Point(heroPicBoxLocationX, heroPicBoxLocationY);
         }
     }
 }

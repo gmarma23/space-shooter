@@ -3,7 +3,7 @@
     internal class SpaceshipHealthBar : Panel
     {
         private readonly Panel totalHealthBar;
-        private Panel availableHealthBar;
+        private readonly Panel availableHealthBar;
 
         public SpaceshipHealthBar(int width, int height) 
         {
@@ -17,10 +17,8 @@
             setSubBar(totalHealthBar, false);
         }
 
-        public void UpdateAvailableHealth(double availableHealthPercentage)
-        {
-            availableHealthBar.Width = (int)(totalHealthBar.Width * availableHealthPercentage);
-        }
+        public void UpdateAvailableHealth(float availableHealthPercentage)
+            => availableHealthBar.Width = (int)(totalHealthBar.Width * availableHealthPercentage);
 
         private void setSubBar(Panel subBar, bool isAvailableHealthBar)
         {
@@ -28,7 +26,8 @@
             subBar.Width = Width;
             subBar.Height = Height;
             subBar.BackColor = isAvailableHealthBar ? Color.Green : Color.Red;
-            if (isAvailableHealthBar) subBar.BringToFront();
+            if (isAvailableHealthBar) 
+                subBar.BringToFront();
         }
     }
 }

@@ -1,6 +1,4 @@
-﻿using SpaceShooter.core;
-
-namespace SpaceShooter.gui
+﻿namespace SpaceShooter.gui
 {
     internal abstract class SpaceshipGui : Panel
     {
@@ -8,24 +6,37 @@ namespace SpaceShooter.gui
         protected const double healthBarMarginRatio = 0.07;
         private const double explosionRatio = 0.75;
 
-        protected SpaceshipPictureBox spaceshipPicBox;
+        protected PictureBox spaceshipPicBox;
         protected SpaceshipHealthBar spaceshipHealthBar;
 
-        public SpaceshipGui(int spaceshipPicBoxWidth, int spaceshipPicBoxHeight) 
+        public SpaceshipGui(int width, int height, Image image) 
         {
-            Width = spaceshipPicBoxWidth;
-            Height = spaceshipPicBoxHeight + (int)((healthBarHeightRatio + healthBarMarginRatio) * spaceshipPicBoxHeight);
+            Width = width;
+            Height = height + (int)((healthBarHeightRatio + healthBarMarginRatio) * height);
 
-            int healthBarWidth = spaceshipPicBoxWidth;
-            int healthBarHeight = (int)(spaceshipPicBoxHeight * healthBarHeightRatio);
+            spaceshipPicBox = new PictureBox
+            {
+                Width = width,
+                Height = height,
+                Image = image,
+                SizeMode = PictureBoxSizeMode.StretchImage,
+                BackColor = Color.Transparent
+            };
+            Controls.Add(spaceshipPicBox);
+
+            int healthBarWidth = Width;
+            int healthBarHeight = (int)(Height * healthBarHeightRatio);
 
             spaceshipHealthBar = new SpaceshipHealthBar(healthBarWidth, healthBarHeight);
             Controls.Add(spaceshipHealthBar);
         }
 
-        public abstract void UpdateLocation(int newSpaceshipLocationX, int newSpaceshipLocationY);
+        public abstract void UpdateLocation(int newLocationX, int newLocationY);
 
-        public void UpdateAvailableHealth(double availableHealthRatio) => spaceshipHealthBar.UpdateAvailableHealth(availableHealthRatio);
+        protected abstract void arrangeItems();
+
+        public void UpdateAvailableHealth(float availableHealthRatio) 
+            => spaceshipHealthBar.UpdateAvailableHealth(availableHealthRatio);
 
         public async void Explode(int duration = 1000)
         {
@@ -49,7 +60,5 @@ namespace SpaceShooter.gui
             explosionImage.Dispose();
             explosionPicBox.Dispose();
         }
-
-        protected abstract void arrangeItems();
     }
 }

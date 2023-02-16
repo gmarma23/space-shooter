@@ -7,84 +7,124 @@ namespace SpaceShooter.gui
     {
         private HeroSpaceshipGui hero;
         private EnemySpaceshipGui enemy;
-        private List<LaserBlastPictureBox> activeLaserBlasts;
+        private List<WeaponGui> activeWeaponsGui;
 
         public GameFrame(int gridDimensionX, int gridDimensionY, Dictionary<string, KeyEventHandler> keyEventHandlers)
         {
             InitializeComponent();
             ClientSize = new Size(gridDimensionX, gridDimensionY);
 
-            activeLaserBlasts = new List<LaserBlastPictureBox>();
+            activeWeaponsGui = new List<WeaponGui>();
 
-            FormClosed += AppClient.OnSubFrameClose;
+            FormClosed += AppManager.OnSubFrameClose;
             KeyDown += keyEventHandlers["OnKeyDown"];
             KeyUp += keyEventHandlers["OnKeyUp"];
         }
 
-        public void RelocateSpaceship(IDrawGameStateUI gameState, bool isHero)
+        public void RelocateSpaceship(IGameStateUI gameState, bool isHero)
         {
-            (int x, int y) = gameState.GetSpaceshipLocation(isHero);
-            getSpaceship(isHero).UpdateLocation(x, y);
+            IHPGridItem spaceship = gameState.GetSpaceshipToDraw(isHero);
+            Debug.Assert(spaceship != null);
+
+            SpaceshipGui spaceshipGui = getSpaceshipGui(isHero);
+            Debug.Assert(spaceshipGui != null);
+
+            spaceshipGui.UpdateLocation(spaceship.LocationX, spaceship.LocationY);
         }
 
-        public void UpdateSpaceshipAvailableHealth(IDrawGameStateUI gameState, bool isHero)
+        public void UpdateActiveWeapons(IGameStateUI gameState)
         {
-            double availableHealthRatio = gameState.GetSpaceshipAvailableHealthRatio(isHero);
-            getSpaceship(isHero).UpdateAvailableHealth(availableHealthRatio);
+            Debug.Assert(activeWeaponsGui != null);
+            List<int> activeWeaponIDsGui = activeWeaponsGui.Select(weaponGui => weaponGui.ID).ToList();
+            List<int> activeWeaponIDs = gameState.GetActiveWeaponIDs();
+
+            List<int> newWeaponIDs = activeWeaponIDs.Except(activeWeaponIDsGui).ToList();
+            List<int> disposedWeaponIDs = activeWeaponIDsGui.Except(activeWeaponIDs).ToList();
+
+            disposeInactiveWeapons(disposedWeaponIDs);
+            renderNewWeapons(gameState, newWeaponIDs);
+            relocateExistingWeapons(gameState);
+        }
+
+        public void UpdateSpaceshipAvailableHealth(IGameStateUI gameState, bool isHero)
+        {
+            IHPGridItem spaceship = gameState.GetSpaceshipToDraw(isHero);
+            Debug.Assert(spaceship != null);
+
+            SpaceshipGui spaceshipGui = getSpaceshipGui(isHero);
+            Debug.Assert(spaceshipGui != null);
+
+            float availableHealthRatio = spaceship.GetAvailableHealthRatio();
+            spaceshipGui.UpdateAvailableHealth(availableHealthRatio);
         }
 
         public void SpaceshipExplode(bool isHero)
         {
-            getSpaceship(isHero).Explode();
+            SpaceshipGui spaceshipGui = getSpaceshipGui(isHero);
+            Debug.Assert(spaceshipGui != null);
+
+            spaceshipGui.Explode();
         }
 
-        public void RenderHeroSpaceship(IDrawGameStateUI gameState)
+        public void RenderHeroSpaceship(IGameStateUI gameState)
         {
-            (int width, int height) = gameState.GetSpaceshipSize(true);
-            hero = new HeroSpaceshipGui(width, height);
+            IHPGridItem heroSpaceship = gameState.GetSpaceshipToDraw(true);
+            Debug.Assert(heroSpaceship != null);
+
+            hero = new HeroSpaceshipGui(heroSpaceship.Width, heroSpaceship.Height, heroSpaceship.Image);
             Controls.Add(hero);
         }
 
-        public void RenderEnemySpaceship(IDrawGameStateUI gameState)
+        public void RenderEnemySpaceship(IGameStateUI gameState)
         {
-            (int width, int height) = gameState.GetSpaceshipSize(false);
-            EnemySpaceshipType enemyType = gameState.GetEnemySpaceshipType();
-            enemy = new EnemySpaceshipGui(enemyType, width, height);
+            IHPGridItem enemySpaceship = gameState.GetSpaceshipToDraw(false);
+            Debug.Assert(enemySpaceship != null);
+
+            enemy = new EnemySpaceshipGui(enemySpaceship.Width, enemySpaceship.Height, enemySpaceship.Image);
             Controls.Add(enemy);
         }
 
-        public void RenderLaserBlast(IDrawGameStateUI gameState, int laserBlastNumCode)
+        private void relocateExistingWeapons(IGameStateUI gameState)
         {
-            bool isHero = gameState.IsHeroLaserBlast(laserBlastNumCode);
-            (int width, int height) = gameState.GetLaserBlastSize(laserBlastNumCode);
-            LaserBlastPictureBox newLaserBlast = new LaserBlastPictureBox(isHero, laserBlastNumCode, width, height);
-            activeLaserBlasts.Add(newLaserBlast);
-            Controls.Add(newLaserBlast);
-        }
-
-        public void RelocateLaserBlasts(IDrawGameStateUI gameState)
-        {
-            foreach(LaserBlastPictureBox laserBlast in activeLaserBlasts)
+            foreach(var weaponGui in activeWeaponsGui)
             {
-                (int x, int y) = gameState.GetLaserBlastLocation(laserBlast.NumCode);
-                laserBlast.UpdateLocation(x, y);
+                IGridItem? weapon = gameState.GetWeaponToDraw(weaponGui.ID);
+                Debug.Assert(weapon != null);
+
+                weaponGui.UpdateLocation(weapon.LocationX, weapon.LocationY);
             }
         }
 
-        public void DisposeInactiveLaserBlast(int laserBlastNumCode)
+        private void renderNewWeapons(IGameStateUI gameState, List<int> newWeaponIDs)
         {
-            LaserBlastPictureBox? laserBlast = activeLaserBlasts.Find(laserBlast => laserBlast.NumCode == laserBlastNumCode);
-            Debug.Assert(laserBlast != null);
-            activeLaserBlasts.Remove(laserBlast);
-            Image laserBlastImage = laserBlast.Image;
-            laserBlast.Image = null;
-            laserBlastImage.Dispose();
-            laserBlast.Dispose();
+            foreach(var id in newWeaponIDs)
+            {
+                IGridItem? weapon = gameState.GetWeaponToDraw(id);
+                Debug.Assert(weapon != null);
+
+                WeaponGui newWeaponGui = new WeaponGui(id, weapon.Width, weapon.Height, weapon.Image);
+                activeWeaponsGui.Add(newWeaponGui);
+                Controls.Add(newWeaponGui);
+            }
         }
 
-        public SpaceshipGui getSpaceship(bool isHero)
+        private void disposeInactiveWeapons(List<int> disposedWeaponIDs)
         {
-            return isHero ? hero : enemy;
+            for (int i = disposedWeaponIDs.Count - 1; i >= 0; i--)
+            {
+                int id = disposedWeaponIDs[i];
+                WeaponGui? weaponGui = activeWeaponsGui.Find(laserBlast => laserBlast.ID == id);
+                Debug.Assert(weaponGui != null);
+
+                activeWeaponsGui.Remove(weaponGui);
+
+                Image weaponImage = weaponGui.Image;
+                weaponGui.Image = null;
+                weaponImage.Dispose();
+                weaponGui.Dispose();
+            }
         }
+
+        public SpaceshipGui getSpaceshipGui(bool isHero) => isHero ? hero : enemy;
     }
 }
