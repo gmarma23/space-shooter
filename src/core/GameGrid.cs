@@ -18,25 +18,11 @@ namespace SpaceShooter.core
             DimensionY = dimensionY;
         }
 
-        public int GetGridMiddleX()
-        {
-            return DimensionX / 2;
-        }
+        public int GetGridMiddleY() => DimensionY / 2;
 
-        public int GetGridMiddleY()
-        {
-            return DimensionY / 2;
-        }
+        public int GetItemMinPossibleX() => 0;
 
-        public int GetItemMinPossibleX()
-        {
-            return 0;
-        }
-
-        public int GetItemMinPossibleY()
-        {
-            return 0;
-        }
+        public int GetItemMinPossibleY() => 0;
 
         public int GetItemMaxPossibleX(IGridItem item)
         {
@@ -58,7 +44,8 @@ namespace SpaceShooter.core
             int dx = item2.LocationX - item1.LocationX;
             int dy = item2.LocationY - item1.LocationY;
 
-            if (dx == 0 && dy == 0) return true;
+            if (dx == 0 && dy == 0) 
+                return true;
 
             bool horizontalIntersect = dx > 0 ? dx <= item1.Width : - dx <= item2.Width;
             bool verticalIntersect = dy > 0 ? dy <= item1.Height : - dy <= item2.Height;
