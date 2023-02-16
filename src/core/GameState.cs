@@ -43,8 +43,8 @@ namespace SpaceShooter.core
 
         public void TeleportEnemySpaceship()
         {
-            if (enemy is ITeleport tEnemy) 
-                tEnemy.Teleport();
+            Debug.Assert(enemy is ITeleport); 
+            ((ITeleport)enemy).Teleport();
         }
 
         public bool IsEnemyReadyForBattle()
