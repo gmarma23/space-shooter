@@ -7,6 +7,7 @@ namespace SpaceShooter
 {
     internal class GameClient
     {
+        private const int targetFPS = 60;
         private const int relocateGridItemsTime = 20;
         private const int spaceshipTeleportTime = 7000;
 
@@ -69,8 +70,19 @@ namespace SpaceShooter
             teleportSpaceshipsTimer.Enabled = true;
         }
 
+        private void GameOver()
+        {
+            gameFrame.SpaceshipExplode(true);
+
+            updateGridItemsTimer.Enabled = false;
+            teleportSpaceshipsTimer.Enabled = false;
+            enemyFireLaserTimer.Enabled = false;
+        }
+
         private void invokeHeroControls(object sender, KeyEventArgs e)
         {
+            if (game.IsGameOver()) return;
+
             if (e.KeyCode == Keys.Space)
             {
                 fireAndRenderSpaceshipLaser(true);
@@ -81,7 +93,11 @@ namespace SpaceShooter
                 toggleHeroMotionControls(e, true);
         }
 
-        private void freeHeroControls(object sender, KeyEventArgs e) => toggleHeroMotionControls(e, false);
+        private void freeHeroControls(object sender, KeyEventArgs e)
+        {
+            if (game.IsGameOver()) return;
+            toggleHeroMotionControls(e, false);
+        }
 
         private void toggleHeroMotionControls(KeyEventArgs e, bool invoke)
         {
@@ -140,34 +156,37 @@ namespace SpaceShooter
 
         private void onUpdateGridItemsTimerTick(object sender, EventArgs e)
         {
+            if (game.IsGameOver()) return;
+
             moveSpaceships();
             moveActiveLaserBlasts();
             updateSpaceshipsAvailableHealth();
             removeInactiveLaserBlasts();
 
             if (game.IsGameOver())
-            {
-                gameFrame.SpaceshipExplode(true);
-                updateGridItemsTimer.Enabled = false;
-            }
-                
-
+                GameOver();
         }
 
         private void onSpaceshipTeleportTimerTick(object sender, EventArgs e)
         {
+            if (game.IsGameOver()) return;
+
             game.TeleportEnemySpaceship();
             gameFrame.RelocateSpaceship(game, false);
         }
 
         private void onHeroLaserReloadTimerTick(object sender, EventArgs e)
         {
+            if (game.IsGameOver()) return;
+
             game.IsHeroLaserReloading(false);
             heroLaserReloadTimer.Enabled = false;
         }
 
         private void onEnemyFireLaserTimerTick(object sender, EventArgs e)
         {
+            if (game.IsGameOver()) return;
+
             fireAndRenderSpaceshipLaser(false);
         }
     }
