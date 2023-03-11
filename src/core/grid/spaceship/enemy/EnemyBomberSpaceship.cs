@@ -1,4 +1,4 @@
-﻿namespace SpaceShooter.core.grid
+﻿namespace SpaceShooter.core
 {
     public class EnemyBomberSpaceship : EnemySpaceship
     {

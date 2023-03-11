@@ -23,7 +23,7 @@ namespace SpaceShooter.core
             if (enemy != null && enemy.IsActive)
                 return;
 
-            enemy = new EnemyTeleporterSpaceship(Grid);
+            enemy = new EnemyBomberSpaceship(Grid);
         }
 
         public IHPGridItem GetSpaceshipToDraw(bool isHero) => getSpaceship(isHero);

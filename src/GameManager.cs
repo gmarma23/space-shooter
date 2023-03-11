@@ -59,7 +59,7 @@ namespace SpaceShooter
             gameFrame.UpdateSpaceshipAvailableHealth(gameState, false);
 
             gameState.SpaceshipFireLaser(false);
-            //gameState.EnemyLaunchMissile();
+            gameState.EnemyLaunchMissile();
 
             gameFrame.UpdateActiveWeapons(gameState);
         }

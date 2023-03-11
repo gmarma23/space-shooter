@@ -6,8 +6,8 @@ namespace SpaceShooter.core
     {
         public Missile(ILaunchMissile missileLauncher, GameGrid grid) 
         {
-            defaultWidthRatio = 0.1f;
-            defaultHeightRatio = 7;
+            defaultWidthRatio = 0.03f;
+            defaultHeightRatio = 2;
             absMaxDisplacement = 6;
 
             setSize(grid);
