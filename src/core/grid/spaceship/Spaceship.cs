@@ -46,7 +46,7 @@
         {
             defaultWidthRatio = 0.065f;
             defaultHeightRatio = 1.04f;
-            absMaxDisplacement = 5;
+            absMaxDisplacement = 4;
 
             TotalHP = hp;
             AvailableHP = TotalHP;
