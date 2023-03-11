@@ -67,8 +67,8 @@
                 return null;
 
             lastMissileLaunchTimestamp = TimeManager.GameDuration;
+            missileCount--;
             return new EnemyMissile(this, grid);
-
         }
 
         protected override void setBounds(GameGrid grid)
