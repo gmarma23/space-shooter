@@ -61,6 +61,10 @@
             this.missileReloadFrequency = missileReloadFrequency;
 
             this.teleportFrequency = teleportFrequency;
+
+            lastLaserFireTimestamp = TimeManager.GameDuration;
+            lastTeleportTimestamp = TimeManager.GameDuration;
+            lastMissileLaunchTimestamp = TimeManager.GameDuration;
         }
         
         public void TakeDamage(int damage) 
