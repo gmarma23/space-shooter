@@ -51,7 +51,7 @@ namespace SpaceShooter
 
             gameState.MoveGridItems();
             gameState.DisposeInactiveWeapons();
-            //gameState.EnemyTeleport();
+            gameState.EnemyTeleport();
 
             gameFrame.RelocateSpaceship(gameState, true);
             gameFrame.RelocateSpaceship(gameState, false);

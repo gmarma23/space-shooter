@@ -13,6 +13,7 @@
             int concurrentLaserBlastsCount, 
             int laserBlastDamage, 
             int laserReloadFrequency,
+            int teleportFrequency,
             int missileCount,
             int missileDamage,
             int missileReloadFrequency,
@@ -22,6 +23,7 @@
             concurrentLaserBlastsCount, 
             laserBlastDamage, 
             laserReloadFrequency, 
+            teleportFrequency,
             missileCount, 
             missileDamage, 
             missileReloadFrequency

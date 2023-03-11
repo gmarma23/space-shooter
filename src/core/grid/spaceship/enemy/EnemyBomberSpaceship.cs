@@ -17,6 +17,7 @@
             concurrentLaserBlastsCount,
             laserBlastDamage,
             laserReloadFrequency,
+            0,
             missileCount,
             missileDamage,
             missileReloadFrequency,

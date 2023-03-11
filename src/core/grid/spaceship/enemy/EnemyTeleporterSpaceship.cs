@@ -8,8 +8,19 @@
             int concurrentLaserBlastsCount = 1, 
             int laserBlastDamage = 30, 
             int laserReloadFrequency = 1500, 
+            int teleportFrequency = 3000,
             int scorePoints = 10
-        ) : base (hp, concurrentLaserBlastsCount, laserBlastDamage, laserReloadFrequency, 0, 0, 0, scorePoints)
+        ) : base(
+            hp, 
+            concurrentLaserBlastsCount, 
+            laserBlastDamage, 
+            laserReloadFrequency, 
+            teleportFrequency, 
+            0, 
+            0, 
+            0, 
+            scorePoints
+        )
         {
             setSize(grid);
             setBounds(grid);
@@ -20,8 +31,12 @@
 
         public override void Teleport()
         {
+            if (teleportClockIsReloading())
+                return;
+
             LocationX = random.Next(minX, maxX);
             LocationY = random.Next(minY, maxY);
+            lastTeleportTimestamp = TimeManager.GameDuration;
         }
     }
 }

@@ -2,6 +2,8 @@
 {
     public abstract class Spaceship : GridItem, IHPGridItem, IFireLaser, ITeleport, ILaunchMissile
     {
+        protected int lastTeleportTimestamp;
+        protected int teleportFrequency;
         protected int lastLaserFireTimestamp;
         protected int laserReloadFrequency;
         protected int lastMissileLaunchTimestamp;
@@ -36,6 +38,7 @@
             int concurrentLaserBlastsCount, 
             int laserBlastDamage, 
             int laserReloadFrequency, 
+            int teleportFrequency,
             int missileCount, 
             int missileDamage,
             int missileReloadFrequency
@@ -46,6 +49,9 @@
             absMaxDisplacement = 5;
 
             TotalHP = hp;
+            AvailableHP = TotalHP;
+            IsActive = true;
+
             ConcurrentLaserBlastsCount = concurrentLaserBlastsCount;
             LaserBlastDamage = laserBlastDamage;
             this.laserReloadFrequency = laserReloadFrequency;
@@ -54,8 +60,7 @@
             this.missileCount = missileCount;
             this.missileReloadFrequency = missileReloadFrequency;
 
-            AvailableHP = TotalHP;
-            IsActive = true;
+            this.teleportFrequency = teleportFrequency;
         }
         
         public void TakeDamage(int damage) 
@@ -105,6 +110,12 @@
         {
             int laserInactivityTimeSpan = TimeManager.GameDuration - lastLaserFireTimestamp;
             return laserInactivityTimeSpan < laserReloadFrequency;
+        }
+
+        protected bool teleportClockIsReloading()
+        {
+            int teleportClockInactivityTimeSpan = TimeManager.GameDuration - lastTeleportTimestamp;
+            return teleportClockInactivityTimeSpan < teleportFrequency;
         }
 
         protected bool missileIsReloading()

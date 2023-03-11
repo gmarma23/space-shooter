@@ -15,6 +15,7 @@ namespace SpaceShooter.core
             int concurrentLaserBlastsCount = 2, 
             int laserBlastDamage = 50, 
             int laserReloadFrequency = 1500,
+            int teleportFrequency = 3000,
             int missileCount = 3, 
             int missileDamage = 100, 
             int missileReloadFrequency = 10000, 
@@ -22,8 +23,9 @@ namespace SpaceShooter.core
         ) : base(
             hp, 
             concurrentLaserBlastsCount, 
-            laserBlastDamage, 
+            laserBlastDamage,
             laserReloadFrequency, 
+            teleportFrequency,
             missileCount,
             missileDamage,
             missileReloadFrequency,

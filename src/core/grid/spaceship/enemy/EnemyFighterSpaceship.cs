@@ -11,7 +11,17 @@ namespace SpaceShooter.core
             int laserBlastDamage = 40, 
             int laserReloadFrequency = 1500, 
             int scorePoints = 5
-        ) : base (hp, concurrentLaserBlastsCount, laserBlastDamage, laserReloadFrequency, 0, 0, 0, scorePoints)
+        ) : base(
+            hp, 
+            concurrentLaserBlastsCount, 
+            laserBlastDamage, 
+            laserReloadFrequency, 
+            0, 
+            0, 
+            0, 
+            0, 
+            scorePoints
+        )
         {
             setSize(grid);
             setBounds(grid);
