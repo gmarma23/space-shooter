@@ -62,9 +62,9 @@
 
             this.teleportFrequency = teleportFrequency;
 
-            lastLaserFireTimestamp = TimeManager.GameDuration;
-            lastTeleportTimestamp = TimeManager.GameDuration;
-            lastMissileLaunchTimestamp = TimeManager.GameDuration;
+            lastLaserFireTimestamp = TimeManager.ElapsedGameTime;
+            lastTeleportTimestamp = TimeManager.ElapsedGameTime;
+            lastMissileLaunchTimestamp = TimeManager.ElapsedGameTime;
         }
         
         public void TakeDamage(int damage) 
@@ -112,19 +112,19 @@
 
         protected bool laserIsReloading()
         {
-            int laserInactivityTimeSpan = TimeManager.GameDuration - lastLaserFireTimestamp;
+            int laserInactivityTimeSpan = TimeManager.ElapsedGameTime - lastLaserFireTimestamp;
             return laserInactivityTimeSpan < laserReloadFrequency;
         }
 
         protected bool teleportClockIsReloading()
         {
-            int teleportClockInactivityTimeSpan = TimeManager.GameDuration - lastTeleportTimestamp;
+            int teleportClockInactivityTimeSpan = TimeManager.ElapsedGameTime - lastTeleportTimestamp;
             return teleportClockInactivityTimeSpan < teleportFrequency;
         }
 
         protected bool missileIsReloading()
         {
-            int missileInactivityTimeSpan = TimeManager.GameDuration - lastMissileLaunchTimestamp;
+            int missileInactivityTimeSpan = TimeManager.ElapsedGameTime - lastMissileLaunchTimestamp;
             return missileInactivityTimeSpan < missileReloadFrequency;
         }
     }

@@ -57,7 +57,7 @@ namespace SpaceShooter.core
 
             for (int i = 0; i < ConcurrentLaserBlastsCount; i++)
                 laserBlasts.Add(new EnemyLaserBlast(this, grid, i));
-            lastLaserFireTimestamp = TimeManager.GameDuration;
+            lastLaserFireTimestamp = TimeManager.ElapsedGameTime;
 
             return laserBlasts.Cast<LaserBlast>().ToList();
         }
@@ -67,7 +67,7 @@ namespace SpaceShooter.core
             if (missileCount == 0 || missileIsReloading())
                 return null;
 
-            lastMissileLaunchTimestamp = TimeManager.GameDuration;
+            lastMissileLaunchTimestamp = TimeManager.ElapsedGameTime;
             missileCount--;
             return new EnemyMissile(this, grid);
         }
@@ -88,14 +88,14 @@ namespace SpaceShooter.core
 
         protected virtual void updateDisplacement()
         {
-            int constDisplacementTimeSpan = TimeManager.GameDuration - lastDisplacementUpdateTimestamp;
+            int constDisplacementTimeSpan = TimeManager.ElapsedGameTime - lastDisplacementUpdateTimestamp;
 
             if (constDisplacementTimeSpan < displacementUpdateFrequency)
                 return;
 
             displacementX = generateRandomDisplacement();
             displacementY = generateRandomDisplacement();
-            lastDisplacementUpdateTimestamp = TimeManager.GameDuration;
+            lastDisplacementUpdateTimestamp = TimeManager.ElapsedGameTime;
         }
 
         protected bool isInsideViewport()

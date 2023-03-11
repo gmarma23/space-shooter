@@ -11,7 +11,7 @@ namespace SpaceShooter
         private static int gameUpdateRate;
         private static int gameCycles;
 
-        public static int GameDuration { get => gameCycles * gameUpdateRate; }
+        public static int ElapsedGameTime { get => gameCycles * gameUpdateRate; }
 
         public TimeManager(int gameTargetFPS = 65)
         {

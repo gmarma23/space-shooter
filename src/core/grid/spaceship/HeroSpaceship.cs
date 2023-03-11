@@ -43,7 +43,7 @@ namespace SpaceShooter.core
 
             for (int i = 0; i < ConcurrentLaserBlastsCount; i++)
                 laserBlasts.Add(new HeroLaserBlast(this, grid, i));
-            lastLaserFireTimestamp = TimeManager.GameDuration;
+            lastLaserFireTimestamp = TimeManager.ElapsedGameTime;
 
             return laserBlasts.Cast<LaserBlast>().ToList();
         }

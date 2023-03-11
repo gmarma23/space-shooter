@@ -36,7 +36,7 @@
 
             LocationX = random.Next(minX, maxX);
             LocationY = random.Next(minY, maxY);
-            lastTeleportTimestamp = TimeManager.GameDuration;
+            lastTeleportTimestamp = TimeManager.ElapsedGameTime;
         }
     }
 }

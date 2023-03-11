@@ -16,7 +16,7 @@ namespace SpaceShooter.core
             int laserBlastDamage = 50, 
             int laserReloadFrequency = 1500,
             int teleportFrequency = 3000,
-            int missileCount = 3, 
+            int missileCount = 10, 
             int missileDamage = 100, 
             int missileReloadFrequency = 10000, 
             int scorePoints = 20
@@ -42,7 +42,7 @@ namespace SpaceShooter.core
 
         protected override void updateDisplacement()
         {
-            int constDisplacementTimeSpan = TimeManager.GameDuration - lastDisplacementUpdateTimestamp;
+            int constDisplacementTimeSpan = TimeManager.ElapsedGameTime - lastDisplacementUpdateTimestamp;
 
             if (constDisplacementTimeSpan < displacementUpdateFrequency)
                 return;
@@ -55,7 +55,7 @@ namespace SpaceShooter.core
                 displacementX = deltaLocationX;
 
             displacementY = generateRandomDisplacement();
-            lastDisplacementUpdateTimestamp = TimeManager.GameDuration;
+            lastDisplacementUpdateTimestamp = TimeManager.ElapsedGameTime;
         }
     }
 }
