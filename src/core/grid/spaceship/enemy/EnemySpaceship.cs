@@ -1,9 +1,10 @@
-﻿namespace SpaceShooter.core
+﻿
+namespace SpaceShooter.core
 {
     public abstract class EnemySpaceship : Spaceship
     {
         protected static Random random = new Random();
-        protected const int displacementUpdateFrequency = 1000;
+        protected const int displacementUpdateFrequency = 800;
         protected int lastDisplacementUpdateTimestamp;
 
         public int ScorePoints { get; protected init; }
