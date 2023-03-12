@@ -38,7 +38,7 @@
         public void UpdateAvailableHealth(float availableHealthRatio) 
             => spaceshipHealthBar.UpdateAvailableHealth(availableHealthRatio);
 
-        public async void Explode(int duration = 1000)
+        public async Task Explode(int duration = 1000)
         {
             spaceshipHealthBar.Visible = false;
 

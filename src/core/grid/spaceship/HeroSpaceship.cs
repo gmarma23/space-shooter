@@ -29,6 +29,9 @@ namespace SpaceShooter.core
 
         public override void Move()
         {
+            if (!IsActive)
+                return; 
+
             updateDisplacement();
             moveHorizontally();
             moveVertically();
@@ -36,7 +39,7 @@ namespace SpaceShooter.core
 
         public override List<LaserBlast>? FireLaser(GameGrid grid) 
         {
-            if (laserIsReloading())
+            if (!IsActive || laserIsReloading())
                 return null;
 
             List<HeroLaserBlast> laserBlasts = new List<HeroLaserBlast>();

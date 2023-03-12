@@ -31,6 +31,9 @@
 
         public override void Teleport()
         {
+            if (!IsActive)
+                return;
+
             if (teleportClockIsReloading())
                 return;
 

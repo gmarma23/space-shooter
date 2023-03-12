@@ -58,12 +58,12 @@ namespace SpaceShooter.gui
             spaceshipGui.UpdateAvailableHealth(availableHealthRatio);
         }
 
-        public void SpaceshipExplode(bool isHero)
+        public async Task SpaceshipExplode(bool isHero)
         {
             SpaceshipGui spaceshipGui = getSpaceshipGui(isHero);
             Debug.Assert(spaceshipGui != null);
 
-            spaceshipGui.Explode();
+            await spaceshipGui.Explode();
         }
 
         public void RenderHeroSpaceship(IGameStateUI gameState)

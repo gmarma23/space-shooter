@@ -18,6 +18,9 @@
 
         public override void Move()
         {
+            if (!IsActive)
+                return;
+
             moveVertically();
             moveHorizontally();
             checkTargetHit();

@@ -9,6 +9,7 @@ namespace SpaceShooter
         private readonly GameFrame gameFrame;
         private readonly TimeManager timeManager;
         private readonly Dictionary<string, KeyEventHandler> keyEventHandlers;
+        private bool isEnemyBeingRenewed;
 
         public GameManager()
         {
@@ -21,6 +22,8 @@ namespace SpaceShooter
             gameState = new GameState();
             gameFrame= new GameFrame(gameState.Grid.DimensionX, gameState.Grid.DimensionY, keyEventHandlers);
             timeManager = new TimeManager();
+
+            isEnemyBeingRenewed = false;
 
             gameFrame.Show();
         }
@@ -46,8 +49,7 @@ namespace SpaceShooter
                 return;
             }
 
-            if (gameState.IsEnemyDestroyed())
-                gameState.RenewEnemySpaceship();
+            renewEnemySpaceship();
 
             gameState.MoveGridItems();
             gameState.DisposeInactiveWeapons();
@@ -62,6 +64,17 @@ namespace SpaceShooter
             gameState.EnemyLaunchMissile();
 
             gameFrame.UpdateActiveWeapons(gameState);
+        }
+
+        private async void renewEnemySpaceship()
+        {
+            if (!gameState.IsEnemyDestroyed() || isEnemyBeingRenewed)
+                return;
+            
+            isEnemyBeingRenewed = true;
+            await gameFrame.SpaceshipExplode(false);
+            gameState.RenewEnemySpaceship();
+            isEnemyBeingRenewed = false;
         }
 
         private void invokeHeroControls(object? sender, KeyEventArgs e)

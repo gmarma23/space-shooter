@@ -37,6 +37,9 @@ namespace SpaceShooter.core
 
         public override void Move()
         {
+            if (!IsActive)
+                return;
+
             if (!isInsideViewport())
             {
                 LocationY += displacementY;
@@ -50,7 +53,7 @@ namespace SpaceShooter.core
 
         public override List<LaserBlast>? FireLaser(GameGrid grid)
         {
-            if (laserIsReloading())
+            if (!IsActive || laserIsReloading())
                 return null;
 
             List<EnemyLaserBlast> laserBlasts = new List<EnemyLaserBlast>();
@@ -64,7 +67,7 @@ namespace SpaceShooter.core
 
         public override Missile? LaunchMissile(GameGrid grid)
         {
-            if (missileCount == 0 || missileIsReloading())
+            if (!IsActive || missileCount == 0 || missileIsReloading())
                 return null;
 
             lastMissileLaunchTimestamp = TimeManager.ElapsedGameTime;
