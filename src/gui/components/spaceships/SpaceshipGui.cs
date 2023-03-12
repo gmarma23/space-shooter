@@ -56,7 +56,7 @@
             Image explosionImage = explosionPicBox.Image;
             explosionPicBox.Image = null;
             explosionImage.Dispose();
-            explosionPicBox.Dispose();
+            Controls.Remove(explosionPicBox);
         }
 
         public void DisposePictureBox()
@@ -64,7 +64,7 @@
             Image spaceshipPictureBoxImage = spaceshipPicBox.Image;
             spaceshipPicBox.Image = null;
             spaceshipPictureBoxImage.Dispose();
-            spaceshipPicBox.Dispose();
+            Controls.Remove(spaceshipPicBox);
         }
 
         protected abstract void arrangeItems();
