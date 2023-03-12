@@ -31,11 +31,9 @@ namespace SpaceShooter
         public void StartGame()
         {
             gameFrame.RenderHeroSpaceship(gameState);
-            gameFrame.RelocateSpaceship(gameState, true);
 
             gameState.RenewEnemySpaceship();
             gameFrame.RenderEnemySpaceship(gameState);
-            gameFrame.RelocateSpaceship(gameState, false);
 
             timeManager.AddMainRecurringAction(gameLoop);
             timeManager.EnableTime();
@@ -72,8 +70,9 @@ namespace SpaceShooter
                 return;
             
             isEnemyBeingRenewed = true;
-            await gameFrame.SpaceshipExplode(false);
+            await gameFrame.DestroySpaceship(false);
             gameState.RenewEnemySpaceship();
+            gameFrame.RenderEnemySpaceship(gameState);
             isEnemyBeingRenewed = false;
         }
 
@@ -117,7 +116,7 @@ namespace SpaceShooter
 
         private void gameOverActions()
         {
-            gameFrame.SpaceshipExplode(true);
+            gameFrame.DestroySpaceship(true);
             timeManager.DisableTime();
             MessageBox.Show("Game Over!");
             gameFrame.Close();

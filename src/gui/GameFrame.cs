@@ -58,14 +58,6 @@ namespace SpaceShooter.gui
             spaceshipGui.UpdateAvailableHealth(availableHealthRatio);
         }
 
-        public async Task SpaceshipExplode(bool isHero)
-        {
-            SpaceshipGui spaceshipGui = getSpaceshipGui(isHero);
-            Debug.Assert(spaceshipGui != null);
-
-            await spaceshipGui.Explode();
-        }
-
         public void RenderHeroSpaceship(IGameStateUI gameState)
         {
             IHPGridItem heroSpaceship = gameState.GetSpaceshipToDraw(true);
@@ -82,6 +74,15 @@ namespace SpaceShooter.gui
 
             enemy = new EnemySpaceshipGui(enemySpaceship.Width, enemySpaceship.Height, enemySpaceship.Image);
             Controls.Add(enemy);
+        }
+
+        public async Task DestroySpaceship(bool isHero)
+        {
+            SpaceshipGui spaceshipGui = getSpaceshipGui(isHero);
+            Debug.Assert(spaceshipGui != null);
+
+            await spaceshipGui.Explode();
+            spaceshipGui.DisposePictureBox();
         }
 
         private void relocateExistingWeapons(IGameStateUI gameState)

@@ -33,8 +33,6 @@
 
         public abstract void UpdateLocation(int newLocationX, int newLocationY);
 
-        protected abstract void arrangeItems();
-
         public void UpdateAvailableHealth(float availableHealthRatio) 
             => spaceshipHealthBar.UpdateAvailableHealth(availableHealthRatio);
 
@@ -60,5 +58,15 @@
             explosionImage.Dispose();
             explosionPicBox.Dispose();
         }
+
+        public void DisposePictureBox()
+        {
+            Image spaceshipPictureBoxImage = spaceshipPicBox.Image;
+            spaceshipPicBox.Image = null;
+            spaceshipPictureBoxImage.Dispose();
+            spaceshipPicBox.Dispose();
+        }
+
+        protected abstract void arrangeItems();
     }
 }
