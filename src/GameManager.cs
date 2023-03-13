@@ -1,5 +1,6 @@
 ﻿using SpaceShooter.core;
 using SpaceShooter.gui;
+using SpaceShooter.src.core.grid;
 using System.Windows.Forms;
 
 namespace SpaceShooter
@@ -81,9 +82,12 @@ namespace SpaceShooter
                 return;
 
             if (e.KeyCode == Keys.Space)
+            {
                 gameState.SpaceshipFireLaser(true);
-            else
-                toggleHeroMotionControls(e, true);
+                return;
+            }
+               
+            toggleHeroMotionControls(e, true);
         }
 
         private static void freeHeroControls(object? sender, KeyEventArgs e)
@@ -94,21 +98,24 @@ namespace SpaceShooter
             toggleHeroMotionControls(e, false);
         }
 
-        private static void toggleHeroMotionControls(KeyEventArgs e, bool invoke)
+        private static void toggleHeroMotionControls(KeyEventArgs e, bool isInvoked)
         {
+            IControls conrolableHero = gameState.GetControlableHero();
             switch (e.KeyCode)
             {
                 case Keys.Left:
-                    gameState.GetControlableHero().GoLeft = invoke;
+                    conrolableHero.GoLeft = isInvoked;
                     break;
                 case Keys.Right:
-                    gameState.GetControlableHero().GoRight = invoke;
+                    conrolableHero.GoRight = isInvoked;
                     break;
                 case Keys.Up:
-                    gameState.GetControlableHero().GoUp = invoke;
+                    conrolableHero.GoUp = isInvoked;
                     break;
                 case Keys.Down:
-                    gameState.GetControlableHero().GoDown = invoke;
+                    conrolableHero.GoDown = isInvoked;
+                    break;
+                default:
                     break;
             };
         }
