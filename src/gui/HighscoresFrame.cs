@@ -15,6 +15,7 @@ namespace SpaceShooter.gui
         public HighscoresFrame()
         {
             InitializeComponent();
+            FormClosed += AppManager.OnSubFrameClose;
         }
     }
 }

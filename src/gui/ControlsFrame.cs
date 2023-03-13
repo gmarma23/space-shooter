@@ -15,6 +15,7 @@ namespace SpaceShooter.gui
         public ControlsFrame()
         {
             InitializeComponent();
+            FormClosed += AppManager.OnSubFrameClose;
         }
     }
 }
