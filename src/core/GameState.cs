@@ -7,6 +7,7 @@ namespace SpaceShooter.core
         private EnemySpaceship enemy;
         private readonly HeroSpaceship hero;
         private readonly List<Weapon> activeWeapons;
+        private static readonly Random random = new Random();
 
         public GameGrid Grid { get; private init; }
         public int Score { get; private set; }
@@ -16,6 +17,7 @@ namespace SpaceShooter.core
             Grid = new GameGrid(gridDimensionX, gridDimensionY);
             hero = new HeroSpaceship(Grid);
             activeWeapons = new List<Weapon>();
+            Score = 0;
         }
         
         public void RenewEnemySpaceship()
@@ -23,7 +25,28 @@ namespace SpaceShooter.core
             if (enemy != null && enemy.IsActive)
                 return;
 
-            enemy = new EnemyBomberSpaceship(Grid);
+            if (enemy != null)
+                Score += enemy.ScorePoints;
+
+            if (Score == 0)
+            {
+                enemy = new EnemyFighterSpaceship(Grid);
+                return;
+            }
+            else if (Score % 100 == 0)
+            {
+                enemy = new EnemyBossSpaceship(Grid, hero);
+                return;
+            }
+            
+            int selectedIndex = random.Next(0, 3);
+            enemy = selectedIndex switch
+            {
+                0 => new EnemyFighterSpaceship(Grid),
+                1 => new EnemyTeleporterSpaceship(Grid),
+                2 => new EnemyBomberSpaceship(Grid),
+                _ => new EnemyFighterSpaceship(Grid)
+            };
         }
 
         public IHPGridItem GetSpaceshipToDraw(bool isHero) => getSpaceship(isHero);
