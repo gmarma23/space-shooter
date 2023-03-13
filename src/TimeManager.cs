@@ -8,10 +8,10 @@ namespace SpaceShooter
         private readonly Timer gameUpdateTimer;
         private readonly List<Timer> customActionTimers;
 
-        private static int gameUpdateRate;
         private static int gameCycles;
 
-        public static int ElapsedGameTime { get => gameCycles * gameUpdateRate; }
+        public static int GameUpdateRate { get; private set; }
+        public static int ElapsedGameTime { get => gameCycles * GameUpdateRate; }
 
         public TimeManager(int gameTargetFPS = 65)
         {
@@ -19,7 +19,7 @@ namespace SpaceShooter
             customActionTimers = new List<Timer>();
 
             gameUpdateTimer.Interval = (int)Math.Floor((decimal)(1000 / gameTargetFPS));
-            gameUpdateRate = gameUpdateTimer.Interval;
+            GameUpdateRate = gameUpdateTimer.Interval;
             gameCycles = 0;
             AddMainRecurringAction(IncreaseGameCycles);
             
