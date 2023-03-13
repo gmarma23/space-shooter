@@ -11,7 +11,7 @@ namespace SpaceShooter.core
         public EnemyBossSpaceship(
             GameGrid grid, 
             IGridItem target, 
-            int hp = 1000,
+            int hp = 2000,
             int concurrentLaserBlastsCount = 2, 
             int laserBlastDamage = 50, 
             int laserReloadFrequency = 1500,
