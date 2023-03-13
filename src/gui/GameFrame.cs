@@ -9,7 +9,12 @@ namespace SpaceShooter.gui
         private EnemySpaceshipGui enemy;
         private List<WeaponGui> activeWeaponsGui;
 
-        public GameFrame(int gridDimensionX, int gridDimensionY, Dictionary<string, KeyEventHandler> keyEventHandlers)
+        public GameFrame(
+            int gridDimensionX, 
+            int gridDimensionY, 
+            Dictionary<string, KeyEventHandler> keyEventHandlers, 
+            FormClosedEventHandler onGameFrameClosed
+        )
         {
             InitializeComponent();
             ClientSize = new Size(gridDimensionX, gridDimensionY);
@@ -17,6 +22,7 @@ namespace SpaceShooter.gui
             activeWeaponsGui = new List<WeaponGui>();
 
             FormClosed += AppManager.OnSubFrameClose;
+            FormClosed += onGameFrameClosed;
             KeyDown += keyEventHandlers["OnKeyDown"];
             KeyUp += keyEventHandlers["OnKeyUp"];
         }

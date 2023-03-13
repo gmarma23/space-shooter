@@ -1,6 +1,7 @@
 ﻿using SpaceShooter.core;
 using SpaceShooter.gui;
 using SpaceShooter.src.core.grid;
+using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace SpaceShooter
@@ -13,9 +14,9 @@ namespace SpaceShooter
             { "OnKeyUp", freeHeroControls }
         };
 
-        private static GameState gameState;
-        private static GameFrame gameFrame;
-        private static TimeManager timeManager;
+        private static GameState? gameState = null;
+        private static GameFrame? gameFrame = null;
+        private static TimeManager? timeManager = null;
         private static bool isEnemyBeingRenewed;
 
         public static void StartNewGame()
@@ -25,7 +26,8 @@ namespace SpaceShooter
             gameFrame = new GameFrame(
                 gameState.Grid.DimensionX,
                 gameState.Grid.DimensionY,
-                keyEventHandlers
+                keyEventHandlers,
+                onGameFrameClosed
             );
             isEnemyBeingRenewed = false;
             gameFrame.Show();
@@ -41,6 +43,10 @@ namespace SpaceShooter
 
         private static void gameLoop(object? sender, EventArgs e)
         {
+            Debug.Assert(gameState != null);
+            Debug.Assert(gameFrame != null);
+            Debug.Assert(timeManager != null);
+
             timeManager.UpdateDeltaTime();
 
             if (gameState.IsGameOver())
@@ -68,6 +74,9 @@ namespace SpaceShooter
 
         private static async void renewEnemySpaceship()
         {
+            Debug.Assert(gameState != null);
+            Debug.Assert(gameFrame != null);
+
             if (!gameState.IsEnemyDestroyed() || isEnemyBeingRenewed)
                 return;
             
@@ -80,6 +89,8 @@ namespace SpaceShooter
 
         private static void invokeHeroControls(object? sender, KeyEventArgs e)
         {
+            Debug.Assert(gameState != null);
+
             if (gameState.IsGameOver()) 
                 return;
 
@@ -94,6 +105,8 @@ namespace SpaceShooter
 
         private static void freeHeroControls(object? sender, KeyEventArgs e)
         {
+            Debug.Assert(gameState != null);
+
             if (gameState.IsGameOver()) 
                 return;
 
@@ -102,6 +115,8 @@ namespace SpaceShooter
 
         private static void toggleHeroMotionControls(KeyEventArgs e, bool isInvoked)
         {
+            Debug.Assert(gameState != null);
+
             IControls conrolableHero = gameState.GetControlableHero();
             switch (e.KeyCode)
             {
@@ -124,10 +139,22 @@ namespace SpaceShooter
 
         private static void gameOverActions()
         {
+            Debug.Assert(gameFrame != null);
+
             gameFrame.DestroySpaceship(true);
             timeManager.DisableTime();
             MessageBox.Show("Game Over!");
             gameFrame.Close();
+        }
+
+        private static void onGameFrameClosed(object? sender, EventArgs e)
+        {
+            Debug.Assert(timeManager != null);
+
+            timeManager.DisableTime();
+            gameState = null;
+            gameFrame = null;
+            timeManager = null;
         }
     }
 }
