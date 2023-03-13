@@ -1,35 +1,34 @@
 ﻿using SpaceShooter.core;
 using SpaceShooter.gui;
+using System.Windows.Forms;
 
 namespace SpaceShooter
 {
-    internal class GameManager
+    public static class GameManager
     {
-        private readonly GameState gameState;
-        private readonly GameFrame gameFrame;
-        private readonly TimeManager timeManager;
-        private readonly Dictionary<string, KeyEventHandler> keyEventHandlers;
-        private bool isEnemyBeingRenewed;
-
-        public GameManager()
+        private static readonly Dictionary<string, KeyEventHandler> keyEventHandlers = new()
         {
-            keyEventHandlers = new Dictionary<string, KeyEventHandler>
-            {
-                { "OnKeyDown", invokeHeroControls },
-                { "OnKeyUp", freeHeroControls }
-            };
+            { "OnKeyDown", invokeHeroControls },
+            { "OnKeyUp", freeHeroControls }
+        };
 
-            gameState = new GameState();
-            gameFrame= new GameFrame(gameState.Grid.DimensionX, gameState.Grid.DimensionY, keyEventHandlers);
+        private static GameState gameState;
+        private static GameFrame gameFrame;
+        private static TimeManager timeManager;
+        private static bool isEnemyBeingRenewed;
+
+        public static void StartGame()
+        {
             timeManager = new TimeManager();
-
+            gameState = new GameState();
+            gameFrame = new GameFrame(
+                gameState.Grid.DimensionX,
+                gameState.Grid.DimensionY,
+                keyEventHandlers
+            );
             isEnemyBeingRenewed = false;
-
             gameFrame.Show();
-        }
 
-        public void StartGame()
-        {
             gameFrame.RenderHeroSpaceship(gameState);
 
             gameState.RenewEnemySpaceship();
@@ -39,7 +38,7 @@ namespace SpaceShooter
             timeManager.EnableTime();
         }
 
-        private void gameLoop(object? sender, EventArgs e)
+        private static void gameLoop(object? sender, EventArgs e)
         {
             if (gameState.IsGameOver())
             {
@@ -64,7 +63,7 @@ namespace SpaceShooter
             gameFrame.UpdateActiveWeapons(gameState);
         }
 
-        private async void renewEnemySpaceship()
+        private static async void renewEnemySpaceship()
         {
             if (!gameState.IsEnemyDestroyed() || isEnemyBeingRenewed)
                 return;
@@ -76,7 +75,7 @@ namespace SpaceShooter
             isEnemyBeingRenewed = false;
         }
 
-        private void invokeHeroControls(object? sender, KeyEventArgs e)
+        private static void invokeHeroControls(object? sender, KeyEventArgs e)
         {
             if (gameState.IsGameOver()) 
                 return;
@@ -87,7 +86,7 @@ namespace SpaceShooter
                 toggleHeroMotionControls(e, true);
         }
 
-        private void freeHeroControls(object? sender, KeyEventArgs e)
+        private static void freeHeroControls(object? sender, KeyEventArgs e)
         {
             if (gameState.IsGameOver()) 
                 return;
@@ -95,7 +94,7 @@ namespace SpaceShooter
             toggleHeroMotionControls(e, false);
         }
 
-        private void toggleHeroMotionControls(KeyEventArgs e, bool invoke)
+        private static void toggleHeroMotionControls(KeyEventArgs e, bool invoke)
         {
             switch (e.KeyCode)
             {
@@ -114,7 +113,7 @@ namespace SpaceShooter
             };
         }
 
-        private void gameOverActions()
+        private static void gameOverActions()
         {
             gameFrame.DestroySpaceship(true);
             timeManager.DisableTime();

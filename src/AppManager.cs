@@ -11,7 +11,7 @@ namespace SpaceShooter
         public static void OnMenuOptionPlayClick(object sender, EventArgs e) 
         {
             menuFrame.Hide();
-            new GameManager().StartGame();
+            GameManager.StartGame();
         }
 
         public static void OnMenuOptionHighscoresClick(object sender, EventArgs e)
