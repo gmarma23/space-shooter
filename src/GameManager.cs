@@ -41,6 +41,8 @@ namespace SpaceShooter
 
         private static void gameLoop(object? sender, EventArgs e)
         {
+            timeManager.UpdateDeltaTime();
+
             if (gameState.IsGameOver())
             {
                 gameOverActions();

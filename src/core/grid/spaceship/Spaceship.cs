@@ -2,11 +2,12 @@
 {
     public abstract class Spaceship : GridItem, IHPGridItem, IFireLaser, ITeleport, ILaunchMissile
     {
-        protected int lastTeleportTimestamp;
+        protected double lastTeleportTimestamp;
+        protected double lastLaserFireTimestamp;
+        protected double lastMissileLaunchTimestamp;
+
         protected int teleportFrequency;
-        protected int lastLaserFireTimestamp;
         protected int laserReloadFrequency;
-        protected int lastMissileLaunchTimestamp;
         protected int missileReloadFrequency;
         protected int missileCount;
         protected int availableHP;
@@ -46,7 +47,7 @@
         {
             defaultWidthRatio = 0.065f;
             defaultHeightRatio = 1.04f;
-            absMaxDisplacement = 4;
+            absMaxDisplacement = 240;
 
             TotalHP = hp;
             AvailableHP = TotalHP;
@@ -90,7 +91,7 @@
 
         protected override void moveHorizontally()
         {
-            int newLocationX = LocationX + displacementX;
+            int newLocationX = LocationX + DeltaTimeDisplacementX;
             if (isOutOfBoundsX(newLocationX))
             {
                 displacementX *= -1;
@@ -101,7 +102,7 @@
 
         protected override void moveVertically()
         {
-            int newLocationY = LocationY + displacementY;
+            int newLocationY = LocationY + DeltaTimeDisplacementY;
             if (isOutOfBoundsY(newLocationY))
             {
                 displacementY *= -1;
@@ -112,19 +113,19 @@
 
         protected bool laserIsReloading()
         {
-            int laserInactivityTimeSpan = TimeManager.ElapsedGameTime - lastLaserFireTimestamp;
+            double laserInactivityTimeSpan = 1000 * (TimeManager.ElapsedGameTime - lastLaserFireTimestamp);
             return laserInactivityTimeSpan < laserReloadFrequency;
         }
 
         protected bool teleportClockIsReloading()
         {
-            int teleportClockInactivityTimeSpan = TimeManager.ElapsedGameTime - lastTeleportTimestamp;
+            double teleportClockInactivityTimeSpan = 1000 * (TimeManager.ElapsedGameTime - lastTeleportTimestamp);
             return teleportClockInactivityTimeSpan < teleportFrequency;
         }
 
         protected bool missileIsReloading()
         {
-            int missileInactivityTimeSpan = TimeManager.ElapsedGameTime - lastMissileLaunchTimestamp;
+            double missileInactivityTimeSpan = 1000 * (TimeManager.ElapsedGameTime - lastMissileLaunchTimestamp);
             return missileInactivityTimeSpan < missileReloadFrequency;
         }
     }

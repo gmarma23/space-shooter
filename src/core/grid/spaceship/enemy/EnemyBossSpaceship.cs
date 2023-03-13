@@ -42,7 +42,7 @@ namespace SpaceShooter.core
 
         protected override void updateDisplacement()
         {
-            int constDisplacementTimeSpan = TimeManager.ElapsedGameTime - lastDisplacementUpdateTimestamp;
+            double constDisplacementTimeSpan = 1000 * (TimeManager.ElapsedGameTime - lastDisplacementUpdateTimestamp);
 
             if (constDisplacementTimeSpan < displacementUpdateFrequency)
                 return;

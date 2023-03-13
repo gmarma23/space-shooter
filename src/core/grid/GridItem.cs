@@ -12,14 +12,24 @@
         protected float defaultWidthRatio;
         protected float defaultHeightRatio;
 
-        protected int absMaxDisplacement;
-        protected int displacementX;
-        protected int displacementY;
-
         protected int minX;
         protected int maxX;
         protected int minY;
         protected int maxY;
+
+        protected int absMaxDisplacement;
+        protected int displacementX;
+        protected int displacementY;
+
+        protected int DeltaTimeDisplacementX
+        {
+            get => (int)(displacementX * TimeManager.DeltaTime);
+        }
+
+        protected int DeltaTimeDisplacementY
+        {
+            get => (int)(displacementY * TimeManager.DeltaTime);
+        }
 
         protected void setSize(GameGrid grid, float scaleFactor = 1)
         {

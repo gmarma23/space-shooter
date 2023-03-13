@@ -27,10 +27,10 @@
         }
 
         protected override void moveVertically()
-            => LocationY += displacementY;
+            => LocationY += DeltaTimeDisplacementY;
 
         protected override void moveHorizontally()
-            => LocationX += displacementX;
+            => LocationX += DeltaTimeDisplacementX;
 
         protected void checkTargetHit()
         {

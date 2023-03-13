@@ -5,7 +5,7 @@ namespace SpaceShooter.core
     {
         protected static Random random = new Random();
         protected const int displacementUpdateFrequency = 800;
-        protected int lastDisplacementUpdateTimestamp;
+        protected double lastDisplacementUpdateTimestamp;
 
         public int ScorePoints { get; protected init; }
 
@@ -42,7 +42,7 @@ namespace SpaceShooter.core
 
             if (!isInsideViewport())
             {
-                LocationY += displacementY;
+                LocationY += DeltaTimeDisplacementY;
                 return; 
             }
 
@@ -91,7 +91,7 @@ namespace SpaceShooter.core
 
         protected virtual void updateDisplacement()
         {
-            int constDisplacementTimeSpan = TimeManager.ElapsedGameTime - lastDisplacementUpdateTimestamp;
+            double constDisplacementTimeSpan = 1000 * (TimeManager.ElapsedGameTime - lastDisplacementUpdateTimestamp);
 
             if (constDisplacementTimeSpan < displacementUpdateFrequency)
                 return;

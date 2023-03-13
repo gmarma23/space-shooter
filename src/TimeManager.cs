@@ -1,4 +1,5 @@
-﻿using System.Reflection;
+﻿using System.Diagnostics;
+using System.Reflection;
 using Timer = System.Windows.Forms.Timer;
 
 namespace SpaceShooter
@@ -7,21 +8,20 @@ namespace SpaceShooter
     {
         private readonly Timer gameUpdateTimer;
         private readonly List<Timer> customActionTimers;
+        private readonly Stopwatch stopwatch;
 
-        private static int gameCycles;
-
-        public static int GameUpdateRate { get; private set; }
-        public static int ElapsedGameTime { get => gameCycles * GameUpdateRate; }
+        public static double DeltaTime { get; private set; }
+        public static double ElapsedGameTime { get; private set; }
 
         public TimeManager(int gameTargetFPS = 65)
         {
             gameUpdateTimer = new Timer();
             customActionTimers = new List<Timer>();
+            stopwatch = new Stopwatch();
 
             gameUpdateTimer.Interval = (int)Math.Floor((decimal)(1000 / gameTargetFPS));
-            GameUpdateRate = gameUpdateTimer.Interval;
-            gameCycles = 0;
-            AddMainRecurringAction(IncreaseGameCycles);
+            ElapsedGameTime = 0;
+            DeltaTime = 0;
             
             DisableTime();
         }
@@ -38,6 +38,13 @@ namespace SpaceShooter
             gameUpdateTimer.Enabled = false;
             foreach (Timer timer in customActionTimers)
                 timer.Enabled = false;
+        }
+
+        public void UpdateDeltaTime()
+        {
+            DeltaTime = stopwatch.Elapsed.TotalSeconds;
+            ElapsedGameTime += DeltaTime;
+            stopwatch.Restart();
         }
 
         public void AddMainRecurringAction(EventHandler gameUpdateAction)
@@ -68,8 +75,6 @@ namespace SpaceShooter
 
         private void removeUnusedCustomTimers()
             => customActionTimers.RemoveAll(timer => getTimerTickInvocationListLength(timer) == 0);
-
-        private void IncreaseGameCycles(object? sender, EventArgs e) => gameCycles++;
 
         private int getTimerTickInvocationListLength(Timer timer)
         {
