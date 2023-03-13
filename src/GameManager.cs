@@ -17,7 +17,7 @@ namespace SpaceShooter
         private static TimeManager timeManager;
         private static bool isEnemyBeingRenewed;
 
-        public static void StartGame()
+        public static void StartNewGame()
         {
             timeManager = new TimeManager();
             gameState = new GameState();
