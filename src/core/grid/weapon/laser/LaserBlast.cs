@@ -6,7 +6,7 @@
         {
             defaultWidthRatio = 0.005f;
             defaultHeightRatio = 7;
-            absMaxDisplacement = 360;
+            absMaxDisplacement = 420;
 
             setSize(grid);
             setBounds(grid);
