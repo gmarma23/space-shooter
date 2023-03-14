@@ -21,7 +21,7 @@ namespace SpaceShooter.gui
 
             activeWeaponsGui = new List<WeaponGui>();
 
-            FormClosed += AppManager.OnSubFrameClose;
+            FormClosed += AppManager.OnSubFrameClosed;
             FormClosed += onGameFrameClosed;
             KeyDown += keyEventHandlers["OnKeyDown"];
             KeyUp += keyEventHandlers["OnKeyUp"];

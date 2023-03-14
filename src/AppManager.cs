@@ -26,6 +26,6 @@ namespace SpaceShooter
             new ControlsFrame().Show();
         }
 
-        public static void OnSubFrameClose(object sender, EventArgs e) => menuFrame.Show();
+        public static void OnSubFrameClosed(object sender, EventArgs e) => menuFrame.Show();
     }
 }

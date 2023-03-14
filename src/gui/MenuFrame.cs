@@ -16,7 +16,6 @@
 
         private Label title;
         private PictureBox heroPicBox;
-        private MenuOptions menuOptions;
         
         public MenuFrame()
         {
@@ -24,7 +23,7 @@
 
             setTitleLabel();
             setHeroPicBox();
-            menuOptions = new MenuOptions(this);
+            _ = new MenuOptions(this);
         }
 
         private void setTitleLabel()
@@ -35,7 +34,8 @@
             title.Font = new Font(
                 "Microsoft Sans Serif", 
                 25.8F, FontStyle.Bold | FontStyle.Italic, 
-                GraphicsUnit.Point);
+                GraphicsUnit.Point
+            );
             title.ForeColor = Color.White;
             title.Width = (int)(titleWidthRatio * ClientRectangle.Width);
             title.Height = (int)(titleHeightRatio * ClientRectangle.Height);
@@ -44,7 +44,8 @@
             title.UseCompatibleTextRendering = true;
             title.Location = new Point(
                 ClientRectangle.Width / 2 - title.Width / 2,
-                (int)(ClientRectangle.Height * titleLocationYRatio));
+                (int)(ClientRectangle.Height * titleLocationYRatio)
+            );
         }
 
         private void setHeroPicBox()

@@ -1,6 +1,4 @@
-﻿using System.Drawing.Drawing2D;
-
-namespace SpaceShooter.gui
+﻿namespace SpaceShooter.gui
 {
     internal class MenuButton : Button
     {
@@ -16,11 +14,7 @@ namespace SpaceShooter.gui
             Height = menuOptionsPanel.MenuButtonHeight;
             UseVisualStyleBackColor = false;
             Text = text;
-            addEventHandlers(onClick);
-        }
 
-        private void addEventHandlers(EventHandler onClick)
-        {
             Click += onClick;
             MouseEnter += onMouseEnter;
             MouseLeave += onMouseLeave;
