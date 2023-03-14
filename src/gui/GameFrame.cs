@@ -10,14 +10,17 @@ namespace SpaceShooter.gui
         private List<WeaponGui> activeWeaponsGui;
 
         public GameFrame(
-            int gridDimensionX,
-            int gridDimensionY,
+            IGameStateUI gameState,
             Dictionary<string, KeyEventHandler> keyEventHandlers,
             FormClosedEventHandler onGameFrameClosed
         )
         {
             InitializeComponent();
-            ClientSize = new Size(gridDimensionX, gridDimensionY);
+
+            ClientSize = new Size(
+                gameState.Grid.DimensionX,
+                gameState.Grid.DimensionY 
+            );
 
             activeWeaponsGui = new List<WeaponGui>();
 

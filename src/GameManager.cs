@@ -23,13 +23,9 @@ namespace SpaceShooter
         {
             timeManager = new TimeManager();
             gameState = new GameState();
-            gameFrame = new GameFrame(
-                gameState.Grid.DimensionX,
-                gameState.Grid.DimensionY,
-                keyEventHandlers,
-                onGameFrameClosed
-            );
+            gameFrame = new GameFrame(gameState, keyEventHandlers, onGameFrameClosed);
             isEnemyBeingRenewed = false;
+
             gameFrame.Show();
 
             gameFrame.RenderHeroSpaceship(gameState);
