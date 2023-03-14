@@ -1,4 +1,6 @@
-﻿namespace SpaceShooter.gui
+﻿using SpaceShooter.utils;
+
+namespace SpaceShooter.gui
 {
     internal abstract class SpaceshipGui : Panel
     {
@@ -36,7 +38,7 @@
         public void UpdateAvailableHealth(float availableHealthRatio) 
             => spaceshipHealthBar.UpdateAvailableHealth(availableHealthRatio);
 
-        public async Task Explode(int duration = 1000)
+        public async Task Explode()
         {
             spaceshipHealthBar.Visible = false;
 
@@ -51,7 +53,13 @@
             Controls.Add(explosionPicBox);
             explosionPicBox.Parent = spaceshipPicBox;
 
-            await Task.Delay(duration);
+            int steps = 10;
+            for (int i = 0; i < steps; i++)
+            {
+                float opacity = (float)(steps - i) / (float)steps;
+                spaceshipPicBox.Image = ImageUtils.SetOpacity((Bitmap)spaceshipPicBox.Image, opacity);
+                await Task.Delay(100);
+            }
 
             Image explosionImage = explosionPicBox.Image;
             explosionPicBox.Image = null;
