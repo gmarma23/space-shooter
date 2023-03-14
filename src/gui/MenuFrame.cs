@@ -13,9 +13,6 @@
         private const double heroPicBoxWidthRatio = 0.23;
         private const double heroPicBoxHeightRatio = 0.2;
         private const double heroPicBoxLocationYRatio = 0.335;
-
-        private Label title;
-        private PictureBox heroPicBox;
         
         public MenuFrame()
         {
@@ -28,7 +25,7 @@
 
         private void setTitleLabel()
         {
-            title = new Label();
+            Label title = new Label();
             Controls.Add(title);
             title.BackColor = Color.Transparent;
             title.Font = new Font(
@@ -52,7 +49,7 @@
         {
             int heroPicBoxWidth = (int)(ClientRectangle.Width * heroPicBoxWidthRatio);
             int heroPicBoxHeight = (int)(ClientRectangle.Height * heroPicBoxHeightRatio);
-            heroPicBox = new PictureBox()
+            PictureBox heroPicBox = new PictureBox()
             {
                 Width = heroPicBoxWidth,
                 Height = heroPicBoxHeight,
