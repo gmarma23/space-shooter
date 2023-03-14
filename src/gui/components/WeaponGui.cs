@@ -16,5 +16,12 @@
 
         public void UpdateLocation(int newLocationX, int newLocationY)
             => Location = new Point(newLocationX, newLocationY);
+
+        public void DisposeImage()
+        {
+            Image weaponImage = Image;
+            Image = null;
+            weaponImage.Dispose();
+        }
     }
 }
