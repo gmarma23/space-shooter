@@ -133,15 +133,14 @@ namespace SpaceShooter
             };
         }
 
-        private static void gameOverActions()
+        private static async void gameOverActions()
         {
             Debug.Assert(gameFrame != null);
             Debug.Assert(timeManager != null);
 
-            gameFrame.DestroySpaceship(true);
             timeManager.DisableTime();
-            MessageBox.Show("Game Over!");
-            gameFrame.Close();
+            await gameFrame.DestroySpaceship(true);
+            gameFrame.GameOverActions();
         }
 
         private static void onGameFrameClosed(object? sender, EventArgs e)
