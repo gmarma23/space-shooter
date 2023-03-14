@@ -4,10 +4,12 @@ namespace SpaceShooter.core
 {
     public class GameState : IGameStateUI
     {
+        private static readonly Random random = new Random();
+
         private EnemySpaceship enemy;
         private readonly HeroSpaceship hero;
         private readonly List<Weapon> activeWeapons;
-        private static readonly Random random = new Random();
+        private int waves;
 
         public GameGrid Grid { get; private init; }
         public int Score { get; private set; }
@@ -18,6 +20,7 @@ namespace SpaceShooter.core
             hero = new HeroSpaceship(Grid);
             activeWeapons = new List<Weapon>();
             Score = 0;
+            waves = 0;
         }
         
         public void RenewEnemySpaceship()
@@ -25,21 +28,17 @@ namespace SpaceShooter.core
             if (enemy != null && enemy.IsActive)
                 return;
 
+            waves++;
             if (enemy != null)
                 Score += enemy.ScorePoints;
 
-            if (Score == 0)
-            {
-                enemy = new EnemyFighterSpaceship(Grid);
-                return;
-            }
-            else if (Score % 100 == 0)
+            if (waves % 10 == 0)
             {
                 enemy = new EnemyBossSpaceship(Grid, hero);
                 return;
             }
             
-            int selectedIndex = random.Next(0, 3);
+            int selectedIndex = waves == 1 ? 0 : random.Next(0, 3);
             enemy = selectedIndex switch
             {
                 0 => new EnemyFighterSpaceship(Grid),
