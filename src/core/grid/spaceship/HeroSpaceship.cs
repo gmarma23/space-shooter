@@ -56,10 +56,17 @@ namespace SpaceShooter.core
             displacementX = 0;
             displacementY = 0;
 
-            if (GoLeft) displacementX -= absMaxDisplacement;
-            if (GoRight) displacementX += absMaxDisplacement;
-            if (GoUp) displacementY -= absMaxDisplacement;
-            if (GoDown) displacementY += absMaxDisplacement;
+            if (GoLeft) 
+                displacementX -= absMaxDisplacement;
+
+            if (GoRight) 
+                displacementX += absMaxDisplacement;
+
+            if (GoUp) 
+                displacementY -= absMaxDisplacement;
+
+            if (GoDown) 
+                displacementY += absMaxDisplacement;
         }
 
         protected override void setBounds(GameGrid grid)

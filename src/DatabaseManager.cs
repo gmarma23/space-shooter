@@ -1,6 +1,6 @@
 ﻿using System.Data.SQLite;
 
-namespace SpaceShooter.src
+namespace SpaceShooter
 {
     public static class DatabaseManager
     {
