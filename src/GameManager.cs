@@ -1,8 +1,8 @@
 ﻿using SpaceShooter.core;
 using SpaceShooter.gui;
 using SpaceShooter.src.core.grid;
+using SpaceShooter.utils;
 using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace SpaceShooter
 {
@@ -135,12 +135,16 @@ namespace SpaceShooter
 
         private static async void gameOverActions()
         {
+            Debug.Assert(gameState != null);
             Debug.Assert(gameFrame != null);
             Debug.Assert(timeManager != null);
 
             timeManager.DisableTime();
             await gameFrame.DestroySpaceship(true);
             gameFrame.GameOverActions();
+
+            string gameDuration = StringUtils.FormatSecondsToHMS(TimeManager.ElapsedGameTime);
+            DatabaseManager.AddEntry(gameState.Score, gameDuration);
         }
 
         private static void onGameFrameClosed(object? sender, EventArgs e)
