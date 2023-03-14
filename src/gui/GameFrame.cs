@@ -10,9 +10,9 @@ namespace SpaceShooter.gui
         private List<WeaponGui> activeWeaponsGui;
 
         public GameFrame(
-            int gridDimensionX, 
-            int gridDimensionY, 
-            Dictionary<string, KeyEventHandler> keyEventHandlers, 
+            int gridDimensionX,
+            int gridDimensionY,
+            Dictionary<string, KeyEventHandler> keyEventHandlers,
             FormClosedEventHandler onGameFrameClosed
         )
         {
@@ -98,7 +98,7 @@ namespace SpaceShooter.gui
 
         private void relocateExistingWeapons(IGameStateUI gameState)
         {
-            foreach(var weaponGui in activeWeaponsGui)
+            foreach (var weaponGui in activeWeaponsGui)
             {
                 IGridItem? weapon = gameState.GetWeaponToDraw(weaponGui.ID);
                 Debug.Assert(weapon != null);
@@ -109,7 +109,7 @@ namespace SpaceShooter.gui
 
         private void renderNewWeapons(IGameStateUI gameState, List<int> newWeaponIDs)
         {
-            foreach(var id in newWeaponIDs)
+            foreach (var id in newWeaponIDs)
             {
                 IGridItem? weapon = gameState.GetWeaponToDraw(id);
                 Debug.Assert(weapon != null);
