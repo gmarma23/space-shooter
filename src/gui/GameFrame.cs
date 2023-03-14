@@ -99,6 +99,30 @@ namespace SpaceShooter.gui
             Controls.Remove(spaceshipGui);
         }
 
+        public void GameOverActions()
+        {
+            if (Controls.Contains(hero))
+            {
+                hero.DisposePictureBox();
+                Controls.Remove(hero);
+            }
+
+            if (Controls.Contains(enemy))
+            {
+                enemy.DisposePictureBox();
+                Controls.Remove(enemy);
+            }  
+
+            for (int i = activeWeaponsGui.Count - 1; i >= 0; i--)
+            {
+                activeWeaponsGui[i].DisposeImage();
+                Controls.Remove(activeWeaponsGui[i]);
+                activeWeaponsGui.RemoveAt(i);
+            }
+
+            GameOverMessage.Print(this);
+        }
+
         private void relocateExistingWeapons(IGameStateUI gameState)
         {
             foreach (var weaponGui in activeWeaponsGui)
@@ -133,9 +157,7 @@ namespace SpaceShooter.gui
 
                 activeWeaponsGui.Remove(weaponGui);
 
-                Image weaponImage = weaponGui.Image;
-                weaponGui.Image = null;
-                weaponImage.Dispose();
+                weaponGui.DisposeImage();
                 Controls.Remove(weaponGui);
             }
         }
