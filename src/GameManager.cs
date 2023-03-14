@@ -21,7 +21,7 @@ namespace SpaceShooter
 
         public static void StartNewGame()
         {
-            timeManager = new TimeManager();
+            timeManager = new TimeManager(65);
             gameState = new GameState();
             gameFrame = new GameFrame(gameState, keyEventHandlers, onGameFrameClosed);
             isEnemyBeingRenewed = false;

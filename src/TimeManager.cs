@@ -13,7 +13,7 @@ namespace SpaceShooter
         public static double DeltaTime { get; private set; }
         public static double ElapsedGameTime { get; private set; }
 
-        public TimeManager(int gameTargetFPS = 65)
+        public TimeManager(int gameTargetFPS)
         {
             gameUpdateTimer = new Timer();
             customActionTimers = new List<Timer>();
