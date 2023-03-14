@@ -93,7 +93,7 @@ namespace SpaceShooter.gui
 
             await spaceshipGui.Explode();
             spaceshipGui.DisposePictureBox();
-            Controls.Remove(enemy);
+            Controls.Remove(spaceshipGui);
         }
 
         private void relocateExistingWeapons(IGameStateUI gameState)
