@@ -71,6 +71,8 @@ namespace SpaceShooter.gui
 
             hero = new HeroSpaceshipGui(heroSpaceship.Width, heroSpaceship.Height, heroSpaceship.Image);
             Controls.Add(hero);
+
+            RelocateSpaceship(gameState, true);
         }
 
         public void RenderEnemySpaceship(IGameStateUI gameState)
@@ -80,6 +82,8 @@ namespace SpaceShooter.gui
 
             enemy = new EnemySpaceshipGui(enemySpaceship.Width, enemySpaceship.Height, enemySpaceship.Image);
             Controls.Add(enemy);
+
+            RelocateSpaceship(gameState, false);
         }
 
         public async Task DestroySpaceship(bool isHero)

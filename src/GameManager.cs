@@ -140,6 +140,7 @@ namespace SpaceShooter
         private static void gameOverActions()
         {
             Debug.Assert(gameFrame != null);
+            Debug.Assert(timeManager != null);
 
             gameFrame.DestroySpaceship(true);
             timeManager.DisableTime();
