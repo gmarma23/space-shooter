@@ -2,11 +2,11 @@
 
 namespace SpaceShooter.src
 {
-    public class DatabaseManager
+    public static class DatabaseManager
     {
         private const string connectionString = "Data source=SpaceShooter.db; Version=3";
 
-        public void AddEntry(int score, string gameDuration)
+        public static void AddEntry(int score, string gameDuration)
         {
             createTable();
             string insertSQL = "Insert into Game(score, gameDuration) values (@score, @gameDuration)";
@@ -16,7 +16,7 @@ namespace SpaceShooter.src
             executeNonQuerySQLiteCommand(command);
         }
 
-        public List<(int, string)> GetTopEntries(int count)
+        public static List<(int, string)> GetTopEntries(int count)
         {
             createTable();
             List<(int, string)> topEntries = new List<(int, string)>();
@@ -43,13 +43,13 @@ namespace SpaceShooter.src
             return topEntries;
         }
 
-        private void createTable()
+        private static void createTable()
         {
             const string createTable = "Create table if not exists Game(score integer, gameDuration Text)";
             executeNonQuerySQLiteCommand(new SQLiteCommand(createTable));
         }
 
-        private void executeNonQuerySQLiteCommand(SQLiteCommand command)
+        private static void executeNonQuerySQLiteCommand(SQLiteCommand command)
         {
             SQLiteConnection connection = new SQLiteConnection(connectionString);
             connection.Open();
