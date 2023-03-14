@@ -8,7 +8,7 @@
             int concurrentLaserBlastsCount = 1, 
             int laserBlastDamage = 30, 
             int laserReloadFrequency = 1500, 
-            int teleportFrequency = 3000,
+            int teleportFrequency = 5000,
             int scorePoints = 10
         ) : base(
             hp, 

@@ -4,7 +4,7 @@
     {
         public EnemyBomberSpaceship(
             GameGrid grid,
-            int hp = 400,
+            int hp = 500,
             int concurrentLaserBlastsCount = 1,
             int laserBlastDamage = 30,
             int laserReloadFrequency = 1500,
