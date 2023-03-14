@@ -4,6 +4,8 @@
     {
         public GameGrid Grid { get; }
 
+        public int Score { get; }
+
         public IHPGridItem GetSpaceshipToDraw(bool isHero);
 
         public IGridItem? GetWeaponToDraw(int id);
