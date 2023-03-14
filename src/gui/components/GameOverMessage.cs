@@ -2,13 +2,8 @@
 {
     public static class GameOverMessage
     {
-        private static bool isPrinted = false;
-
         public static void Print(Control parent)
         {
-            if (isPrinted)
-                return;
-
             Label gameOverMessage = new Label();
             parent.Controls.Add(gameOverMessage);
             
@@ -27,8 +22,6 @@
                 parent.ClientRectangle.Width / 2 - gameOverMessage.Width / 2,
                 parent.ClientRectangle.Height / 2 - gameOverMessage.Height / 2
             );
-
-            isPrinted = true;
         }
     }
 }
