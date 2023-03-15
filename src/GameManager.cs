@@ -150,8 +150,11 @@ namespace SpaceShooter
         private static void onGameFrameClosed(object? sender, EventArgs e)
         {
             Debug.Assert(timeManager != null);
+            Debug.Assert(gameFrame != null);
 
             timeManager.DisableTime();
+            gameFrame.Grid.DisposeBackgroundImage();
+
             gameState = null;
             gameFrame = null;
             timeManager = null;

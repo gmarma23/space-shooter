@@ -143,6 +143,16 @@ namespace SpaceShooter.resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap nebula_space_stars {
+            get {
+                object obj = ResourceManager.GetObject("nebula_space_stars", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap red_laser_blast {
             get {
                 object obj = ResourceManager.GetObject("red_laser_blast", resourceCulture);

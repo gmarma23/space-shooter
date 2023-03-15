@@ -16,6 +16,10 @@ namespace SpaceShooter.gui
             Height = gameState.Grid.DimensionY;
             Parent = parent;
 
+            BackgroundImage = resources.Resources.nebula_space_stars;
+            BackgroundImageLayout = ImageLayout.Stretch;
+            DoubleBuffered = true;
+
             activeWeaponsGui = new List<WeaponGui>();
         }
 
@@ -110,6 +114,13 @@ namespace SpaceShooter.gui
             }
 
             printGameOverMessage();
+        }
+
+        public void DisposeBackgroundImage()
+        {
+            Image backgroundImage = BackgroundImage;
+            BackgroundImage = null;
+            backgroundImage.Dispose();
         }
 
         private void relocateExistingWeapons(IGameStateUI gameState)
