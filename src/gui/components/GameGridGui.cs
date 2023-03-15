@@ -109,7 +109,7 @@ namespace SpaceShooter.gui
                 activeWeaponsGui.RemoveAt(i);
             }
 
-            GameOverMessage.Print(this);
+            PrintGameOverMessage();
         }
 
         private void relocateExistingWeapons(IGameStateUI gameState)
@@ -149,6 +149,28 @@ namespace SpaceShooter.gui
                 weaponGui.DisposeImage();
                 Controls.Remove(weaponGui);
             }
+        }
+
+        private void PrintGameOverMessage()
+        {
+            Label gameOverMessage = new Label();
+            Controls.Add(gameOverMessage);
+
+            gameOverMessage.AutoSize = true;
+            gameOverMessage.BackColor = Color.Transparent;
+            gameOverMessage.Font = new Font(
+                "Microsoft Sans Serif",
+                40.0F, FontStyle.Bold | FontStyle.Italic,
+                GraphicsUnit.Point
+            );
+            gameOverMessage.ForeColor = Color.DarkRed;
+            gameOverMessage.Text = "GAME OVER!";
+            gameOverMessage.TextAlign = ContentAlignment.MiddleCenter;
+            gameOverMessage.UseCompatibleTextRendering = true;
+            gameOverMessage.Location = new Point(
+                Width / 2 - gameOverMessage.Width / 2,
+                Height / 2 - gameOverMessage.Height / 2
+            );
         }
 
         public SpaceshipGui getSpaceshipGui(bool isHero) => isHero ? hero : enemy;
