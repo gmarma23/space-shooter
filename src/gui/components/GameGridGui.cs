@@ -109,7 +109,7 @@ namespace SpaceShooter.gui
                 activeWeaponsGui.RemoveAt(i);
             }
 
-            PrintGameOverMessage();
+            printGameOverMessage();
         }
 
         private void relocateExistingWeapons(IGameStateUI gameState)
@@ -151,7 +151,7 @@ namespace SpaceShooter.gui
             }
         }
 
-        private void PrintGameOverMessage()
+        private void printGameOverMessage()
         {
             Label gameOverMessage = new Label();
             Controls.Add(gameOverMessage);
