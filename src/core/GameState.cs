@@ -56,7 +56,7 @@ namespace SpaceShooter.core
         public List<int> GetActiveWeaponIDs() 
             => activeWeapons.Select(weapon => weapon.ID).ToList();
 
-        public IControls GetControlableHero() => (IControls)getSpaceship(true);
+        public IControls GetControlableHero() => hero;
 
         public void SpaceshipFireLaser(bool isHero)
         {
