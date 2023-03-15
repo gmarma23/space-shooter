@@ -32,7 +32,7 @@ namespace SpaceShooter.core
             if (enemy != null)
                 Score += enemy.ScorePoints;
 
-            if (waves % 10 == 0)
+            if (waves % 6 == 0)
             {
                 enemy = new EnemyBossSpaceship(Grid, hero);
                 return;
