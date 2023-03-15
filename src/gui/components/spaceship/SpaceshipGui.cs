@@ -15,6 +15,7 @@ namespace SpaceShooter.gui
         {
             Width = width;
             Height = height + (int)((healthBarHeightRatio + healthBarMarginRatio) * height);
+            BackColor = Color.Transparent;
 
             spaceshipPicBox = new PictureBox
             {
