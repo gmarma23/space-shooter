@@ -28,10 +28,10 @@ namespace SpaceShooter
 
             gameFrame.Show();
 
-            gameFrame.RenderHeroSpaceship(gameState);
+            gameFrame.Grid.RenderHeroSpaceship(gameState);
 
             gameState.RenewEnemySpaceship();
-            gameFrame.RenderEnemySpaceship(gameState);
+            gameFrame.Grid.RenderEnemySpaceship(gameState);
 
             timeManager.AddMainRecurringAction(gameLoop);
             timeManager.EnableTime();
@@ -57,15 +57,15 @@ namespace SpaceShooter
             gameState.EnemyTeleport();
             gameState.DisposeInactiveWeapons();            
 
-            gameFrame.RelocateSpaceship(gameState, true);
-            gameFrame.RelocateSpaceship(gameState, false);
-            gameFrame.UpdateSpaceshipAvailableHealth(gameState, true);
-            gameFrame.UpdateSpaceshipAvailableHealth(gameState, false);
+            gameFrame.Grid.RelocateSpaceship(gameState, true);
+            gameFrame.Grid.RelocateSpaceship(gameState, false);
+            gameFrame.Grid.UpdateSpaceshipAvailableHealth(gameState, true);
+            gameFrame.Grid.UpdateSpaceshipAvailableHealth(gameState, false);
 
             gameState.SpaceshipFireLaser(false);
             gameState.EnemyLaunchMissile();
 
-            gameFrame.UpdateActiveWeapons(gameState);
+            gameFrame.Grid.UpdateActiveWeapons(gameState);
         }
 
         private static async void renewEnemySpaceship()
@@ -77,9 +77,9 @@ namespace SpaceShooter
                 return;
             
             isEnemyBeingRenewed = true;
-            await gameFrame.DestroySpaceship(false);
+            await gameFrame.Grid.DestroySpaceship(false);
             gameState.RenewEnemySpaceship();
-            gameFrame.RenderEnemySpaceship(gameState);
+            gameFrame.Grid.RenderEnemySpaceship(gameState);
             isEnemyBeingRenewed = false;
         }
 
@@ -140,8 +140,8 @@ namespace SpaceShooter
             Debug.Assert(timeManager != null);
 
             timeManager.DisableTime();
-            await gameFrame.DestroySpaceship(true);
-            gameFrame.GameOverActions();
+            await gameFrame.Grid.DestroySpaceship(true);
+            gameFrame.Grid.GameOverActions();
 
             string gameDuration = StringUtils.FormatSecondsToHMS(TimeManager.ElapsedGameTime);
             DatabaseManager.AddEntry(gameState.Score, gameDuration);
