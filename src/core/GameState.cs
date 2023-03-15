@@ -4,7 +4,7 @@ namespace SpaceShooter.core
 {
     public class GameState : IGameStateUI
     {
-        private static readonly Random random = new Random();
+        private static readonly Random random = new Random(Environment.TickCount);
 
         private EnemySpaceship enemy;
         private readonly HeroSpaceship hero;
@@ -14,7 +14,7 @@ namespace SpaceShooter.core
         public GameGrid Grid { get; private init; }
         public int Score { get; private set; }
 
-        public GameState(int gridDimensionX = 1360, int gridDimensionY = 760)
+        public GameState(int gridDimensionX, int gridDimensionY)
         {
             Grid = new GameGrid(gridDimensionX, gridDimensionY);
             hero = new HeroSpaceship(Grid);
