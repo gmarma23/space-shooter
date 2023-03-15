@@ -1,6 +1,6 @@
 ﻿namespace SpaceShooter.gui
 {
-    internal class SpaceshipHealthBar : Panel
+    public class SpaceshipHealthBar : Panel
     {
         private readonly Panel totalHealthBar;
         private readonly Panel availableHealthBar;

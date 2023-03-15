@@ -2,7 +2,7 @@
 
 namespace SpaceShooter.gui
 {
-    internal abstract class SpaceshipGui : Panel
+    public abstract class SpaceshipGui : Panel
     {
         protected const double healthBarHeightRatio = 0.05;
         protected const double healthBarMarginRatio = 0.07;

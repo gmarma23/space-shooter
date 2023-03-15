@@ -1,6 +1,6 @@
 ﻿namespace SpaceShooter.gui
 {
-    internal class EnemySpaceshipGui : SpaceshipGui
+    public class EnemySpaceshipGui : SpaceshipGui
     {
         public EnemySpaceshipGui(int width, int height, Image image) : base(width, height, image)
             => arrangeItems();
