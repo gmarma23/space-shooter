@@ -11,7 +11,7 @@ namespace SpaceShooter.gui
 
         public GameGridGui Grid { get; private init; }
 
-        public StatsBar StatsPanel { get; private init; }
+        public StatsBar StatsBar { get; private init; }
 
         public GameFrame(
             IGameStateUI gameState,
@@ -38,7 +38,7 @@ namespace SpaceShooter.gui
                 Top = statsPanelHeight
             };
 
-            StatsPanel = new StatsBar(this, statsPanelWidth, statsPanelHeight);
+            StatsBar = new StatsBar(this, statsPanelWidth, statsPanelHeight);
         }
 
         protected override CreateParams CreateParams

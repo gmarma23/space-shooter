@@ -32,6 +32,7 @@ namespace SpaceShooter
 
             gameState.RenewEnemySpaceship();
             gameFrame.Grid.RenderEnemySpaceship(gameState);
+            gameFrame.StatsBar.ScoreLabel.UpdateValue(gameState.Score.ToString());
 
             timeManager.AddMainRecurringAction(gameLoop);
             timeManager.EnableTime();
@@ -44,6 +45,8 @@ namespace SpaceShooter
             Debug.Assert(timeManager != null);
 
             timeManager.UpdateDeltaTime();
+            string elapsedTime = StringUtils.FormatSecondsToHMS(TimeManager.ElapsedGameTime);
+            gameFrame.StatsBar.ElapsedTimeLabel.UpdateValue(elapsedTime);
 
             if (gameState.IsGameOver())
             {
@@ -80,6 +83,7 @@ namespace SpaceShooter
             await gameFrame.Grid.DestroySpaceship(false);
             gameState.RenewEnemySpaceship();
             gameFrame.Grid.RenderEnemySpaceship(gameState);
+            gameFrame.StatsBar.ScoreLabel.UpdateValue(gameState.Score.ToString());
             isEnemyBeingRenewed = false;
         }
 
