@@ -5,7 +5,7 @@ namespace SpaceShooter.gui
 {
     public class StatsLabel : Label
     {
-        private const float labelHeightRatio = 0.7f;
+        private const float labelHeightRatio = 0.65f;
         private readonly string name;
 
         public StatsLabel(Control parent, string name, string initValue = "")

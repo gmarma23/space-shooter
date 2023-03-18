@@ -18,7 +18,7 @@ namespace SpaceShooter.core
             int teleportFrequency = 5000,
             int missileCount = 10, 
             int missileDamage = 100, 
-            int missileReloadFrequency = 10000, 
+            int missileReloadFrequency = 12000, 
             int scorePoints = 20
         ) : base(
             hp, 
