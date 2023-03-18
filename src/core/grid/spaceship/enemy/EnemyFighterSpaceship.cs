@@ -27,7 +27,7 @@ namespace SpaceShooter.core
             setBounds(grid);
             initializeLocationX();
             initializeLocationY();
-            Image = resources.Resources.enemy_fighter_spaceship;
+            Image = resources.Resources.img_enemy_fighter_spaceship;
         }
     }
 }

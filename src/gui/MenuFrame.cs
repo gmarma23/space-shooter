@@ -53,7 +53,7 @@
             {
                 Width = heroPicBoxWidth,
                 Height = heroPicBoxHeight,
-                Image = resources.Resources.hero_spaceship,
+                Image = resources.Resources.img_hero_spaceship,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 BackColor = Color.Transparent
             };

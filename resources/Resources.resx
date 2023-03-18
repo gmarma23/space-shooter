@@ -118,37 +118,55 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="blue_laser_blast" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="aud_explosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>audio\explosion.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="aud_laser_blast" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>audio\laser_blast.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="aud_launch_missile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>audio\launch_missile.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="aud_menu_click" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>audio\menu_click.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="aud_points" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>audio\points.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="aud_teleport" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>audio\teleport.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ico_space_shooter" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>icons\space_shooter.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="img_blue_laser_blast" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\blue_laser_blast.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="enemy_bomber_spaceship" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="img_enemy_bomber_spaceship" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\enemy_bomber_spaceship.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="enemy_boss_spaceship" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="img_enemy_boss_spaceship" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\enemy_boss_spaceship.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="enemy_fighter_spaceship" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="img_enemy_fighter_spaceship" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\enemy_fighter_spaceship.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="enemy_missile" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="img_enemy_missile" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\enemy_missile.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="enemy_teleporter_spaceship" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="img_enemy_teleporter_spaceship" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\enemy_teleporter_spaceship.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="explosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="img_explosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\explosion.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="hero_spaceship" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="img_hero_spaceship" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\hero_spaceship.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="nebula_space_stars" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\nebula_space_stars.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="red_laser_blast" type="System.Resources.ResXFileRef, System.Windows.Forms">
+  <data name="img_red_laser_blast" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\red_laser_blast.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="space_shooter" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>icons\space_shooter.ico;System.Drawing.Icon, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="img_space_background" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\nebula_space_stars.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

@@ -1,4 +1,7 @@
-﻿namespace SpaceShooter.core
+﻿using SpaceShooter.resources;
+using SpaceShooter.utils;
+
+namespace SpaceShooter.core
 {
     public abstract class Spaceship : GridItem, IHPGridItem, IFireLaser, ITeleport, ILaunchMissile
     {
@@ -11,6 +14,10 @@
         protected int missileReloadFrequency;
         protected int missileCount;
         protected int availableHP;
+
+        protected static readonly AudioStreamPlayer teleportSoundFx = new(Resources.aud_teleport);
+        protected static readonly AudioStreamPlayer fireLaserSoundFx = new(Resources.aud_laser_blast);
+        protected static readonly AudioStreamPlayer launchMissileSoundFx = new(Resources.aud_launch_missile);
 
         public int TotalHP { get; protected init; }
 

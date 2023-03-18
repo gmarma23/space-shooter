@@ -7,7 +7,7 @@ namespace SpaceShooter.core
         public EnemyLaserBlast(IFireLaser laserCarrier, GameGrid grid, int index) : base(laserCarrier, grid, index)
         {
             LocationY = laserCarrier.LocationY + laserCarrier.Height;
-            Image = Resources.red_laser_blast;
+            Image = Resources.img_red_laser_blast;
             displacementY = absMaxDisplacement;
         }
     }

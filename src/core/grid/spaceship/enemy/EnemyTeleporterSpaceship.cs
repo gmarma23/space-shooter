@@ -26,7 +26,7 @@
             setBounds(grid);
             initializeLocationX();
             initializeLocationY();
-            Image = resources.Resources.enemy_teleporter_spaceship;
+            Image = resources.Resources.img_enemy_teleporter_spaceship;
         }
 
         public override void Teleport()
@@ -40,6 +40,7 @@
             LocationX = random.Next(minX, maxX);
             LocationY = random.Next(minY, maxY);
             lastTeleportTimestamp = TimeManager.ElapsedGameTime;
+            teleportSoundFx.Play();
         }
     }
 }

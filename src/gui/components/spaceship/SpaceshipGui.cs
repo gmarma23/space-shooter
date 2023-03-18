@@ -1,4 +1,5 @@
-﻿using SpaceShooter.utils;
+﻿using SpaceShooter.resources;
+using SpaceShooter.utils;
 
 namespace SpaceShooter.gui
 {
@@ -7,6 +8,8 @@ namespace SpaceShooter.gui
         protected const double healthBarHeightRatio = 0.05;
         protected const double healthBarMarginRatio = 0.07;
         private const double explosionRatio = 0.75;
+
+        protected static readonly AudioStreamPlayer explosionSoundFx = new(Resources.aud_explosion);
 
         protected PictureBox spaceshipPicBox;
         protected SpaceshipHealthBar spaceshipHealthBar;
@@ -47,12 +50,14 @@ namespace SpaceShooter.gui
             {
                 Width = (int)(spaceshipPicBox.Width * explosionRatio),
                 Height = (int)(spaceshipPicBox.Height * explosionRatio),
-                Image = resources.Resources.explosion,
+                Image = Resources.img_explosion,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 BackColor = Color.Transparent
             };
             Controls.Add(explosionPicBox);
             explosionPicBox.Parent = spaceshipPicBox;
+
+            explosionSoundFx.Play();
 
             int steps = 10;
             for (int i = 0; i < steps; i++)

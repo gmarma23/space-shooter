@@ -61,112 +61,166 @@ namespace SpaceShooter.resources {
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.Drawing.Bitmap blue_laser_blast {
+        internal static System.IO.UnmanagedMemoryStream aud_explosion {
             get {
-                object obj = ResourceManager.GetObject("blue_laser_blast", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetStream("aud_explosion", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy_bomber_spaceship {
+        internal static System.IO.UnmanagedMemoryStream aud_laser_blast {
             get {
-                object obj = ResourceManager.GetObject("enemy_bomber_spaceship", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetStream("aud_laser_blast", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy_boss_spaceship {
+        internal static System.IO.UnmanagedMemoryStream aud_launch_missile {
             get {
-                object obj = ResourceManager.GetObject("enemy_boss_spaceship", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetStream("aud_launch_missile", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy_fighter_spaceship {
+        internal static System.IO.UnmanagedMemoryStream aud_menu_click {
             get {
-                object obj = ResourceManager.GetObject("enemy_fighter_spaceship", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetStream("aud_menu_click", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy_missile {
+        internal static System.IO.UnmanagedMemoryStream aud_points {
             get {
-                object obj = ResourceManager.GetObject("enemy_missile", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetStream("aud_points", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
-        internal static System.Drawing.Bitmap enemy_teleporter_spaceship {
+        internal static System.IO.UnmanagedMemoryStream aud_teleport {
             get {
-                object obj = ResourceManager.GetObject("enemy_teleporter_spaceship", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap explosion {
-            get {
-                object obj = ResourceManager.GetObject("explosion", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap hero_spaceship {
-            get {
-                object obj = ResourceManager.GetObject("hero_spaceship", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap nebula_space_stars {
-            get {
-                object obj = ResourceManager.GetObject("nebula_space_stars", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap red_laser_blast {
-            get {
-                object obj = ResourceManager.GetObject("red_laser_blast", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
+                return ResourceManager.GetStream("aud_teleport", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
-        internal static System.Drawing.Icon space_shooter {
+        internal static System.Drawing.Icon ico_space_shooter {
             get {
-                object obj = ResourceManager.GetObject("space_shooter", resourceCulture);
+                object obj = ResourceManager.GetObject("ico_space_shooter", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_blue_laser_blast {
+            get {
+                object obj = ResourceManager.GetObject("img_blue_laser_blast", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_enemy_bomber_spaceship {
+            get {
+                object obj = ResourceManager.GetObject("img_enemy_bomber_spaceship", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_enemy_boss_spaceship {
+            get {
+                object obj = ResourceManager.GetObject("img_enemy_boss_spaceship", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_enemy_fighter_spaceship {
+            get {
+                object obj = ResourceManager.GetObject("img_enemy_fighter_spaceship", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_enemy_missile {
+            get {
+                object obj = ResourceManager.GetObject("img_enemy_missile", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_enemy_teleporter_spaceship {
+            get {
+                object obj = ResourceManager.GetObject("img_enemy_teleporter_spaceship", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_explosion {
+            get {
+                object obj = ResourceManager.GetObject("img_explosion", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_hero_spaceship {
+            get {
+                object obj = ResourceManager.GetObject("img_hero_spaceship", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_red_laser_blast {
+            get {
+                object obj = ResourceManager.GetObject("img_red_laser_blast", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_space_background {
+            get {
+                object obj = ResourceManager.GetObject("img_space_background", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
     }

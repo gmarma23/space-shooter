@@ -37,7 +37,7 @@ namespace SpaceShooter.core
             setBounds(grid);
             initializeLocationX();
             initializeLocationY();
-            Image = resources.Resources.enemy_boss_spaceship;
+            Image = resources.Resources.img_enemy_boss_spaceship;
         }
 
         public override void Teleport()

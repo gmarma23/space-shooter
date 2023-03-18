@@ -5,7 +5,7 @@
         public EnemyMissile(ILaunchMissile missileLauncher, GameGrid grid) : base(missileLauncher, grid)
         {
             LocationY = missileLauncher.LocationY + missileLauncher.Height;
-            Image = resources.Resources.enemy_missile;
+            Image = resources.Resources.img_enemy_missile;
             displacementY = absMaxDisplacement;
         }
     }

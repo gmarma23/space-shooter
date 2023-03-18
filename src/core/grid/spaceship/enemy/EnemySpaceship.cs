@@ -62,6 +62,7 @@ namespace SpaceShooter.core
                 laserBlasts.Add(new EnemyLaserBlast(this, grid, i));
             lastLaserFireTimestamp = TimeManager.ElapsedGameTime;
 
+            fireLaserSoundFx.Play();
             return laserBlasts.Cast<LaserBlast>().ToList();
         }
 
@@ -72,6 +73,8 @@ namespace SpaceShooter.core
 
             lastMissileLaunchTimestamp = TimeManager.ElapsedGameTime;
             missileCount--;
+
+            launchMissileSoundFx.Play();
             return new EnemyMissile(this, grid);
         }
 

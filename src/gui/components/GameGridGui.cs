@@ -16,7 +16,7 @@ namespace SpaceShooter.gui
             Height = gameState.Grid.DimensionY;
             Parent = parent;
 
-            BackgroundImage = resources.Resources.nebula_space_stars;
+            BackgroundImage = resources.Resources.img_space_background;
             BackgroundImageLayout = ImageLayout.Stretch;
             DoubleBuffered = true;
 

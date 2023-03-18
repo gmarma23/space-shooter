@@ -24,7 +24,7 @@ namespace SpaceShooter.core
             initializeLocationX();
             initializeLocationY();
             initializeDirectionBooleans();
-            Image = resources.Resources.hero_spaceship;
+            Image = resources.Resources.img_hero_spaceship;
         }
 
         public override void Move()
@@ -47,7 +47,8 @@ namespace SpaceShooter.core
             for (int i = 0; i < ConcurrentLaserBlastsCount; i++)
                 laserBlasts.Add(new HeroLaserBlast(this, grid, i));
             lastLaserFireTimestamp = TimeManager.ElapsedGameTime;
-
+            
+            fireLaserSoundFx.Play();
             return laserBlasts.Cast<LaserBlast>().ToList();
         }
 

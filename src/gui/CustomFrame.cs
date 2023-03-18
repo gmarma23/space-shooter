@@ -25,7 +25,7 @@ namespace SpaceShooter.gui
             Size = new Size(400, 500);
 
             Text = "Space Shooter";
-            Icon = resources.Resources.space_shooter;
+            Icon = resources.Resources.ico_space_shooter;
         }
     }
 }
