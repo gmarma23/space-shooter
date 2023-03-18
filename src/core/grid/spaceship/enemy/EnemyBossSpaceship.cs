@@ -40,6 +40,20 @@ namespace SpaceShooter.core
             Image = resources.Resources.enemy_boss_spaceship;
         }
 
+        public override void Teleport()
+        {
+            if (!IsActive)
+                return;
+
+            if (teleportClockIsReloading())
+                return;
+
+            LocationX = random.Next(minX, maxX);
+            LocationY = random.Next(minY, maxY);
+            lastTeleportTimestamp = TimeManager.ElapsedGameTime;
+            teleportSoundFx.Play();
+        }
+
         protected override void updateDisplacement()
         {
             double constDisplacementTimeSpan = 1000 * (TimeManager.ElapsedGameTime - lastDisplacementUpdateTimestamp);
