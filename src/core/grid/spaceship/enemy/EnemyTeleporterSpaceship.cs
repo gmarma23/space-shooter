@@ -1,6 +1,4 @@
-﻿using SpaceShooter.utils;
-
-namespace SpaceShooter.core
+﻿namespace SpaceShooter.core
 {
     public class EnemyTeleporterSpaceship : EnemySpaceship
     {
@@ -29,20 +27,6 @@ namespace SpaceShooter.core
             initializeLocationX();
             initializeLocationY();
             Image = resources.Resources.img_enemy_teleporter_spaceship;
-        }
-
-        public override void Teleport()
-        {
-            if (!IsActive)
-                return;
-
-            if (teleportClockIsReloading())
-                return;
-
-            LocationX = random.Next(minX, maxX);
-            LocationY = random.Next(minY, maxY);
-            lastTeleportTimestamp = TimeManager.ElapsedGameTime;
-            AudioPlayer.Player.PlaySound(teleportSoundFx);
         }
     }
 }

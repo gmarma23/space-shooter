@@ -65,6 +65,7 @@ namespace SpaceShooter.core
             lastLaserFireTimestamp = TimeManager.ElapsedGameTime;
 
             AudioPlayer.Player.PlaySound(fireLaserSoundFx);
+
             return laserBlasts.Cast<LaserBlast>().ToList();
         }
 
@@ -77,7 +78,20 @@ namespace SpaceShooter.core
             missileCount--;
 
             AudioPlayer.Player.PlaySound(launchMissileSoundFx);
+
             return new EnemyMissile(this, grid);
+        }
+
+        public override void Teleport()
+        {
+            if (!IsActive || teleportFrequency == 0 || teleportClockIsReloading())
+                return;
+
+            LocationX = random.Next(minX, maxX);
+            LocationY = random.Next(minY, maxY);
+            lastTeleportTimestamp = TimeManager.ElapsedGameTime;
+
+            AudioPlayer.Player.PlaySound(teleportSoundFx);
         }
 
         protected override void setBounds(GameGrid grid)
