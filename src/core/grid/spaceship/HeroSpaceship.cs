@@ -23,7 +23,7 @@ namespace SpaceShooter.core
             setBounds(grid);
             initializeLocationX();
             initializeLocationY();
-            initializeDirectionBooleans();
+            ResetControls();
             Image = resources.Resources.img_hero_spaceship;
         }
 
@@ -50,6 +50,14 @@ namespace SpaceShooter.core
 
             AudioPlayer.Player.PlaySound(fireLaserSoundFx);
             return laserBlasts.Cast<LaserBlast>().ToList();
+        }
+
+        public void ResetControls()
+        {
+            GoLeft = false;
+            GoRight = false;
+            GoUp = false;
+            GoDown = false;
         }
 
         protected void updateDisplacement()
@@ -83,13 +91,5 @@ namespace SpaceShooter.core
 
         protected override void initializeLocationY()
             => LocationY = (minY + maxY) / 2;
-
-        protected void initializeDirectionBooleans()
-        {
-            GoLeft = false;
-            GoRight = false;
-            GoUp = false;
-            GoDown = false;
-        }
     }
 }
