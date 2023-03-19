@@ -9,7 +9,7 @@ namespace SpaceShooter.gui
         protected const double healthBarMarginRatio = 0.07;
         private const double explosionRatio = 0.75;
 
-        protected static readonly AudioStreamPlayer explosionSoundFx = new(Resources.aud_explosion);
+        protected static readonly CachedSound explosionSoundFx = new(Resources.aud_explosion);
 
         protected PictureBox spaceshipPicBox;
         protected SpaceshipHealthBar spaceshipHealthBar;
@@ -57,7 +57,7 @@ namespace SpaceShooter.gui
             Controls.Add(explosionPicBox);
             explosionPicBox.Parent = spaceshipPicBox;
 
-            explosionSoundFx.Play();
+            AudioPlayer.Instance.PlaySound(explosionSoundFx);
 
             int steps = 10;
             for (int i = 0; i < steps; i++)

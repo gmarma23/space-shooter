@@ -47,8 +47,8 @@ namespace SpaceShooter.core
             for (int i = 0; i < ConcurrentLaserBlastsCount; i++)
                 laserBlasts.Add(new HeroLaserBlast(this, grid, i));
             lastLaserFireTimestamp = TimeManager.ElapsedGameTime;
-            
-            fireLaserSoundFx.Play();
+
+            AudioPlayer.Instance.PlaySound(fireLaserSoundFx);
             return laserBlasts.Cast<LaserBlast>().ToList();
         }
 

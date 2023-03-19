@@ -1,4 +1,6 @@
-﻿namespace SpaceShooter.core
+﻿using SpaceShooter.utils;
+
+namespace SpaceShooter.core
 {
     public class EnemyTeleporterSpaceship : EnemySpaceship
     {
@@ -40,7 +42,7 @@
             LocationX = random.Next(minX, maxX);
             LocationY = random.Next(minY, maxY);
             lastTeleportTimestamp = TimeManager.ElapsedGameTime;
-            teleportSoundFx.Play();
+            AudioPlayer.Instance.PlaySound(teleportSoundFx);
         }
     }
 }

@@ -15,9 +15,9 @@ namespace SpaceShooter.core
         protected int missileCount;
         protected int availableHP;
 
-        protected static readonly AudioStreamPlayer teleportSoundFx = new(Resources.aud_teleport);
-        protected static readonly AudioStreamPlayer fireLaserSoundFx = new(Resources.aud_laser_blast);
-        protected static readonly AudioStreamPlayer launchMissileSoundFx = new(Resources.aud_launch_missile);
+        protected static readonly CachedSound teleportSoundFx = new(Resources.aud_teleport);
+        protected static readonly CachedSound fireLaserSoundFx = new(Resources.aud_laser_blast);
+        protected static readonly CachedSound launchMissileSoundFx = new(Resources.aud_launch_missile);
 
         public int TotalHP { get; protected init; }
 
