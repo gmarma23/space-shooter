@@ -34,7 +34,7 @@ namespace SpaceShooter
                     string gameDuration = reader.GetString(1);
 
                     topEntries.Add((score, gameDuration));
-                    topEntries = topEntries.OrderByDescending(entry => entry.Item1).ToList();
+                    topEntries = topEntries.OrderByDescending(entry => entry.Item1).ThenBy(entry => entry.Item2).ToList();
                     if (topEntries.Count == count + 1)
                         topEntries.RemoveAt(topEntries.Count - 1);
                 }
