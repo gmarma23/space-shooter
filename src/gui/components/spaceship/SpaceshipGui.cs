@@ -57,7 +57,7 @@ namespace SpaceShooter.gui
             Controls.Add(explosionPicBox);
             explosionPicBox.Parent = spaceshipPicBox;
 
-            AudioPlayer.Instance.PlaySound(explosionSoundFx);
+            AudioPlayer.Player.PlaySound(explosionSoundFx);
 
             int steps = 10;
             for (int i = 0; i < steps; i++)

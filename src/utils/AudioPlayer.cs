@@ -8,7 +8,7 @@ namespace SpaceShooter.utils
         private readonly IWavePlayer outputDevice;
         private readonly MixingSampleProvider mixer;
 
-        public static readonly AudioPlayer Instance = new AudioPlayer(44100, 2);
+        public static readonly AudioPlayer Player = new AudioPlayer(44100, 2);
 
         private AudioPlayer(int sampleRate = 44100, int channelCount = 2)
         {

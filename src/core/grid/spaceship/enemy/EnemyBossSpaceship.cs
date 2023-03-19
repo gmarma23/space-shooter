@@ -51,7 +51,7 @@ namespace SpaceShooter.core
             LocationX = random.Next(minX, maxX);
             LocationY = random.Next(minY, maxY);
             lastTeleportTimestamp = TimeManager.ElapsedGameTime;
-            AudioPlayer.Instance.PlaySound(teleportSoundFx);
+            AudioPlayer.Player.PlaySound(teleportSoundFx);
         }
 
         protected override void updateDisplacement()
