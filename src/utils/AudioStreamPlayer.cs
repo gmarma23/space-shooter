@@ -12,13 +12,24 @@ namespace SpaceShooter.utils
             var audioFormat = new WaveFormat(rate: 44100, bits: 16, channels: 1);
             formattedAudioStream = new RawSourceLoopStream(audioStream, audioFormat);
             audioOutput = new WaveOut();
-            audioOutput.Init(formattedAudioStream);
+           
         }
 
-        public void Play(bool isLooped = false)
+        public void Play()
         {
-            formattedAudioStream.EnableLooping = isLooped;
             formattedAudioStream.ReloadStream();
+            audioOutput.Init(formattedAudioStream);
+            audioOutput.Play();
+        }
+
+        public void PlayLooped()
+        {
+            if (audioOutput.PlaybackState == PlaybackState.Playing)
+                return;
+
+            formattedAudioStream.EnableLooping = true;
+            formattedAudioStream.ReloadStream();
+            audioOutput.Init(formattedAudioStream);
             audioOutput.Play();
         }
 
