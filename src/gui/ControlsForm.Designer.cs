@@ -1,6 +1,6 @@
 ﻿namespace SpaceShooter.gui
 {
-    partial class ControlsFrame
+    partial class ControlsForm
     {
         /// <summary>
         /// Required designer variable.

@@ -26,23 +26,23 @@ namespace SpaceShooter.gui
         public int MenuButtonHeight { get; private set; }
         private int menuButtonsVerticalMargin;
 
-        public MenuOptions(MenuFrame menuFrame)
+        public MenuOptions(MenuForm menuForm)
         {
-            Parent = menuFrame;
+            Parent = menuForm;
 
             Debug.Assert(menuButtonsText.Length == menuButtonsEventHandlers.Length);
             numOfButtons = menuButtonsText.Length;
 
-            Width = (int)(menuFrame.Width * MenuFrame.optionsWidthRatio);
-            Height = (int)(menuFrame.Height * MenuFrame.optionsHeightRatio);
+            Width = (int)(menuForm.Width * MenuForm.optionsWidthRatio);
+            Height = (int)(menuForm.Height * MenuForm.optionsHeightRatio);
 
             calculateButtonAndMarginSizes();
 
             Height -= menuButtonsVerticalMargin;
 
             Location = new Point(
-                menuFrame.ClientRectangle.Width / 2 - Width / 2, 
-                (int)(menuFrame.ClientRectangle.Height * MenuFrame.optionsLocationYRatio) - Height / 2);
+                menuForm.ClientRectangle.Width / 2 - Width / 2, 
+                (int)(menuForm.ClientRectangle.Height * MenuForm.optionsLocationYRatio) - Height / 2);
 
             initializeMenuButtons(); 
             arrangeMenuButtons();

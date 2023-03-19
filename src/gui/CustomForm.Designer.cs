@@ -1,6 +1,6 @@
 ﻿namespace SpaceShooter.gui
 {
-    partial class MenuFrame
+    partial class CustomForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,14 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.SuspendLayout();
-            // 
-            // MenuFrame
-            // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
+            this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ResumeLayout(false);
-
         }
 
         #endregion

@@ -10,12 +10,12 @@ using System.Windows.Forms;
 
 namespace SpaceShooter.gui
 {
-    public partial class HighscoresFrame : Form
+    public partial class ControlsForm : Form
     {
-        public HighscoresFrame()
+        public ControlsForm()
         {
             InitializeComponent();
-            FormClosed += AppManager.OnSubFrameClosed;
+            FormClosed += AppManager.OnSubFormClosed;
         }
     }
 }

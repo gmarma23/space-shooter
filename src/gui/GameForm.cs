@@ -5,7 +5,7 @@ using System;
 
 namespace SpaceShooter.gui
 {
-    public partial class GameFrame : CustomFrame
+    public partial class GameForm : CustomForm
     {
         private const float statsPanelHeightRatio = 0.05f;
 
@@ -13,7 +13,7 @@ namespace SpaceShooter.gui
 
         public StatsBar StatsBar { get; private init; }
 
-        public GameFrame(IGameStateUI gameState)
+        public GameForm(IGameStateUI gameState)
         {
             InitializeComponent();
 
@@ -24,7 +24,7 @@ namespace SpaceShooter.gui
             int clientHight = gameState.Grid.DimensionY + statsPanelHeight;
             ClientSize = new Size(clientWidth, clientHight);
 
-            FormClosed += AppManager.OnSubFrameClosed;
+            FormClosed += AppManager.OnSubFormClosed;
 
             Grid = new GameGridGui(this, gameState)
             {

@@ -6,7 +6,7 @@ namespace SpaceShooter
 {
     internal static class AppManager
     {
-        private static MenuFrame menuFrame = new MenuFrame();
+        private static MenuForm menuForm = new MenuForm();
 
         public static void Start()
         {
@@ -23,29 +23,29 @@ namespace SpaceShooter
                 return;
             }
             */
-            Application.Run(menuFrame);
+            Application.Run(menuForm);
         }
             
 
         public static void OnMenuOptionPlayClick(object sender, EventArgs e) 
         {
-            menuFrame.Hide();
+            menuForm.Hide();
             GameManager.StartNewGame();
         }
 
         public static void OnMenuOptionHighscoresClick(object sender, EventArgs e)
         {
-            menuFrame.Hide();
-            new HighscoresFrame().Show();
+            menuForm.Hide();
+            new HighscoresForm().Show();
         }
 
         public static void OnMenuOptionControlsClick(object sender, EventArgs e)
         {
-            menuFrame.Hide();
-            new ControlsFrame().Show();
+            menuForm.Hide();
+            new ControlsForm().Show();
         }
 
-        public static void OnSubFrameClosed(object sender, EventArgs e) => menuFrame.Show();
+        public static void OnSubFormClosed(object sender, EventArgs e) => menuForm.Show();
 
         private static bool isDependecyMissing(string dependencyFilename)
         {

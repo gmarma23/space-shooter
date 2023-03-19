@@ -1,6 +1,6 @@
 ﻿namespace SpaceShooter.gui
 {
-    public partial class MenuFrame : CustomFrame
+    public partial class MenuForm : CustomForm
     {
         public const double optionsLocationYRatio = 0.77;
         public const double optionsWidthRatio = 0.35;
@@ -14,7 +14,7 @@
         private const double heroPicBoxHeightRatio = 0.2;
         private const double heroPicBoxLocationYRatio = 0.335;
         
-        public MenuFrame()
+        public MenuForm()
         {
             InitializeComponent();
 

@@ -9,7 +9,7 @@ namespace SpaceShooter
     public static class GameManager
     {
         private static GameState? gameState = null;
-        private static GameFrame? gameFrame = null;
+        private static GameForm? gameForm = null;
         private static TimeManager? timeManager = null;
         private static bool isEnemyBeingRenewed;
 
@@ -17,21 +17,21 @@ namespace SpaceShooter
         {
             timeManager = new TimeManager(65);
             gameState = new GameState(1360, 760);
-            gameFrame = new GameFrame(gameState);
+            gameForm = new GameForm(gameState);
             isEnemyBeingRenewed = false;
 
-            gameFrame.Deactivate += gameFrameLostFocusActions;
-            gameFrame.FormClosed += gameFrameClosedActions;
-            gameFrame.KeyDown += invokeHeroControls;
-            gameFrame.KeyUp += freeHeroControls;
+            gameForm.Deactivate += gameFormLostFocusActions;
+            gameForm.FormClosed += gameFormClosedActions;
+            gameForm.KeyDown += invokeHeroControls;
+            gameForm.KeyUp += freeHeroControls;
 
-            gameFrame.Show();
+            gameForm.Show();
 
             gameState.RenewEnemySpaceship();
 
-            gameFrame.Grid.RenderHeroSpaceship(gameState);
-            gameFrame.Grid.RenderEnemySpaceship(gameState);
-            gameFrame.StatsBar.ScoreLabel.UpdateValue(gameState.Score.ToString());
+            gameForm.Grid.RenderHeroSpaceship(gameState);
+            gameForm.Grid.RenderEnemySpaceship(gameState);
+            gameForm.StatsBar.ScoreLabel.UpdateValue(gameState.Score.ToString());
 
             timeManager.AddMainRecurringAction(gameLoop);
             timeManager.EnableTime();
@@ -40,12 +40,12 @@ namespace SpaceShooter
         private static void gameLoop(object? sender, EventArgs e)
         {
             Debug.Assert(gameState != null);
-            Debug.Assert(gameFrame != null);
+            Debug.Assert(gameForm != null);
             Debug.Assert(timeManager != null);
 
             timeManager.UpdateDeltaTime();
             string elapsedTime = StringUtils.FormatSecondsToHMS(TimeManager.ElapsedGameTime);
-            gameFrame.StatsBar.ElapsedTimeLabel.UpdateValue(elapsedTime);
+            gameForm.StatsBar.ElapsedTimeLabel.UpdateValue(elapsedTime);
 
             if (gameState.IsGameOver())
             {
@@ -59,30 +59,30 @@ namespace SpaceShooter
             gameState.EnemyTeleport();
             gameState.DisposeInactiveWeapons();            
 
-            gameFrame.Grid.RelocateSpaceship(gameState, true);
-            gameFrame.Grid.RelocateSpaceship(gameState, false);
-            gameFrame.Grid.UpdateSpaceshipAvailableHealth(gameState, true);
-            gameFrame.Grid.UpdateSpaceshipAvailableHealth(gameState, false);
+            gameForm.Grid.RelocateSpaceship(gameState, true);
+            gameForm.Grid.RelocateSpaceship(gameState, false);
+            gameForm.Grid.UpdateSpaceshipAvailableHealth(gameState, true);
+            gameForm.Grid.UpdateSpaceshipAvailableHealth(gameState, false);
 
             gameState.SpaceshipFireLaser(false);
             gameState.EnemyLaunchMissile();
 
-            gameFrame.Grid.UpdateActiveWeapons(gameState);
+            gameForm.Grid.UpdateActiveWeapons(gameState);
         }
 
         private static async void renewEnemySpaceship()
         {
             Debug.Assert(gameState != null);
-            Debug.Assert(gameFrame != null);
+            Debug.Assert(gameForm != null);
 
             if (!gameState.IsEnemyDestroyed() || isEnemyBeingRenewed)
                 return;
             
             isEnemyBeingRenewed = true;
-            await gameFrame.Grid.DestroySpaceship(false);
+            await gameForm.Grid.DestroySpaceship(false);
             gameState.RenewEnemySpaceship();
-            gameFrame.Grid.RenderEnemySpaceship(gameState);
-            gameFrame.StatsBar.ScoreLabel.UpdateValue(gameState.Score.ToString());
+            gameForm.Grid.RenderEnemySpaceship(gameState);
+            gameForm.StatsBar.ScoreLabel.UpdateValue(gameState.Score.ToString());
             isEnemyBeingRenewed = false;
         }
 
@@ -139,18 +139,18 @@ namespace SpaceShooter
         private static async void gameOverActions()
         {
             Debug.Assert(gameState != null);
-            Debug.Assert(gameFrame != null);
+            Debug.Assert(gameForm != null);
             Debug.Assert(timeManager != null);
 
             timeManager.DisableTime();
-            await gameFrame.Grid.DestroySpaceship(true);
-            gameFrame.Grid.GameOverActions();
+            await gameForm.Grid.DestroySpaceship(true);
+            gameForm.Grid.GameOverActions();
 
             string gameDuration = StringUtils.FormatSecondsToHMS(TimeManager.ElapsedGameTime);
             DatabaseManager.AddEntry(gameState.Score, gameDuration);
         }
 
-        private static void gameFrameLostFocusActions(object? sender, EventArgs e)
+        private static void gameFormLostFocusActions(object? sender, EventArgs e)
         {
             Debug.Assert(gameState != null);
 
@@ -158,16 +158,16 @@ namespace SpaceShooter
             conrolableHero.ResetControls();
         }
 
-        private static void gameFrameClosedActions(object? sender, EventArgs e)
+        private static void gameFormClosedActions(object? sender, EventArgs e)
         {
             Debug.Assert(timeManager != null);
-            Debug.Assert(gameFrame != null);
+            Debug.Assert(gameForm != null);
 
             timeManager.DisableTime();
-            gameFrame.Grid.DisposeBackgroundImage();
+            gameForm.Grid.DisposeBackgroundImage();
 
             gameState = null;
-            gameFrame = null;
+            gameForm = null;
             timeManager = null;
         }
     }
