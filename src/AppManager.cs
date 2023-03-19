@@ -8,24 +8,7 @@ namespace SpaceShooter
     {
         private static MenuForm menuForm = new MenuForm();
 
-        public static void Start()
-        {
-            /*
-            string dependencyFilename = "SQLite.Interop.dll";
-            if (isDependecyMissing(dependencyFilename))
-            {
-                MessageBox.Show(
-                    $"{dependencyFilename} not found!", 
-                    "Missing Dependencies", 
-                    MessageBoxButtons.OK, 
-                    MessageBoxIcon.Error
-                );
-                return;
-            }
-            */
-            Application.Run(menuForm);
-        }
-            
+        public static void Start() => Application.Run(menuForm);
 
         public static void OnMenuOptionPlayClick(object sender, EventArgs e) 
         {
@@ -46,14 +29,5 @@ namespace SpaceShooter
         }
 
         public static void OnSubFormClosed(object sender, EventArgs e) => menuForm.Show();
-
-        private static bool isDependecyMissing(string dependencyFilename)
-        {
-            string pathToExecutable = Assembly.GetExecutingAssembly().Location;
-            string? parentDirectory = Path.GetDirectoryName(pathToExecutable);
-            Debug.Assert(parentDirectory != null);
-            string pathToDependency = Path.Combine(parentDirectory, dependencyFilename);
-            return !File.Exists(pathToDependency);
-        }
     }
 }
