@@ -13,11 +13,7 @@ namespace SpaceShooter.gui
 
         public StatsBar StatsBar { get; private init; }
 
-        public GameFrame(
-            IGameStateUI gameState,
-            Dictionary<string, KeyEventHandler> keyEventHandlers,
-            FormClosedEventHandler onGameFrameClosed
-        )
+        public GameFrame(IGameStateUI gameState)
         {
             InitializeComponent();
 
@@ -29,9 +25,6 @@ namespace SpaceShooter.gui
             ClientSize = new Size(clientWidth, clientHight);
 
             FormClosed += AppManager.OnSubFrameClosed;
-            FormClosed += onGameFrameClosed;
-            KeyDown += keyEventHandlers["OnKeyDown"];
-            KeyUp += keyEventHandlers["OnKeyUp"];
 
             Grid = new GameGridGui(this, gameState)
             {

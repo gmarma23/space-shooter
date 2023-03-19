@@ -8,12 +8,6 @@ namespace SpaceShooter
 {
     public static class GameManager
     {
-        private static readonly Dictionary<string, KeyEventHandler> keyEventHandlers = new()
-        {
-            { "OnKeyDown", invokeHeroControls },
-            { "OnKeyUp", freeHeroControls }
-        };
-
         private static GameState? gameState = null;
         private static GameFrame? gameFrame = null;
         private static TimeManager? timeManager = null;
@@ -23,14 +17,19 @@ namespace SpaceShooter
         {
             timeManager = new TimeManager(65);
             gameState = new GameState(1360, 760);
-            gameFrame = new GameFrame(gameState, keyEventHandlers, onGameFrameClosed);
+            gameFrame = new GameFrame(gameState);
             isEnemyBeingRenewed = false;
+
+            gameFrame.Deactivate += gameFrameLostFocusActions;
+            gameFrame.FormClosed += gameFrameClosedActions;
+            gameFrame.KeyDown += invokeHeroControls;
+            gameFrame.KeyUp += freeHeroControls;
 
             gameFrame.Show();
 
-            gameFrame.Grid.RenderHeroSpaceship(gameState);
-
             gameState.RenewEnemySpaceship();
+
+            gameFrame.Grid.RenderHeroSpaceship(gameState);
             gameFrame.Grid.RenderEnemySpaceship(gameState);
             gameFrame.StatsBar.ScoreLabel.UpdateValue(gameState.Score.ToString());
 
@@ -151,7 +150,15 @@ namespace SpaceShooter
             DatabaseManager.AddEntry(gameState.Score, gameDuration);
         }
 
-        private static void onGameFrameClosed(object? sender, EventArgs e)
+        private static void gameFrameLostFocusActions(object? sender, EventArgs e)
+        {
+            Debug.Assert(gameState != null);
+
+            IControls conrolableHero = gameState.GetControlableHero();
+            conrolableHero.ResetControls();
+        }
+
+        private static void gameFrameClosedActions(object? sender, EventArgs e)
         {
             Debug.Assert(timeManager != null);
             Debug.Assert(gameFrame != null);
