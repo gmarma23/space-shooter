@@ -1,6 +1,4 @@
 ﻿using SpaceShooter.gui;
-using System.Diagnostics;
-using System.Reflection;
 
 namespace SpaceShooter
 {
