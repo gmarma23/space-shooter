@@ -2,10 +2,6 @@
 {
     public partial class MenuForm : CustomForm
     {
-        public const double optionsLocationYRatio = 0.77;
-        public const double optionsWidthRatio = 0.35;
-        public const double optionsHeightRatio = 0.3;
-
         private const double titleWidthRatio = 0.8;
         private const double titleHeightRatio = 0.3;
         private const double titleLocationYRatio = 0.02;

@@ -2,20 +2,19 @@
 {
     internal class MenuButton : Button
     {
-        public MenuButton(MenuOptions menuOptionsPanel, string text, EventHandler onClick) 
+        public MenuButton(Control parent) 
         {
+            Parent = parent;
+
             BackColor = Color.FromArgb(80, Color.White);
             FlatAppearance.BorderSize = 0;
             FlatStyle = FlatStyle.Flat;
             Font = new Font("Arial", 12.0F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = Color.White;
-            Parent = menuOptionsPanel;
+            
             Width = Parent.Width;
-            Height = menuOptionsPanel.MenuButtonHeight;
             UseVisualStyleBackColor = false;
-            Text = text;
 
-            Click += onClick;
             MouseEnter += onMouseEnter;
             MouseLeave += onMouseLeave;
         }

@@ -6,6 +6,10 @@ namespace SpaceShooter.gui
     {
         public const int menuButtonMarginRatio = 4;
 
+        private const float optionsLocationYRatio = 0.77f;
+        private const float optionsWidthRatio = 0.35f;
+        private const float optionsHeightRatio = 0.3f;
+
         private readonly string[] menuButtonsText =
         {
             "Play",
@@ -23,26 +27,26 @@ namespace SpaceShooter.gui
         private MenuButton[] menuButtons;
         private readonly int numOfButtons;
 
-        public int MenuButtonHeight { get; private set; }
         private int menuButtonsVerticalMargin;
+        private int menuButtonHeight;
 
-        public MenuOptions(MenuForm menuForm)
+        public MenuOptions(Control parent)
         {
-            Parent = menuForm;
+            Parent = parent;
 
             Debug.Assert(menuButtonsText.Length == menuButtonsEventHandlers.Length);
             numOfButtons = menuButtonsText.Length;
 
-            Width = (int)(menuForm.Width * MenuForm.optionsWidthRatio);
-            Height = (int)(menuForm.Height * MenuForm.optionsHeightRatio);
+            Width = (int)(parent.Width * optionsWidthRatio);
+            Height = (int)(parent.Height * optionsHeightRatio);
 
             calculateButtonAndMarginSizes();
 
             Height -= menuButtonsVerticalMargin;
 
             Location = new Point(
-                menuForm.ClientRectangle.Width / 2 - Width / 2, 
-                (int)(menuForm.ClientRectangle.Height * MenuForm.optionsLocationYRatio) - Height / 2);
+                parent.ClientRectangle.Width / 2 - Width / 2, 
+                (int)(parent.ClientRectangle.Height * optionsLocationYRatio) - Height / 2);
 
             initializeMenuButtons(); 
             arrangeMenuButtons();
@@ -52,20 +56,27 @@ namespace SpaceShooter.gui
         {
             int combinedHeight = Height / numOfButtons;
             menuButtonsVerticalMargin = combinedHeight / menuButtonMarginRatio;
-            MenuButtonHeight = combinedHeight - menuButtonsVerticalMargin;
+            menuButtonHeight = combinedHeight - menuButtonsVerticalMargin;
         }
 
         private void arrangeMenuButtons()
         {
-            for (int i = 0; i < menuButtons.GetLength(0); i++)
-                menuButtons[i].Top = i * (MenuButtonHeight + menuButtonsVerticalMargin);
+            for (int i = 0; i < menuButtons.GetLength(0); i++) 
+                menuButtons[i].Top = i * (menuButtonHeight + menuButtonsVerticalMargin);
         }
 
         private void initializeMenuButtons()
         {
             menuButtons = new MenuButton[numOfButtons];
             for (int i = 0; i < menuButtons.GetLength(0); i++)
-                menuButtons[i] = new MenuButton(this, menuButtonsText[i], menuButtonsEventHandlers[i]);  
+            {
+                menuButtons[i] = new MenuButton(this)
+                {
+                    Height = menuButtonHeight,
+                    Text = menuButtonsText[i]
+                };
+                menuButtons[i].Click += menuButtonsEventHandlers[i];
+            }
         }
     }
 }
