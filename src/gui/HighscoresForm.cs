@@ -1,22 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-
-namespace SpaceShooter.gui
+﻿namespace SpaceShooter.gui
 {
     public partial class HighscoresForm : CustomForm
     {
+        
         public HighscoresForm()
         {
             InitializeComponent();
 
             FormClosed += AppManager.OnSubFormClosed;
+
+            new FormTitleLabel(this)
+            {
+                Text = "HIGHSCORES"
+            };
         }
     }
 }
