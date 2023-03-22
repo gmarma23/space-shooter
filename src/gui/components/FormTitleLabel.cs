@@ -2,9 +2,9 @@
 {
     public class FormTitleLabel : Label
     {
-        private const float titleLocationYRatio = 0.02f;
+        private const float titleLocationYRatio = 0.07f;
         private const float titleWidthRatio = 0.8f;
-        private const float titleHeightRatio = 0.3f;
+        private const float titleHeightRatio = 0.25f;
 
         public FormTitleLabel(Control parent) 
         {
@@ -19,7 +19,7 @@
                 GraphicsUnit.Point
             );
             ForeColor = Color.White;
-            TextAlign = ContentAlignment.MiddleCenter;
+            TextAlign = ContentAlignment.TopCenter;
             UseCompatibleTextRendering = true;
             Location = new Point(
                 Parent.ClientRectangle.Width / 2 - Width / 2,
