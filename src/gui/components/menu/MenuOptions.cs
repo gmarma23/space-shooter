@@ -39,6 +39,7 @@ namespace SpaceShooter.gui
 
             Width = (int)(parent.Width * optionsWidthRatio);
             Height = (int)(parent.Height * optionsHeightRatio);
+            BackColor = Color.Transparent;
 
             calculateButtonAndMarginSizes();
 
