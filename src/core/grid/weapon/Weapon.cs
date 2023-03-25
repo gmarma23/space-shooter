@@ -1,7 +1,12 @@
-﻿namespace SpaceShooter.core
+﻿using SpaceShooter.resources;
+using SpaceShooter.utils;
+
+namespace SpaceShooter.core
 {
     public abstract class Weapon : GridItem
     {
+        protected static readonly CachedSound hitImpactSoundFx = new(Resources.aud_hit_impact);
+
         private static int id = 0;
 
         protected int damage;
@@ -45,6 +50,7 @@
 
             if (GameGrid.ItemsIntersect(this, Target))
             {
+                AudioPlayer.Player.PlaySound(hitImpactSoundFx);
                 Target.TakeDamage(damage);
                 IsActive = false;
             }

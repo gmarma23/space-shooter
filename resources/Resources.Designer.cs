@@ -72,6 +72,15 @@ namespace SpaceShooter.resources {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream aud_hit_impact {
+            get {
+                return ResourceManager.GetStream("aud_hit_impact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream aud_laser_blast {
             get {
                 return ResourceManager.GetStream("aud_laser_blast", resourceCulture);
