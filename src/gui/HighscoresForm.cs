@@ -14,6 +14,9 @@
 
             List<(int, string)> highscores = DatabaseManager.GetTopEntries(topEntriesCount);
             
+            while (highscores.Count < topEntriesCount)
+                highscores.Add((0, "00:00:00"));
+
             List<string> nums = Enumerable.Range(1, topEntriesCount).Select(n => n.ToString()).ToList();
             List<string> scores = highscores.Select(item => item.Item1.ToString()).ToList();
             List<string> duration = highscores.Select(item => item.Item2.ToString()).ToList();
