@@ -119,15 +119,19 @@ namespace SpaceShooter
             IControls conrolableHero = gameState.GetControlableHero();
             switch (e.KeyCode)
             {
+                case Keys.A:
                 case Keys.Left:
                     conrolableHero.GoLeft = isInvoked;
                     break;
+                case Keys.D:
                 case Keys.Right:
                     conrolableHero.GoRight = isInvoked;
                     break;
+                case Keys.W:
                 case Keys.Up:
                     conrolableHero.GoUp = isInvoked;
                     break;
+                case Keys.S:
                 case Keys.Down:
                     conrolableHero.GoDown = isInvoked;
                     break;
