@@ -10,10 +10,7 @@
         {
             InitializeComponent();
 
-            new FormTitleLabel(this) 
-            {
-                Text = "SPACE SHOOTER"
-            };
+            new FormTitleLabel(this, "   SPACE\nSHOOTER");
 
             setHeroPicBox();
             _ = new MenuOptions(this);

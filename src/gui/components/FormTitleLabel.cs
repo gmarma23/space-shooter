@@ -1,30 +1,15 @@
 ﻿namespace SpaceShooter.gui
 {
-    public class FormTitleLabel : Label
+    public class FormTitleLabel : CustomLabel
     {
-        private const float titleLocationYRatio = 0.07f;
-        private const float titleWidthRatio = 0.8f;
-        private const float titleHeightRatio = 0.25f;
+        private const float parentLocationYRatio = 0.05f;
+        private const float parentHeightRatio = 0.22f;
+        private const float parentWidthRatio = 0.7f;
 
-        public FormTitleLabel(Control parent) 
+        public FormTitleLabel(Control parent, string text) 
+            : base(parent, text, parentHeightRatio, parentWidthRatio, FontStyle.Bold | FontStyle.Italic)
         {
-            Parent = parent;
-            Parent.Controls.Add(this);
-            BackColor = Color.Transparent;
-            Width = (int)(titleWidthRatio * Parent.ClientRectangle.Width);
-            Height = (int)(titleHeightRatio * Parent.ClientRectangle.Height);
-            Font = new Font(
-                "Microsoft Sans Serif",
-                25.8F, FontStyle.Bold | FontStyle.Italic,
-                GraphicsUnit.Point
-            );
-            ForeColor = Color.White;
-            TextAlign = ContentAlignment.TopCenter;
-            UseCompatibleTextRendering = true;
-            Location = new Point(
-                Parent.ClientRectangle.Width / 2 - Width / 2,
-                (int)(Parent.ClientRectangle.Height * titleLocationYRatio)
-            );
+            Top = (int)(Parent.ClientRectangle.Height * parentLocationYRatio);
         }
     }
 }

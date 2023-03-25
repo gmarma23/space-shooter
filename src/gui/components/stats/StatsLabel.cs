@@ -1,43 +1,19 @@
-﻿using static System.Net.Mime.MediaTypeNames;
-using System.Drawing;
-
-namespace SpaceShooter.gui
+﻿namespace SpaceShooter.gui
 {
-    public class StatsLabel : Label
+    public class StatsLabel : CustomLabel
     {
-        private const float labelHeightRatio = 0.65f;
+        private const float parentHeightRatio = 0.65f;
+        private const float parentWidthRatio = 1;
         private readonly string name;
 
-        public StatsLabel(Control parent, string name, string initValue = "")
-        {
-            parent.Controls.Add(this);
-            Parent = parent;
-
+        public StatsLabel(Control parent, string name, string initValue = "") 
+            : base(parent, initValue, parentHeightRatio, parentWidthRatio)
+        {  
             this.name = name;
-
-            BackColor = Color.Transparent;
-            ForeColor = Color.White;
-            
-            AutoSize = true;
-            selectOptimalFontSize();
-            TextAlign = ContentAlignment.MiddleCenter;
-            UseCompatibleTextRendering = true;
-
             UpdateValue(initValue);
         }
 
         public void UpdateValue(string value) 
             => Text = $"{name}:  {value}";
-
-        private void selectOptimalFontSize()
-        {
-            float fontSize = 1.0f;
-            while (Height < labelHeightRatio * Parent.Height)
-                Font = new Font(
-                    "Microsoft Sans Serif",
-                    fontSize++,
-                    GraphicsUnit.Point
-                );
-        }
     }
 }
