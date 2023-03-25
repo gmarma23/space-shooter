@@ -223,5 +223,15 @@ namespace SpaceShooter.resources {
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_space_background_v {
+            get {
+                object obj = ResourceManager.GetObject("img_space_background_v", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
     }
 }

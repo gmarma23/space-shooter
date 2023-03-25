@@ -17,6 +17,7 @@ namespace SpaceShooter.gui
             Height = (int)(Parent.ClientRectangle.Height * parentHeightRatio);
             Width = (int)(Parent.ClientRectangle.Width * parentWidthRatio);
             Top = (int)(Parent.ClientRectangle.Height * parentLocationYRatio);
+            BackColor = Color.Transparent;
 
             LabelGroupTitleLabel groupTitleLabel = new LabelGroupTitleLabel(this, title);
             int initY = groupTitleLabel.Top + groupTitleLabel.Height + 20;
