@@ -3,6 +3,7 @@
     public partial class HighscoresForm : CustomForm
     {
         private const int topEntriesCount = 10;
+
         public HighscoresForm()
         {
             InitializeComponent();
