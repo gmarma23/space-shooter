@@ -1,4 +1,6 @@
-﻿namespace SpaceShooter.gui
+﻿using SpaceShooter.resources;
+
+namespace SpaceShooter.gui
 {
     public partial class CustomForm : Form
     {
@@ -12,8 +14,6 @@
             Size = new Size(400, 500);
             MaximizeBox = false;
             
-            BackgroundImage = resources.Resources.img_space_background_v;
-            BackgroundImageLayout = ImageLayout.Stretch;
             BackColor = Color.Black;
 
             Text = "Space Shooter";
@@ -22,7 +22,14 @@
             FormClosing += disposeBackgroundImage;
         }
 
-        protected void disposeBackgroundImage()
+        protected void setBackgroundImage()
+        {
+            bool isFormHorizontal = Width >= Height;
+            BackgroundImage = isFormHorizontal ? Resources.img_space_background : Resources.img_space_background_v;
+            BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+        protected void disposeBackgroundImage(object? sender, EventArgs e)
         {
             Image? backgroundImage = BackgroundImage;
             if (backgroundImage == null)
@@ -31,8 +38,5 @@
             BackgroundImage = null;
             backgroundImage.Dispose();
         }
-
-        private void disposeBackgroundImage(object? sender, EventArgs e) 
-            => disposeBackgroundImage();
     }
 }

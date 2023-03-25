@@ -9,6 +9,7 @@
         public MenuForm()
         {
             InitializeComponent();
+            setBackgroundImage();
 
             new FormTitleLabel(this, "   SPACE\nSHOOTER");
 

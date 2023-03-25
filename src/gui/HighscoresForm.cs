@@ -6,6 +6,7 @@
         public HighscoresForm()
         {
             InitializeComponent();
+            setBackgroundImage();
 
             FormClosed += AppManager.OnSubFormClosed;
 
