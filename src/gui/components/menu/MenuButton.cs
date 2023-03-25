@@ -9,7 +9,7 @@
             BackColor = Color.FromArgb(60, Color.White);
             FlatAppearance.BorderSize = 0;
             FlatStyle = FlatStyle.Flat;
-            Font = new Font("Arial", 12.0F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Microsoft Sans Serif", 12.0F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = Color.White;
             
             Width = Parent.Width;
