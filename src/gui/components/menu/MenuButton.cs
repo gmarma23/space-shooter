@@ -22,7 +22,7 @@ namespace SpaceShooter.gui
 
             MouseEnter += onMouseEnter;
             MouseLeave += onMouseLeave;
-            Click += onClick;
+            MouseDown += onMouseDown;
         }
 
         private void onMouseEnter(object? sender, EventArgs e)
@@ -37,7 +37,7 @@ namespace SpaceShooter.gui
             BackColor = Color.FromArgb(60, Color.White);
         }
 
-        private void onClick(object? sender, EventArgs e) 
+        private void onMouseDown(object? sender, EventArgs e) 
             => AudioPlayer.Player.PlaySound(menuButtonClickSoundFx);
     }
 }
