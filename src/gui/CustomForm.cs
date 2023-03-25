@@ -18,6 +18,21 @@
 
             Text = "Space Shooter";
             Icon = resources.Resources.ico_space_shooter;
+
+            FormClosing += disposeBackgroundImage;
         }
+
+        protected void disposeBackgroundImage()
+        {
+            Image? backgroundImage = BackgroundImage;
+            if (backgroundImage == null)
+                return;
+
+            BackgroundImage = null;
+            backgroundImage.Dispose();
+        }
+
+        private void disposeBackgroundImage(object? sender, EventArgs e) 
+            => disposeBackgroundImage();
     }
 }

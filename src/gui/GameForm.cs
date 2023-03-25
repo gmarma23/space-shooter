@@ -16,6 +16,7 @@ namespace SpaceShooter.gui
         public GameForm(IGameStateUI gameState)
         {
             InitializeComponent();
+            disposeBackgroundImage();
 
             int statsPanelWidth = gameState.Grid.DimensionX;
             int statsPanelHeight = (int)(statsPanelHeightRatio * gameState.Grid.DimensionY);
