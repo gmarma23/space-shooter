@@ -121,6 +121,9 @@
   <data name="aud_explosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>audio\explosion.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="aud_health_boost" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>audio\points.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="aud_hit_impact" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>audio\hit_impact.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -132,9 +135,6 @@
   </data>
   <data name="aud_menu_click" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>audio\menu_click.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="aud_points" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>audio\points.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="aud_teleport" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>audio\teleport.wav;System.IO.MemoryStream, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -163,6 +163,9 @@
   <data name="img_explosion" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\explosion.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="img_health_kit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>images\medkit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="img_hero_spaceship" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\hero_spaceship.gif;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
@@ -174,8 +177,5 @@
   </data>
   <data name="img_space_background_v" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>images\nebula_space_stars_v.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="medkit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>images\medkit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

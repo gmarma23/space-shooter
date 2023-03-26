@@ -72,6 +72,15 @@ namespace SpaceShooter.resources {
         /// <summary>
         ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
         /// </summary>
+        internal static System.IO.UnmanagedMemoryStream aud_health_boost {
+            get {
+                return ResourceManager.GetStream("aud_health_boost", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
+        /// </summary>
         internal static System.IO.UnmanagedMemoryStream aud_hit_impact {
             get {
                 return ResourceManager.GetStream("aud_hit_impact", resourceCulture);
@@ -102,15 +111,6 @@ namespace SpaceShooter.resources {
         internal static System.IO.UnmanagedMemoryStream aud_menu_click {
             get {
                 return ResourceManager.GetStream("aud_menu_click", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.IO.UnmanagedMemoryStream similar to System.IO.MemoryStream.
-        /// </summary>
-        internal static System.IO.UnmanagedMemoryStream aud_points {
-            get {
-                return ResourceManager.GetStream("aud_points", resourceCulture);
             }
         }
         
@@ -206,6 +206,16 @@ namespace SpaceShooter.resources {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap img_health_kit {
+            get {
+                object obj = ResourceManager.GetObject("img_health_kit", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap img_hero_spaceship {
             get {
                 object obj = ResourceManager.GetObject("img_hero_spaceship", resourceCulture);
@@ -239,16 +249,6 @@ namespace SpaceShooter.resources {
         internal static System.Drawing.Bitmap img_space_background_v {
             get {
                 object obj = ResourceManager.GetObject("img_space_background_v", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap medkit {
-            get {
-                object obj = ResourceManager.GetObject("medkit", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
