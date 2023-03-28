@@ -30,7 +30,10 @@ namespace SpaceShooter.core
 
             waves++;
             if (enemy != null)
+            {
                 Score += enemy.ScorePoints;
+                releasePowerUp();
+            }
 
             if (waves % 6 == 0)
             {
@@ -103,6 +106,18 @@ namespace SpaceShooter.core
             for (int i = activeCollidableItems.Count - 1; i >= 0; i--)
                 if (!activeCollidableItems[i].IsActive)
                     activeCollidableItems.RemoveAt(i);
+        }
+
+        private void releasePowerUp()
+        {
+            if (random.Next(0, 4) != 0)
+                return;
+
+            var healthKit = new HealthKit(Grid, enemy)
+            {
+                Target = hero
+            };
+            activeCollidableItems.Add(healthKit);
         }
         
         private Spaceship getSpaceship(bool isHero) => isHero ? hero : enemy;
