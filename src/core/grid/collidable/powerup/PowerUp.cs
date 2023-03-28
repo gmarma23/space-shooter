@@ -4,9 +4,9 @@
     {
         public PowerUp(GameGrid grid, IGridItem source)
         {
-            defaultWidthRatio = 0.05f;
+            defaultWidthRatio = 0.03f;
             defaultHeightRatio = 1;
-            absMaxDisplacement = 420;
+            absMaxDisplacement = 350;
 
             setSize(grid);
             setBounds(grid);

@@ -8,7 +8,7 @@ namespace SpaceShooter.core
         protected static readonly CachedSound healthBoostSoundFx = new(Resources.aud_health_boost);
         protected readonly int health;
 
-        public HealthKit(GameGrid grid, IGridItem source, int health = 50) : base(grid, source)
+        public HealthKit(GameGrid grid, IGridItem source, int health = 100) : base(grid, source)
         {
             this.health = health;
             Image = Resources.img_health_kit;
