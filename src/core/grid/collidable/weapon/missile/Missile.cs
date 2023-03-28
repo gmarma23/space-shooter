@@ -26,14 +26,24 @@ namespace SpaceShooter.core
         protected void updateDisplacementX()
         {
             if (Target == null)
+            {
+                displacementX = 0;
                 return;
+            }
 
-            int deltaLocationX = Target.LocationX - LocationX;
-            int nexDisplacementX = Math.Sign(deltaLocationX) * absMaxDisplacement;
-            if (Math.Abs(deltaLocationX) >= nexDisplacementX)
-                displacementX = nexDisplacementX;
-            else
-                displacementX = deltaLocationX;
+            int deltaMiddleX = Target.LocationX + (Target.Width / 2) - (LocationX + (Width / 2));
+
+            if (deltaMiddleX == 0)
+            {
+                displacementX = 0;
+                return;
+            }
+                
+            int deltaMiddleXSign = Math.Sign(deltaMiddleX);
+            int nexDisplacementX = deltaMiddleXSign * absMaxDisplacement;
+            int newDeltaMiddleX = deltaMiddleX + nexDisplacementX;
+
+            displacementX = deltaMiddleXSign == Math.Sign(newDeltaMiddleX) ? nexDisplacementX : deltaMiddleX;
         }
     }
 }

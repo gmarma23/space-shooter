@@ -45,12 +45,25 @@
             if (constDisplacementTimeSpan < displacementUpdateFrequency)
                 return;
 
-            int deltaLocationX = target.LocationX - LocationX;
-            int nexDisplacementX = Math.Sign(deltaLocationX) * generateRandomDisplacement(true);
-            if (Math.Abs(deltaLocationX) >= nexDisplacementX)
-                displacementX = nexDisplacementX;
-            else
-                displacementX = deltaLocationX;
+            if (target == null)
+            {
+                displacementX = 0;
+                return;
+            }
+
+            int deltaMiddleX = target.LocationX + (target.Width / 2) - (LocationX + (Width / 2));
+
+            if (deltaMiddleX == 0)
+            {
+                displacementX = 0;
+                return;
+            }
+
+            int deltaMiddleXSign = Math.Sign(deltaMiddleX);
+            int nexDisplacementX = deltaMiddleXSign * absMaxDisplacement;
+            int newDeltaMiddleX = deltaMiddleX + nexDisplacementX;
+
+            displacementX = deltaMiddleXSign == Math.Sign(newDeltaMiddleX) ? nexDisplacementX : deltaMiddleX;
 
             displacementY = generateRandomDisplacement();
             lastDisplacementUpdateTimestamp = TimeManager.ElapsedGameTime;
