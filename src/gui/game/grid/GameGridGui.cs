@@ -1,6 +1,5 @@
 ﻿using SpaceShooter.core;
 using System.Diagnostics;
-using System.Windows.Forms;
 
 namespace SpaceShooter.gui
 {
@@ -8,7 +7,7 @@ namespace SpaceShooter.gui
     {
         private HeroSpaceshipGui hero;
         private EnemySpaceshipGui enemy;
-        private List<WeaponGui> activeWeaponsGui;
+        private readonly List<CollidableItemGui> activeCollidableItemsGui;
 
         public GameGridGui(Control parent, IGameStateUI gameState)
         {
@@ -20,7 +19,7 @@ namespace SpaceShooter.gui
             BackgroundImageLayout = ImageLayout.Stretch;
             DoubleBuffered = true;
 
-            activeWeaponsGui = new List<WeaponGui>();
+            activeCollidableItemsGui = new List<CollidableItemGui>();
         }
 
         public void RelocateSpaceship(IGameStateUI gameState, bool isHero)
@@ -34,18 +33,18 @@ namespace SpaceShooter.gui
             spaceshipGui.UpdateLocation(spaceship.LocationX, spaceship.LocationY);
         }
 
-        public void UpdateActiveWeapons(IGameStateUI gameState)
+        public void UpdateActiveCollidableItems(IGameStateUI gameState)
         {
-            Debug.Assert(activeWeaponsGui != null);
-            List<int> activeWeaponIDsGui = activeWeaponsGui.Select(weaponGui => weaponGui.ID).ToList();
-            List<int> activeWeaponIDs = gameState.GetActiveWeaponIDs();
+            Debug.Assert(activeCollidableItemsGui != null);
+            List<int> activeCollidableItemIDsGui = activeCollidableItemsGui.Select(item => item.ID).ToList();
+            List<int> activeCollidableItemIDs = gameState.GetActiveCollidableItemIDs();
 
-            List<int> newWeaponIDs = activeWeaponIDs.Except(activeWeaponIDsGui).ToList();
-            List<int> disposedWeaponIDs = activeWeaponIDsGui.Except(activeWeaponIDs).ToList();
+            List<int> newCollidableItemIDs = activeCollidableItemIDs.Except(activeCollidableItemIDsGui).ToList();
+            List<int> disposedCollidableItemIDs = activeCollidableItemIDsGui.Except(activeCollidableItemIDs).ToList();
 
-            disposeInactiveWeapons(disposedWeaponIDs);
-            renderNewWeapons(gameState, newWeaponIDs);
-            relocateExistingWeapons(gameState);
+            disposeInactiveCollidableItems(disposedCollidableItemIDs);
+            renderNewCollidableItems(gameState, newCollidableItemIDs);
+            relocateExistingCollidableItems(gameState);
         }
 
         public void UpdateSpaceshipAvailableHealth(IGameStateUI gameState, bool isHero)
@@ -106,11 +105,11 @@ namespace SpaceShooter.gui
                 Controls.Remove(enemy);
             }
 
-            for (int i = activeWeaponsGui.Count - 1; i >= 0; i--)
+            for (int i = activeCollidableItemsGui.Count - 1; i >= 0; i--)
             {
-                activeWeaponsGui[i].DisposeImage();
-                Controls.Remove(activeWeaponsGui[i]);
-                activeWeaponsGui.RemoveAt(i);
+                activeCollidableItemsGui[i].DisposeImage();
+                Controls.Remove(activeCollidableItemsGui[i]);
+                activeCollidableItemsGui.RemoveAt(i);
             }
 
             printGameOverMessage();
@@ -123,42 +122,44 @@ namespace SpaceShooter.gui
             backgroundImage.Dispose();
         }
 
-        private void relocateExistingWeapons(IGameStateUI gameState)
+        private void relocateExistingCollidableItems(IGameStateUI gameState)
         {
-            foreach (var weaponGui in activeWeaponsGui)
+            foreach (var collidableItemGui in activeCollidableItemsGui)
             {
-                IGridItem? weapon = gameState.GetWeaponToDraw(weaponGui.ID);
-                Debug.Assert(weapon != null);
+                IGridItem? collidableItem = gameState.GetCollidableItemToDraw(collidableItemGui.ID);
+                Debug.Assert(collidableItem != null);
 
-                weaponGui.UpdateLocation(weapon.LocationX, weapon.LocationY);
+                collidableItemGui.UpdateLocation(collidableItem.LocationX, collidableItem.LocationY);
             }
         }
 
-        private void renderNewWeapons(IGameStateUI gameState, List<int> newWeaponIDs)
+        private void renderNewCollidableItems(IGameStateUI gameState, List<int> newCollidableItemIDs)
         {
-            foreach (var id in newWeaponIDs)
+            foreach (var id in newCollidableItemIDs)
             {
-                IGridItem? weapon = gameState.GetWeaponToDraw(id);
-                Debug.Assert(weapon != null);
+                IGridItem? collidableItem = gameState.GetCollidableItemToDraw(id);
+                Debug.Assert(collidableItem != null);
 
-                WeaponGui newWeaponGui = new WeaponGui(id, weapon.Width, weapon.Height, weapon.Image);
-                activeWeaponsGui.Add(newWeaponGui);
-                Controls.Add(newWeaponGui);
+                var newCollidableItemGui = new CollidableItemGui(
+                    id, collidableItem.Width, collidableItem.Height, collidableItem.Image
+                );
+                activeCollidableItemsGui.Add(newCollidableItemGui);
+                Controls.Add(newCollidableItemGui);
             }
         }
 
-        private void disposeInactiveWeapons(List<int> disposedWeaponIDs)
+        private void disposeInactiveCollidableItems(List<int> disposedCollidableItemIDs)
         {
-            for (int i = disposedWeaponIDs.Count - 1; i >= 0; i--)
+            for (int i = disposedCollidableItemIDs.Count - 1; i >= 0; i--)
             {
-                int id = disposedWeaponIDs[i];
-                WeaponGui? weaponGui = activeWeaponsGui.Find(laserBlast => laserBlast.ID == id);
-                Debug.Assert(weaponGui != null);
+                int id = disposedCollidableItemIDs[i];
+                CollidableItemGui? collidableItemGui = activeCollidableItemsGui.Find(laserBlast => laserBlast.ID == id);
+                Debug.Assert(collidableItemGui != null);
 
-                activeWeaponsGui.Remove(weaponGui);
+                activeCollidableItemsGui.Remove(collidableItemGui);
 
-                weaponGui.DisposeImage();
-                Controls.Remove(weaponGui);
+                collidableItemGui.DisposeImage();
+                Controls.Remove(collidableItemGui);
             }
         }
 

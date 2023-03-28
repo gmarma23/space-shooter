@@ -57,7 +57,7 @@ namespace SpaceShooter
 
             gameState.MoveGridItems();
             gameState.EnemyTeleport();
-            gameState.DisposeInactiveWeapons();            
+            gameState.DisposeInactiveCollidableItems();            
 
             gameForm.Grid.RelocateSpaceship(gameState, true);
             gameForm.Grid.RelocateSpaceship(gameState, false);
@@ -67,7 +67,7 @@ namespace SpaceShooter
             gameState.SpaceshipFireLaser(false);
             gameState.EnemyLaunchMissile();
 
-            gameForm.Grid.UpdateActiveWeapons(gameState);
+            gameForm.Grid.UpdateActiveCollidableItems(gameState);
         }
 
         private static async void renewEnemySpaceship()

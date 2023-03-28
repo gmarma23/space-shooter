@@ -1,10 +1,10 @@
 ﻿namespace SpaceShooter.gui
 {
-    public class WeaponGui : PictureBox
+    public class CollidableItemGui : PictureBox
     {
         public int ID { get; private init; }
 
-        public WeaponGui(int id, int width, int height, Image image)
+        public CollidableItemGui(int id, int width, int height, Image image)
         {
             ID = id;
             Width = width;
