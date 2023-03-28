@@ -3,22 +3,14 @@ using SpaceShooter.utils;
 
 namespace SpaceShooter.core
 {
-    public class HealthKit : CollidableItem
+    public class HealthKit : PowerUp
     {
         protected static readonly CachedSound healthBoostSoundFx = new(Resources.aud_health_boost);
-        protected int health;
+        protected readonly int health;
 
-        public HealthKit(GameGrid grid, int health = 50)
+        public HealthKit(GameGrid grid, IGridItem source, int health = 50) : base(grid, source)
         {
             this.health = health;
-
-            defaultWidthRatio = 0.05f;
-            defaultHeightRatio = 1;
-            absMaxDisplacement = 420;
-
-            setSize(grid);
-            setBounds(grid);
-
             Image = Resources.img_health_kit;
         }
 
