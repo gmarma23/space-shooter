@@ -8,7 +8,7 @@ namespace SpaceShooter.core
 
         private EnemySpaceship enemy;
         private readonly HeroSpaceship hero;
-        private readonly List<Weapon> activeWeapons;
+        private readonly List<CollidableItem> activeCollidableItems;
         private int waves;
 
         public GameGrid Grid { get; private init; }
@@ -18,7 +18,7 @@ namespace SpaceShooter.core
         {
             Grid = new GameGrid(gridDimensionX, gridDimensionY);
             hero = new HeroSpaceship(Grid);
-            activeWeapons = new List<Weapon>();
+            activeCollidableItems = new List<CollidableItem>();
             Score = 0;
             waves = 0;
         }
@@ -50,11 +50,11 @@ namespace SpaceShooter.core
 
         public IHPGridItem GetSpaceshipToDraw(bool isHero) => getSpaceship(isHero);
 
-        public IGridItem? GetWeaponToDraw(int id) 
-            => activeWeapons.Single(weapon => weapon.ID == id);
+        public IGridItem? GetCollidableItemToDraw(int id) 
+            => activeCollidableItems.Single(item => item.ID == id);
 
-        public List<int> GetActiveWeaponIDs() 
-            => activeWeapons.Select(weapon => weapon.ID).ToList();
+        public List<int> GetActiveCollidableItemIDs() 
+            => activeCollidableItems.Select(item => item.ID).ToList();
 
         public IControls GetControlableHero() => hero;
 
@@ -69,15 +69,15 @@ namespace SpaceShooter.core
             foreach (var laserBlast in firedLaserBlasts)
                 laserBlast.Target = getSpaceship(!isHero);
 
-            activeWeapons.AddRange(firedLaserBlasts);
+            activeCollidableItems.AddRange(firedLaserBlasts);
         }
 
         public void MoveGridItems()
         {
             hero.Move(); 
             enemy.Move();
-            foreach (var weapon in activeWeapons)
-                weapon.Move();
+            foreach (var item in activeCollidableItems)
+                item.Move();
         }
 
         public void EnemyTeleport() => enemy.Teleport();
@@ -91,18 +91,18 @@ namespace SpaceShooter.core
 
             launchedMissile.Target = hero;
 
-            activeWeapons.Add(launchedMissile);
+            activeCollidableItems.Add(launchedMissile);
         }
 
         public bool IsEnemyDestroyed() => !enemy.IsActive;
 
         public bool IsGameOver() => !hero.IsActive;
 
-        public void DisposeInactiveWeapons()
+        public void DisposeInactiveCollidableItems()
         {
-            for (int i = activeWeapons.Count - 1; i >= 0; i--)
-                if (!activeWeapons[i].IsActive)
-                    activeWeapons.RemoveAt(i);
+            for (int i = activeCollidableItems.Count - 1; i >= 0; i--)
+                if (!activeCollidableItems[i].IsActive)
+                    activeCollidableItems.RemoveAt(i);
         }
         
         private Spaceship getSpaceship(bool isHero) => isHero ? hero : enemy;

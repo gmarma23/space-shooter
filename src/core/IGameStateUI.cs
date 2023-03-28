@@ -8,8 +8,8 @@
 
         public IHPGridItem GetSpaceshipToDraw(bool isHero);
 
-        public IGridItem? GetWeaponToDraw(int id);
+        public IGridItem? GetCollidableItemToDraw(int id);
 
-        public List<int> GetActiveWeaponIDs();
+        public List<int> GetActiveCollidableItemIDs();
     }
 }
