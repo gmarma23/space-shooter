@@ -17,9 +17,10 @@ namespace SpaceShooter.gui
             BackColor = Color.Black;
 
             Text = "Space Shooter";
-            Icon = resources.Resources.ico_space_shooter;
+            Icon = Resources.ico_space_shooter;
 
             FormClosing += disposeBackgroundImage;
+            FormClosed += AppManager.OnSubFormClosed;
         }
 
         protected void setBackgroundImage()

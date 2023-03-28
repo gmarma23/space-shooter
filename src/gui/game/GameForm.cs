@@ -24,8 +24,6 @@ namespace SpaceShooter.gui
             int clientHight = gameState.Grid.DimensionY + statsPanelHeight;
             ClientSize = new Size(clientWidth, clientHight);
 
-            FormClosed += AppManager.OnSubFormClosed;
-
             Grid = new GameGridGui(this, gameState)
             {
                 Top = statsPanelHeight

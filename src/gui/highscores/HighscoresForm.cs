@@ -9,8 +9,6 @@
             InitializeComponent();
             setBackgroundImage();
 
-            FormClosed += AppManager.OnSubFormClosed;
-
             new FormTitleLabel(this, "HIGHSCORES");
 
             List<(int, string)> highscores = DatabaseManager.GetTopEntries(topEntriesCount);
