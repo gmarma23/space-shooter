@@ -35,7 +35,6 @@
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(516, 608);
-            Name = "HighscoresForm";
             ResumeLayout(false);
         }
 
