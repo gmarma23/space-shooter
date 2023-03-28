@@ -19,9 +19,9 @@
 
         public void DisposeImage()
         {
-            Image weaponImage = Image;
+            Image collidableItemImage = Image;
             Image = null;
-            weaponImage.Dispose();
+            collidableItemImage.Dispose();
         }
     }
 }
