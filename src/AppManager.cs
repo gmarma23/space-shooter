@@ -23,7 +23,7 @@ namespace SpaceShooter
         public static void OnMenuOptionControlsClick(object sender, EventArgs e)
         {
             menuForm.Hide();
-            new ControlsForm().Show();
+            new AboutForm().Show();
         }
 
         public static void OnSubFormClosed(object sender, EventArgs e) => menuForm.Show();

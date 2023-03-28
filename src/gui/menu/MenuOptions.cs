@@ -14,7 +14,7 @@ namespace SpaceShooter.gui
         {
             "Play",
             "Highscores",
-            "Controls"
+            "About"
         };
 
         private readonly EventHandler[] menuButtonsEventHandlers =
