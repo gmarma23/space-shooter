@@ -5,7 +5,9 @@
         public AboutForm()
         {
             InitializeComponent();
-            FormClosed += AppManager.OnSubFormClosed;
+            setBackgroundImage();
+
+            new FormTitleLabel(this, "ABOUT");
         }
     }
 }
