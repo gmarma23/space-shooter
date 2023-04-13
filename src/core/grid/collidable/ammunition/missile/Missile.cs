@@ -2,7 +2,7 @@
 
 namespace SpaceShooter.core
 {
-    public abstract class Missile : Weapon
+    public abstract class Missile : Ammunition
     {
         public Missile(ILaunchMissile missileLauncher, GameGrid grid) 
         {

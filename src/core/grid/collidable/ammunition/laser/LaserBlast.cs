@@ -1,6 +1,6 @@
 ﻿namespace SpaceShooter.core
 {
-    public abstract class LaserBlast : Weapon
+    public abstract class LaserBlast : Ammunition
     {
         public LaserBlast(IFireLaser laserCarrier, GameGrid grid, int index)
         {

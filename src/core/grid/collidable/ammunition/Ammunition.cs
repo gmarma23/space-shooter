@@ -3,11 +3,11 @@ using SpaceShooter.utils;
 
 namespace SpaceShooter.core
 {
-    public abstract class Weapon : CollidableItem
+    public abstract class Ammunition : CollidableItem
     {
         protected static readonly CachedSound hitImpactSoundFx = new(Resources.aud_hit_impact);
 
-        public Weapon() { }
+        public Ammunition() { }
 
         protected override void checkTargetCollided()
         {
