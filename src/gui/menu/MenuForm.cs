@@ -1,4 +1,7 @@
-﻿namespace SpaceShooter.gui
+﻿using SpaceShooter.resources;
+using SpaceShooter.utils;
+
+namespace SpaceShooter.gui
 {
     public partial class MenuForm : CustomForm
     {
@@ -15,6 +18,8 @@
 
             setHeroPicBox();
             _ = new MenuOptions(this);
+
+            AudioPlayer.Player.PlayBackgroundMusic(Resources.aud_background_music);
         }
 
         private void setHeroPicBox()
