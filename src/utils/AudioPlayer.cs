@@ -1,5 +1,6 @@
 ﻿using NAudio.Wave;
 using NAudio.Wave.SampleProviders;
+using System.Media;
 
 namespace SpaceShooter.utils
 {
@@ -7,6 +8,7 @@ namespace SpaceShooter.utils
     {
         private readonly IWavePlayer outputDevice;
         private readonly MixingSampleProvider mixer;
+        private SoundPlayer? backgroundMusicPlayer;
 
         public static readonly AudioPlayer Player = new AudioPlayer(44100, 2);
 
@@ -21,7 +23,9 @@ namespace SpaceShooter.utils
             };
 
             outputDevice.Init(mixer);
-            outputDevice.Play();
+            ActivateOutputDevice();
+
+            backgroundMusicPlayer = null;
         }
 
         public void PlaySound(CachedSound sound)
@@ -29,6 +33,24 @@ namespace SpaceShooter.utils
             ISampleProvider input = new CachedSoundSampleProvider(sound);
             input = convertToRightChannelCount(input);
             mixer.AddMixerInput(input);
+        }
+
+        public void ActivateOutputDevice() => outputDevice.Play();
+
+        public void MuteOutputDevice() => outputDevice.Stop();
+
+        public void PlayBackgroundMusic(Stream audioStream)
+        {
+            backgroundMusicPlayer = new SoundPlayer(audioStream);    
+            backgroundMusicPlayer.PlayLooping();
+        }
+
+        public void StopBackgroundMusic()
+        {
+            if (backgroundMusicPlayer == null)
+                return;
+
+            backgroundMusicPlayer.Stop();
         }
 
         public void Dispose() => outputDevice.Dispose();
