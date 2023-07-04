@@ -33,7 +33,6 @@
             // MenuForm
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
-            AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(416, 529);
             Name = "MenuForm";
             ResumeLayout(false);

@@ -6,7 +6,7 @@ namespace SpaceShooter.gui
     {
         private const int topEntriesCount = 10;
         private const float okBtnHeightRatio = 0.05f;
-        private const float okBtnWidthRatio = 0.18f;
+        private const float okBtnWidthRatio = 0.175f;
         private const float okBtnMarginRatio = 0.05f;
 
         public HighscoresForm()

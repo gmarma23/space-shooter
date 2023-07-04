@@ -7,7 +7,7 @@ namespace SpaceShooter.gui
     public partial class AboutForm : CustomForm
     {
         private const float textLabelMarginRatio = 0.1f;
-        private const float okBtnHeightRatio = 0.08f;
+        private const float okBtnHeightRatio = 0.085f;
         private const float okBtnWidthRatio = 0.2f;
 
         public AboutForm()
