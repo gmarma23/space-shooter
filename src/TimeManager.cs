@@ -13,6 +13,8 @@ namespace SpaceShooter
         public static double DeltaTime { get; private set; }
         public static double ElapsedGameTime { get; private set; }
 
+        public bool IsTimeActive;
+
         public TimeManager(int gameTargetFPS)
         {
             gameUpdateTimer = new Timer();
@@ -29,15 +31,23 @@ namespace SpaceShooter
         public void EnableTime()
         {
             gameUpdateTimer.Enabled = true;
+
             foreach (Timer timer in customActionTimers)
                 timer.Enabled = true;
+
+            stopwatch.Start();
+            IsTimeActive = true;
         }
 
         public void DisableTime()
         {
             gameUpdateTimer.Enabled = false;
+
             foreach (Timer timer in customActionTimers)
                 timer.Enabled = false;
+
+            stopwatch.Stop();
+            IsTimeActive = false;
         }
 
         public void UpdateDeltaTime()

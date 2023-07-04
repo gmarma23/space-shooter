@@ -19,7 +19,10 @@ namespace SpaceShooter.src.gui.game.grid
             Height = Parent.Height;
             BackColor = Color.Transparent;
 
-            GameOverLabel gameOverLbl = new GameOverLabel(this, "GAME OVER!");
+            GameMessageLabel gameOverLbl = new GameMessageLabel(this, "GAME OVER!")
+            {
+                ForeColor = Color.DarkRed
+            };
             gameOverLbl.Top = Parent.ClientRectangle.Height / 2 - (int)(gameOverLabelHeightRatio * gameOverLbl.Height);
 
             CustomButton gameOverBtn = new CustomButton(this)
@@ -33,6 +36,6 @@ namespace SpaceShooter.src.gui.game.grid
             gameOverBtn.Click += onGameOverButtonClick;
         }
         
-        private void onGameOverButtonClick(Object? sender, EventArgs e) => gameForm.Close();
+        private void onGameOverButtonClick(object? sender, EventArgs e) => gameForm.Close();
     }
 }

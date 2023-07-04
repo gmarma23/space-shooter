@@ -24,6 +24,7 @@ namespace SpaceShooter
             gameForm.FormClosed += gameFormClosedActions;
             gameForm.KeyDown += invokeHeroControls;
             gameForm.KeyUp += freeHeroControls;
+            gameForm.KeyDown += setGameStatus;
 
             gameForm.Show();
 
@@ -138,6 +139,27 @@ namespace SpaceShooter
                 default:
                     break;
             };
+        }
+
+        private static void setGameStatus(object? sender, KeyEventArgs e)
+        {
+            Debug.Assert(gameState != null);
+            Debug.Assert(timeManager != null);
+            Debug.Assert(gameForm != null);
+
+            if (e.KeyCode != Keys.Escape)
+                return;
+
+            if (timeManager.IsTimeActive)
+            {
+                timeManager.DisableTime();
+                gameForm.Grid.PauseGame();
+            }
+            else
+            {
+                timeManager.EnableTime();
+                gameForm.Grid.ResumeGame();
+            }
         }
 
         private static async void gameOverActions()
