@@ -1,4 +1,6 @@
 ﻿using SpaceShooter.core;
+using SpaceShooter.src.gui;
+using SpaceShooter.src.gui.game.grid;
 using System.Diagnostics;
 
 namespace SpaceShooter.gui
@@ -112,7 +114,7 @@ namespace SpaceShooter.gui
                 activeCollidableItemsGui.RemoveAt(i);
             }
 
-            new GameOverLabel(this, "GAME OVER!");
+            new GameOverPanel(this, (GameForm)Parent);
         }
 
         public void DisposeBackgroundImage()
