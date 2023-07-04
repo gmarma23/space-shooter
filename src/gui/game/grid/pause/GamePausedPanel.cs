@@ -5,8 +5,6 @@ namespace SpaceShooter.src.gui.game.grid
     public class GamePausedPanel : Panel
     {
         private const float gameOverLabelHeightRatio = 1.5f;
-        private const float gameOverButtonWidthRatio = 0.1f;
-        private const float gameOverButtonHeightRatio = 0.05f;
 
         private GameForm gameForm;
 
@@ -25,24 +23,22 @@ namespace SpaceShooter.src.gui.game.grid
             };
             gamePausedLbl.Top = Parent.ClientRectangle.Height / 2 - (int)(gameOverLabelHeightRatio * gamePausedLbl.Height);
 
-            CustomButton resumeBtn = new CustomButton(this)
+            var resumeBtn = new PauseMenuButton(this, "Resume")
             {
-                Width = (int)(Parent.Width * gameOverButtonWidthRatio),
-                Height = (int)(Parent.Height * gameOverButtonHeightRatio),
-                Top = gamePausedLbl.Top + gamePausedLbl.Height + 20,
-                Text = "Resume"
+                Top = gamePausedLbl.Top + gamePausedLbl.Height + 20
             };
-            resumeBtn.Left = Parent.ClientRectangle.Width / 2 - resumeBtn.Width / 2;
             resumeBtn.Click += onGameResume;
 
-            CustomButton quitBtn = new CustomButton(this)
+            var optionsBtn = new PauseMenuButton(this, "Options")
             {
-                Width = (int)(Parent.Width * gameOverButtonWidthRatio),
-                Height = (int)(Parent.Height * gameOverButtonHeightRatio),
                 Top = resumeBtn.Top + resumeBtn.Height + 20,
-                Text = "Quit"
             };
-            quitBtn.Left = Parent.ClientRectangle.Width / 2 - quitBtn.Width / 2;
+            optionsBtn.Click += AppManager.OnMenuOptionOptionsClick;
+
+            var quitBtn = new PauseMenuButton(this, "Quit")
+            {
+                Top = optionsBtn.Top + optionsBtn.Height + 20,
+            };
             quitBtn.Click += onQuitButtonClick;
 
             BringToFront();

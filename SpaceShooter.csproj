@@ -19,7 +19,7 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-    <Compile Update="src\gui\game\grid\GamePausedPanel.cs">
+    <Compile Update="src\gui\game\grid\pause\GamePausedPanel.cs">
       <SubType>Component</SubType>
     </Compile>
   </ItemGroup>
