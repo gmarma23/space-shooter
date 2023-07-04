@@ -1,4 +1,5 @@
 ﻿using SpaceShooter.gui;
+using SpaceShooter.src.gui.options;
 
 namespace SpaceShooter
 {
@@ -23,13 +24,18 @@ namespace SpaceShooter
         public static void OnMenuOptionOptionsClick(object? sender, EventArgs e)
         {
             menuForm.Hide();
-            //new OptionsForm().Show();
+            new OptionsForm().Show();
         }
 
         public static void OnMenuOptionAboutClick(object? sender, EventArgs e)
         {
             menuForm.Hide();
             new AboutForm().Show();
+        }
+
+        public static void OnPauseMenuOptionOptionsClick(object? sender, EventArgs e)
+        {
+            new OptionsForm(true).ShowDialog();
         }
 
         public static void OnSubFormClosed(object? sender, EventArgs e) => menuForm.Show();

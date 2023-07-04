@@ -33,7 +33,7 @@ namespace SpaceShooter.src.gui.game.grid
             {
                 Top = resumeBtn.Top + resumeBtn.Height + 20,
             };
-            optionsBtn.Click += AppManager.OnMenuOptionOptionsClick;
+            optionsBtn.Click += AppManager.OnPauseMenuOptionOptionsClick;
 
             var quitBtn = new PauseMenuButton(this, "Quit")
             {
