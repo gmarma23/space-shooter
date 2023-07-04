@@ -110,7 +110,7 @@ namespace SpaceShooter.core
 
         private void releasePowerUp()
         {
-            if (random.Next(0, 4) != 0)
+            if (random.Next(0, 3) != 0)
                 return;
 
             var healthKit = new HealthKit(Grid, enemy)
