@@ -5,7 +5,7 @@ namespace SpaceShooter.gui
     public class LabelGroup : Panel
     {
         private const float parentLocationYRatio = 0.2f;
-        private const float parentHeightRatio = 0.7f;
+        private const float parentHeightRatio = 0.64f;
         private const float parentWidthRatio = 0.33f;
         private const float labelMarginRatio = 0.33f;
 

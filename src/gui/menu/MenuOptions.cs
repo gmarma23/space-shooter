@@ -8,13 +8,14 @@ namespace SpaceShooter.gui
         public const int menuButtonMarginRatio = 4;
 
         private const float optionsLocationYRatio = 0.77f;
-        private const float optionsWidthRatio = 0.35f;
-        private const float optionsHeightRatio = 0.3f;
+        private const float optionsWidthRatio = 0.32f;
+        private const float optionsHeightRatio = 0.35f;
 
         private readonly string[] menuButtonsText =
         {
             "Play",
             "Highscores",
+            "Options",
             "About"
         };
 
@@ -22,7 +23,8 @@ namespace SpaceShooter.gui
         {
             AppManager.OnMenuOptionPlayClick,
             AppManager.OnMenuOptionHighscoresClick,
-            AppManager.OnMenuOptionControlsClick
+            AppManager.OnMenuOptionOptionsClick,
+            AppManager.OnMenuOptionAboutClick
         };
 
         private CustomButton[] menuButtons;

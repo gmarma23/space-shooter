@@ -8,13 +8,13 @@ namespace SpaceShooter.gui
         private const float heroPicBoxLocationYRatio = 0.335f;
         private const float heroPicBoxWidthRatio = 0.23f;
         private const float heroPicBoxHeightRatio = 0.2f;
-        
+
         public MenuForm()
         {
             InitializeComponent();
             setBackgroundImage();
 
-            new FormTitleLabel(this, "   SPACE\nSHOOTER");
+            new FormTitleLabel(this, new string(' ', 3) + "SPACE\nSHOOTER");
 
             setHeroPicBox();
             _ = new MenuOptions(this);
