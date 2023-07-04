@@ -1,4 +1,5 @@
 ﻿using System.Diagnostics;
+using SpaceShooter.src.gui;
 
 namespace SpaceShooter.gui
 {
@@ -24,7 +25,7 @@ namespace SpaceShooter.gui
             AppManager.OnMenuOptionControlsClick
         };
 
-        private MenuButton[] menuButtons;
+        private CustomButton[] menuButtons;
         private readonly int numOfButtons;
 
         private int menuButtonsVerticalMargin;
@@ -68,10 +69,10 @@ namespace SpaceShooter.gui
 
         private void initializeMenuButtons()
         {
-            menuButtons = new MenuButton[numOfButtons];
+            menuButtons = new CustomButton[numOfButtons];
             for (int i = 0; i < menuButtons.GetLength(0); i++)
             {
-                menuButtons[i] = new MenuButton(this)
+                menuButtons[i] = new CustomButton(this)
                 {
                     Height = menuButtonHeight,
                     Text = menuButtonsText[i]

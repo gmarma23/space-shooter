@@ -1,13 +1,13 @@
 ﻿using SpaceShooter.resources;
 using SpaceShooter.utils;
 
-namespace SpaceShooter.gui
+namespace SpaceShooter.src.gui
 {
-    public class MenuButton : Button
+    public class CustomButton : Button
     {
         private static readonly CachedSound menuButtonClickSoundFx = new(Resources.aud_menu_click);
 
-        public MenuButton(Control parent) 
+        public CustomButton(Control parent)
         {
             Parent = parent;
 
@@ -16,7 +16,7 @@ namespace SpaceShooter.gui
             FlatStyle = FlatStyle.Flat;
             Font = new Font("Microsoft Sans Serif", 12.0F, FontStyle.Regular, GraphicsUnit.Point);
             ForeColor = Color.White;
-            
+
             Width = Parent.Width;
             UseVisualStyleBackColor = false;
 
@@ -37,7 +37,7 @@ namespace SpaceShooter.gui
             BackColor = Color.FromArgb(60, Color.White);
         }
 
-        private void onMouseDown(object? sender, EventArgs e) 
+        private void onMouseDown(object? sender, EventArgs e)
             => AudioPlayer.Player.PlaySound(menuButtonClickSoundFx);
     }
 }
