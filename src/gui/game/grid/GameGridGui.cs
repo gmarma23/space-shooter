@@ -12,7 +12,7 @@ namespace SpaceShooter.gui
         private readonly List<CollidableItemGui> activeCollidableItemsGui;
         private readonly GamePausedPanel pausedPanel;
 
-        public GameGridGui(Control parent, IGameStateUI gameState)
+        public GameGridGui(Control parent, IGameStateUI gameState, EventHandler onGameResume)
         {
             Width = gameState.Grid.DimensionX;
             Height = gameState.Grid.DimensionY;
@@ -23,7 +23,7 @@ namespace SpaceShooter.gui
             DoubleBuffered = true;
 
             activeCollidableItemsGui = new List<CollidableItemGui>();
-            pausedPanel = new GamePausedPanel(this);
+            pausedPanel = new GamePausedPanel(this, (GameForm)Parent, onGameResume);
         }
 
         public void RelocateSpaceship(IGameStateUI gameState, bool isHero)
@@ -119,9 +119,17 @@ namespace SpaceShooter.gui
             new GameOverPanel(this, (GameForm)Parent);
         }
 
-        public void PauseGame() => pausedPanel.Show();
+        public void PauseGame()
+        {
+            pausedPanel.Show();
+            pausedPanel.BringToFront();
+        }
 
-        public void ResumeGame() => pausedPanel.Hide();
+        public void ResumeGame()
+        {
+            pausedPanel.Hide();
+            pausedPanel.SendToBack();
+        }
 
         public void DisposeBackgroundImage()
         {

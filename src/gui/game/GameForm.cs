@@ -13,7 +13,7 @@ namespace SpaceShooter.gui
 
         public StatsBar StatsBar { get; private init; }
 
-        public GameForm(IGameStateUI gameState)
+        public GameForm(IGameStateUI gameState, EventHandler onGameResume)
         {
             InitializeComponent();
 
@@ -24,12 +24,14 @@ namespace SpaceShooter.gui
             int clientHight = gameState.Grid.DimensionY + statsPanelHeight;
             ClientSize = new Size(clientWidth, clientHight);
 
-            Grid = new GameGridGui(this, gameState)
+            Grid = new GameGridGui(this, gameState, onGameResume)
             {
                 Top = statsPanelHeight
             };
 
             StatsBar = new StatsBar(this, statsPanelWidth, statsPanelHeight);
+
+            KeyPreview = true;
         }
 
         protected override CreateParams CreateParams

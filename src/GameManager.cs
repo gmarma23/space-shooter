@@ -17,14 +17,14 @@ namespace SpaceShooter
         {
             timeManager = new TimeManager(65);
             gameState = new GameState(1360, 760);
-            gameForm = new GameForm(gameState);
+            gameForm = new GameForm(gameState, (sender, e) => resumeGame());
             isEnemyBeingRenewed = false;
 
             gameForm.Deactivate += gameFormLostFocusActions;
             gameForm.FormClosed += gameFormClosedActions;
             gameForm.KeyDown += invokeHeroControls;
             gameForm.KeyUp += freeHeroControls;
-            gameForm.KeyDown += setGameStatus;
+            gameForm.KeyDown += toggleGameStatus;
 
             gameForm.Show();
 
@@ -141,25 +141,36 @@ namespace SpaceShooter
             };
         }
 
-        private static void setGameStatus(object? sender, KeyEventArgs e)
+
+        private static void resumeGame()
         {
-            Debug.Assert(gameState != null);
             Debug.Assert(timeManager != null);
             Debug.Assert(gameForm != null);
 
+            timeManager.EnableTime();
+            gameForm.Grid.ResumeGame();
+        }
+
+        private static void pauseGame()
+        {
+            Debug.Assert(timeManager != null);
+            Debug.Assert(gameForm != null);
+
+            timeManager.DisableTime();
+            gameForm.Grid.PauseGame();
+        }
+
+        private static void toggleGameStatus(object? sender, KeyEventArgs e)
+        {
+            Debug.Assert(timeManager != null);
+
             if (e.KeyCode != Keys.Escape)
                 return;
-
+            
             if (timeManager.IsTimeActive)
-            {
-                timeManager.DisableTime();
-                gameForm.Grid.PauseGame();
-            }
+                pauseGame();
             else
-            {
-                timeManager.EnableTime();
-                gameForm.Grid.ResumeGame();
-            }
+                resumeGame();    
         }
 
         private static async void gameOverActions()
