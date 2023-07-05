@@ -133,12 +133,42 @@ namespace SpaceShooter.resources {
         }
         
         /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap E {
+            get {
+                object obj = ResourceManager.GetObject("E", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Esc {
+            get {
+                object obj = ResourceManager.GetObject("Esc", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Icon similar to (Icon).
         /// </summary>
         internal static System.Drawing.Icon ico_space_shooter {
             get {
                 object obj = ResourceManager.GetObject("ico_space_shooter", resourceCulture);
                 return ((System.Drawing.Icon)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_arrow_keys {
+            get {
+                object obj = ResourceManager.GetObject("img_arrow_keys", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
             }
         }
         
@@ -258,6 +288,36 @@ namespace SpaceShooter.resources {
         internal static System.Drawing.Bitmap img_space_background_v {
             get {
                 object obj = ResourceManager.GetObject("img_space_background_v", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap img_wasd_keys {
+            get {
+                object obj = ResourceManager.GetObject("img_wasd_keys", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap P {
+            get {
+                object obj = ResourceManager.GetObject("P", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Space {
+            get {
+                object obj = ResourceManager.GetObject("Space", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
