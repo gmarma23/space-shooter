@@ -94,7 +94,7 @@ namespace SpaceShooter
             if (gameState.IsGameOver()) 
                 return;
 
-            if (e.KeyCode == Keys.Space)
+            if (e.KeyCode == Keys.Space || e.KeyCode == Keys.E)
             {
                 gameState.SpaceshipFireLaser(true);
                 return;
@@ -164,7 +164,7 @@ namespace SpaceShooter
         {
             Debug.Assert(timeManager != null);
 
-            if (e.KeyCode != Keys.Escape)
+            if (e.KeyCode != Keys.Escape && e.KeyCode != Keys.P)
                 return;
             
             if (timeManager.IsTimeActive)
