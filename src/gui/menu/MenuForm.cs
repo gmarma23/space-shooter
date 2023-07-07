@@ -31,7 +31,7 @@ namespace SpaceShooter.gui
             {
                 Width = heroPicBoxWidth,
                 Height = heroPicBoxHeight,
-                Image = resources.Resources.img_hero_spaceship,
+                Image = Resources.img_hero_spaceship,
                 SizeMode = PictureBoxSizeMode.StretchImage,
                 BackColor = Color.Transparent
             };
