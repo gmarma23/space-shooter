@@ -41,7 +41,7 @@ namespace SpaceShooter.core
                 return;
             }
             
-            int selectedIndex = Wave == 1 ? 0 : random.Next(0, 3);
+            int selectedIndex = Wave < 4 ? Wave - 1 : random.Next(0, 3);
             enemy = selectedIndex switch
             {
                 0 => new EnemyFighterSpaceship(Grid),
