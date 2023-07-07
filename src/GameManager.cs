@@ -34,8 +34,6 @@ namespace SpaceShooter
             gameForm.Grid.RenderEnemySpaceship(gameState);
             gameForm.StatsBar.ScoreLabel.UpdateValue(gameState.Score.ToString());
 
-            AudioPlayer.Player.ActivateOutputDevice();
-
             timeManager.AddMainRecurringAction(gameLoop);
             timeManager.EnableTime();
         }
