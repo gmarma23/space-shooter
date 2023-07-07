@@ -2,6 +2,7 @@
 using SpaceShooter.resources;
 using SpaceShooter.src.gui.options;
 using SpaceShooter.utils;
+using static SpaceShooter.utils.CustomExceptions;
 
 namespace SpaceShooter
 {
@@ -46,11 +47,25 @@ namespace SpaceShooter
         {
             AudioPlayer.Player.SetBackgroundMusic(Resources.aud_background_music);
 
-            if (DatabaseManager.GetOptionValue("Music"))
+            try
+            {
+                if (DatabaseManager.GetOptionValue("Music"))
+                    AudioPlayer.Player.PlayBackgroundMusic();
+            }
+            catch (EntryNotFoundException)
+            {
                 AudioPlayer.Player.PlayBackgroundMusic();
+            }
 
-            if (DatabaseManager.GetOptionValue("SFX"))
+            try
+            {
+                if (DatabaseManager.GetOptionValue("SFX"))
+                    AudioPlayer.Player.ActivateOutputDevice();
+            }
+            catch (EntryNotFoundException)
+            {
                 AudioPlayer.Player.ActivateOutputDevice();
+            }
         }
     }
 }
