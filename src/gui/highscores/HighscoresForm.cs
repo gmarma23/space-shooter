@@ -6,7 +6,7 @@ namespace SpaceShooter.gui
     {
         private const int topEntriesCount = 10;
         private const float okBtnHeightRatio = 0.05f;
-        private const float okBtnWidthRatio = 0.175f;
+        private const float okBtnWidthRatio = 0.135f;
         private const float okBtnMarginRatio = 0.05f;
 
         public HighscoresForm()
@@ -14,16 +14,17 @@ namespace SpaceShooter.gui
             InitializeComponent();
             setBackgroundImage();
 
-            new FormTitleLabel(this, "HIGHSCORES");
+            new FormTitleLabel(this, new string(' ', 5) + "HIGHSCORES" + new string(' ', 5));
 
-            List<(int, string)> highscores = DatabaseManager.GetTopHighscoresEntries(topEntriesCount);
+            List<(int, int, string)> highscores = DatabaseManager.GetTopHighscoresEntries(topEntriesCount);
 
             while (highscores.Count < topEntriesCount)
-                highscores.Add((0, "00:00:00"));
+                highscores.Add((0, 0, "00:00:00"));
 
             List<string> nums = Enumerable.Range(1, topEntriesCount).Select(n => n.ToString()).ToList();
             List<string> scores = highscores.Select(item => item.Item1.ToString()).ToList();
-            List<string> duration = highscores.Select(item => item.Item2.ToString()).ToList();
+            List<string> waves = highscores.Select(item => item.Item2.ToString()).ToList();
+            List<string> duration = highscores.Select(item => item.Item3.ToString()).ToList();
 
             var numsGroup = new LabelGroup(this, "No", nums)
             {
@@ -35,9 +36,14 @@ namespace SpaceShooter.gui
                 Left = numsGroup.Width
             };
 
-            var durationGroup = new LabelGroup(this, "Duration", duration)
+            var wavesGroup = new LabelGroup(this, "Wave", waves)
             {
                 Left = numsGroup.Width + scoresGroup.Width
+            };
+
+            var durationGroup = new LabelGroup(this, "Duration", duration)
+            {
+                Left = numsGroup.Width + scoresGroup.Width + wavesGroup.Width
             };
 
             var okBtn = new CustomButton(this)

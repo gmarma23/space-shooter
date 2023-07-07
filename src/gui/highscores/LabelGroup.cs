@@ -6,7 +6,7 @@ namespace SpaceShooter.gui
     {
         private const float parentLocationYRatio = 0.2f;
         private const float parentHeightRatio = 0.64f;
-        private const float parentWidthRatio = 0.33f;
+        private const float parentWidthRatio = 0.25f;
         private const float labelMarginRatio = 0.33f;
 
         public LabelGroup(Control parent, string title, List<string> highscores)

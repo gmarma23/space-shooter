@@ -32,8 +32,7 @@
             // 
             // HighscoresForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
-            ClientSize = new Size(516, 727);
+            ClientSize = new Size(675, 727);
             Name = "HighscoresForm";
             ResumeLayout(false);
         }

@@ -9,10 +9,10 @@ namespace SpaceShooter.core
         private EnemySpaceship enemy;
         private readonly HeroSpaceship hero;
         private readonly List<CollidableItem> activeCollidableItems;
-        private int waves;
 
         public GameGrid Grid { get; private init; }
         public int Score { get; private set; }
+        public int Wave { get; private set; }
 
         public GameState(int gridDimensionX, int gridDimensionY)
         {
@@ -20,7 +20,7 @@ namespace SpaceShooter.core
             hero = new HeroSpaceship(Grid);
             activeCollidableItems = new List<CollidableItem>();
             Score = 0;
-            waves = 0;
+            Wave = 0;
         }
         
         public void RenewEnemySpaceship()
@@ -28,20 +28,20 @@ namespace SpaceShooter.core
             if (enemy != null && enemy.IsActive)
                 return;
 
-            waves++;
+            Wave++;
             if (enemy != null)
             {
                 Score += enemy.ScorePoints;
                 releasePowerUp();
             }
 
-            if (waves % 6 == 0)
+            if (Wave % 6 == 0)
             {
                 enemy = new EnemyBossSpaceship(Grid, hero);
                 return;
             }
             
-            int selectedIndex = waves == 1 ? 0 : random.Next(0, 3);
+            int selectedIndex = Wave == 1 ? 0 : random.Next(0, 3);
             enemy = selectedIndex switch
             {
                 0 => new EnemyFighterSpaceship(Grid),

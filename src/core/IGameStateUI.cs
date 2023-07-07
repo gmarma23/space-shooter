@@ -6,6 +6,8 @@
 
         public int Score { get; }
 
+        public int Wave { get; }
+
         public IHPGridItem GetSpaceshipToDraw(bool isHero);
 
         public IGridItem? GetCollidableItemToDraw(int id);

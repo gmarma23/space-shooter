@@ -7,14 +7,15 @@ namespace SpaceShooter
     {
         private const string connectionString = "Data source=SpaceShooter.db; Version=3";
 
-        public static void AddHighscoresEntry(int score, string gameDuration)
+        public static void AddHighscoresEntry(int score, int wave, string gameDuration)
         {
             createGameTable();
-            string insertSQL = "Insert into Game(score, gameDuration) values (@score, @gameDuration)";
+            string insertSQL = "Insert into Game(score, wave, gameDuration) values (@score, @wave, @gameDuration)";
 
             using (SQLiteCommand command = new SQLiteCommand(insertSQL))
             {
                 command.Parameters.AddWithValue("score", score);
+                command.Parameters.AddWithValue("wave", wave);
                 command.Parameters.AddWithValue("gameDuration", gameDuration);
                 executeNonQuerySQLiteCommand(command);
             }
@@ -43,11 +44,11 @@ namespace SpaceShooter
             }
         }
 
-        public static List<(int, string)> GetTopHighscoresEntries(int count)
+        public static List<(int, int, string)> GetTopHighscoresEntries(int count)
         {
             createGameTable();
 
-            List<(int, string)> topEntries = new List<(int, string)>();
+            List<(int, int, string)> topEntries = new List<(int, int, string)>();
 
             string selectSQL = "Select * from Game";
 
@@ -61,10 +62,15 @@ namespace SpaceShooter
                         while (reader.Read())
                         {
                             int score = reader.GetInt32(0);
-                            string gameDuration = reader.GetString(1);
+                            int wave = reader.GetInt32(1);
+                            string gameDuration = reader.GetString(2);
 
-                            topEntries.Add((score, gameDuration));
-                            topEntries = topEntries.OrderByDescending(entry => entry.Item1).ThenBy(entry => entry.Item2).ToList();
+                            topEntries.Add((score, wave, gameDuration));
+                            topEntries = topEntries.OrderByDescending(entry => entry.Item1)
+                                .ThenBy(entry => entry.Item2)
+                                .ThenBy(entry => entry.Item3)
+                                .ToList();
+
                             if (topEntries.Count == count + 1)
                                 topEntries.RemoveAt(topEntries.Count - 1);
                         }
@@ -104,7 +110,7 @@ namespace SpaceShooter
 
         private static void createGameTable()
         {
-            const string createTable = "Create table if not exists Game(score integer, gameDuration text)";
+            const string createTable = "Create table if not exists Game(score integer, wave integer, gameDuration text)";
 
             using(SQLiteCommand command = new SQLiteCommand(createTable))
                 executeNonQuerySQLiteCommand(command);   

@@ -32,6 +32,7 @@ namespace SpaceShooter
 
             gameForm.Grid.RenderHeroSpaceship(gameState);
             gameForm.Grid.RenderEnemySpaceship(gameState);
+            gameForm.StatsBar.WaveLabel.UpdateValue(gameState.Wave.ToString());
             gameForm.StatsBar.ScoreLabel.UpdateValue(gameState.Score.ToString());
 
             timeManager.AddMainRecurringAction(gameLoop);
@@ -83,6 +84,7 @@ namespace SpaceShooter
             await gameForm.Grid.DestroySpaceship(false);
             gameState.RenewEnemySpaceship();
             gameForm.Grid.RenderEnemySpaceship(gameState);
+            gameForm.StatsBar.WaveLabel.UpdateValue(gameState.Wave.ToString());
             gameForm.StatsBar.ScoreLabel.UpdateValue(gameState.Score.ToString());
             isEnemyBeingRenewed = false;
         }
@@ -184,7 +186,7 @@ namespace SpaceShooter
             gameForm.Grid.GameOverActions();
 
             string gameDuration = StringUtils.FormatSecondsToHMS(TimeManager.ElapsedGameTime);
-            DatabaseManager.AddHighscoresEntry(gameState.Score, gameDuration);
+            DatabaseManager.AddHighscoresEntry(gameState.Score, gameState.Wave, gameDuration);
         }
 
         private static void gameFormLostFocusActions(object? sender, EventArgs e)
