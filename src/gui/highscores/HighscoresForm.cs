@@ -16,7 +16,7 @@ namespace SpaceShooter.gui
 
             new FormTitleLabel(this, "HIGHSCORES");
 
-            List<(int, string)> highscores = DatabaseManager.GetTopEntries(topEntriesCount);
+            List<(int, string)> highscores = DatabaseManager.GetTopHighscoresEntries(topEntriesCount);
 
             while (highscores.Count < topEntriesCount)
                 highscores.Add((0, "00:00:00"));

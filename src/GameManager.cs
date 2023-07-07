@@ -184,7 +184,7 @@ namespace SpaceShooter
             gameForm.Grid.GameOverActions();
 
             string gameDuration = StringUtils.FormatSecondsToHMS(TimeManager.ElapsedGameTime);
-            DatabaseManager.AddEntry(gameState.Score, gameDuration);
+            DatabaseManager.AddHighscoresEntry(gameState.Score, gameDuration);
         }
 
         private static void gameFormLostFocusActions(object? sender, EventArgs e)
