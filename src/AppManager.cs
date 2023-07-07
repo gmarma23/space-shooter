@@ -1,5 +1,7 @@
 ﻿using SpaceShooter.gui;
+using SpaceShooter.resources;
 using SpaceShooter.src.gui.options;
+using SpaceShooter.utils;
 
 namespace SpaceShooter
 {
@@ -39,5 +41,16 @@ namespace SpaceShooter
         }
 
         public static void OnSubFormClosed(object? sender, EventArgs e) => menuForm.Show();
+
+        public static void InitAudioPlayer()
+        {
+            AudioPlayer.Player.SetBackgroundMusic(Resources.aud_background_music);
+
+            if (DatabaseManager.GetOptionValue("Music"))
+                AudioPlayer.Player.PlayBackgroundMusic();
+
+            if (DatabaseManager.GetOptionValue("SFX"))
+                AudioPlayer.Player.ActivateOutputDevice();
+        }
     }
 }
