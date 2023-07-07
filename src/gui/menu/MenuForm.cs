@@ -19,7 +19,8 @@ namespace SpaceShooter.gui
             setHeroPicBox();
             _ = new MenuOptions(this);
 
-            AudioPlayer.Player.PlayBackgroundMusic(Resources.aud_background_music);
+            AudioPlayer.Player.SetBackgroundMusic(Resources.aud_background_music);
+            AudioPlayer.Player.PlayBackgroundMusic();
         }
 
         private void setHeroPicBox()

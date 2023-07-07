@@ -39,9 +39,13 @@ namespace SpaceShooter.utils
 
         public void MuteOutputDevice() => outputDevice.Stop();
 
-        public void PlayBackgroundMusic(Stream audioStream)
+        public void SetBackgroundMusic(Stream audioStream) => backgroundMusicPlayer = new SoundPlayer(audioStream);
+
+        public void PlayBackgroundMusic()
         {
-            backgroundMusicPlayer = new SoundPlayer(audioStream);    
+            if (backgroundMusicPlayer == null)
+                return;
+
             backgroundMusicPlayer.PlayLooping();
         }
 
