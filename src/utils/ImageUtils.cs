@@ -35,9 +35,22 @@ namespace SpaceShooter.utils
                     imageArea.Height, 
                     GraphicsUnit.Pixel, 
                     imageAttributes
-                    );
+                );
 
             return outputBitmap;
+        }
+
+        public static Bitmap ResizeImage(Image image, Size newSize)
+        {
+            Bitmap resizedBitmap = new Bitmap(newSize.Width, newSize.Height);
+
+            using (Graphics graphics = Graphics.FromImage(resizedBitmap))
+            {
+                graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                graphics.DrawImage(image, new Rectangle(Point.Empty, newSize));
+            }
+
+            return resizedBitmap;
         }
     }
 }
