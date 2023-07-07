@@ -23,7 +23,6 @@ namespace SpaceShooter.utils
             };
 
             outputDevice.Init(mixer);
-            ActivateOutputDevice();
 
             backgroundMusicPlayer = null;
         }
