@@ -53,12 +53,9 @@ namespace SpaceShooter.src.gui.options
                 Top = pictureBoxOptionGroups.Last().Top + pictureBoxOptionGroups.Last().Height + (int)(Height * marginRatio),
             };
 
-            var okBtn = new CustomButton(this)
+            var okBtn = new CustomButton(this, "OK", okBtnWidthRatio, okBtnHeightRatio)
             {
-                Width = (int)(Width * okBtnWidthRatio),
-                Height = (int)(Height * okBtnHeightRatio),
                 Top = audioOptions.Top + audioOptions.Height + (int)(Height * marginRatio),
-                Text = "OK"
             };
             okBtn.Left = ClientRectangle.Width / 2 - okBtn.Width / 2;
             okBtn.Click += (sender, e) => Close();

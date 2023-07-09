@@ -3,7 +3,7 @@
     public class StatsBar : Panel
     {
         private const int labelMargin = 10;
-        private const float scoreLabelMarginCoeff = 6;
+        private const float scoreLabelMarginRatio = 0.05f;
 
         public StatsLabel WaveLabel { get; private init; }
         public StatsLabel ScoreLabel { get; private init; }
@@ -22,7 +22,7 @@
             ElapsedTimeLabel = new StatsLabel(this, "Elapsed Time", "00:00:00");
 
             WaveLabel.Location = new Point(labelMargin, Height / 2 - WaveLabel.Height / 2);
-            ScoreLabel.Location = new Point(WaveLabel.Left + WaveLabel.Width + (int)(scoreLabelMarginCoeff*labelMargin), Height / 2 - ScoreLabel.Height / 2);
+            ScoreLabel.Location = new Point(WaveLabel.Left + WaveLabel.Width + (int)(scoreLabelMarginRatio * Width), Height / 2 - ScoreLabel.Height / 2);
             ElapsedTimeLabel.Location = new Point(Width - ElapsedTimeLabel.Width - labelMargin, Height / 2 - ScoreLabel.Height / 2);
         }
     }

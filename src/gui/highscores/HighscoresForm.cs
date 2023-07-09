@@ -46,12 +46,9 @@ namespace SpaceShooter.gui
                 Left = numsGroup.Width + scoresGroup.Width + wavesGroup.Width
             };
 
-            var okBtn = new CustomButton(this)
+            var okBtn = new CustomButton(this, "OK", okBtnWidthRatio, okBtnHeightRatio)
             {
-                Width = (int)(Width * okBtnWidthRatio),
-                Height = (int)(Height * okBtnHeightRatio),
                 Top = numsGroup.Top + numsGroup.Height + (int)(Height * okBtnMarginRatio),
-                Text = "OK"
             };
             okBtn.Left = ClientRectangle.Width / 2 - okBtn.Width / 2;
             okBtn.Click += (sender, e) => Close();

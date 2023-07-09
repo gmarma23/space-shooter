@@ -12,6 +12,7 @@ namespace SpaceShooter.core
             int laserReloadFrequency = 1500, 
             int scorePoints = 5
         ) : base(
+            grid,
             hp, 
             concurrentLaserBlastsCount, 
             laserBlastDamage, 

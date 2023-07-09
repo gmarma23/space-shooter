@@ -37,12 +37,9 @@ namespace SpaceShooter.gui
             };
             aboutDevloper.LinkClicked += onDeveloperLinkAreaClick;
 
-            var okBtn = new CustomButton(this)
+            var okBtn = new CustomButton(this, "OK", okBtnWidthRatio, okBtnHeightRatio)
             {
-                Width = (int)(Width * okBtnWidthRatio),
-                Height = (int)(Height * okBtnHeightRatio),
                 Top = aboutDevloper.Top + aboutDevloper.Height + textLabelMargin,
-                Text = "OK"
             };
             okBtn.Left = ClientRectangle.Width / 2 - okBtn.Width / 2;
             okBtn.Click += (sender, e) => Close();

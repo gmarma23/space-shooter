@@ -11,6 +11,7 @@
             int teleportFrequency = 5000,
             int scorePoints = 10
         ) : base(
+            grid,
             hp, 
             concurrentLaserBlastsCount, 
             laserBlastDamage, 

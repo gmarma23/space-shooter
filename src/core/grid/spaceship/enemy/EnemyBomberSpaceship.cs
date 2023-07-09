@@ -13,6 +13,7 @@
             int missileReloadFrequency = 10000,
             int scorePoints = 15
         ) : base(
+            grid, 
             hp,
             concurrentLaserBlastsCount,
             laserBlastDamage,

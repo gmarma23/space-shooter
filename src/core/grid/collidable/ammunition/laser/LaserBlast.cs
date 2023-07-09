@@ -6,7 +6,7 @@
         {
             defaultWidthRatio = 0.005f;
             defaultHeightRatio = 7;
-            absMaxDisplacement = 420;
+            absMaxDisplacement = (int)(0.553 * grid.DimensionY);
 
             setSize(grid);
             setBounds(grid);

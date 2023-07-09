@@ -12,6 +12,7 @@ namespace SpaceShooter.core
         public int ScorePoints { get; protected init; }
 
         public EnemySpaceship(
+            GameGrid grid, 
             int hp, 
             int concurrentLaserBlastsCount, 
             int laserBlastDamage, 
@@ -22,6 +23,7 @@ namespace SpaceShooter.core
             int missileReloadFrequency,
             int scorePoints
         ) : base(
+            grid,
             hp, 
             concurrentLaserBlastsCount, 
             laserBlastDamage, 

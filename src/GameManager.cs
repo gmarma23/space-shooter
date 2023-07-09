@@ -16,8 +16,11 @@ namespace SpaceShooter
         public static void StartNewGame()
         {
             timeManager = new TimeManager(65);
-            gameState = new GameState(1360, 760);
+            
+            Size gameGridSize = GameForm.GetGameGridSize();
+            gameState = new GameState(gameGridSize.Width, gameGridSize.Height);
             gameForm = new GameForm(gameState, (sender, e) => resumeGame());
+
             isEnemyBeingRenewed = false;
 
             gameForm.Deactivate += gameFormLostFocusActions;

@@ -8,7 +8,7 @@ namespace SpaceShooter.core
         {
             defaultWidthRatio = 0.03f;
             defaultHeightRatio = 2;
-            absMaxDisplacement = 180;
+            absMaxDisplacement = (int)(0.237 * grid.DimensionY);
 
             setSize(grid);
             setBounds(grid);

@@ -2,6 +2,7 @@ using SpaceShooter.core;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System;
+using SpaceShooter.src.utils;
 
 namespace SpaceShooter.gui
 {
@@ -16,6 +17,11 @@ namespace SpaceShooter.gui
         public GameForm(IGameStateUI gameState, EventHandler onGameResume)
         {
             InitializeComponent();
+
+            StartPosition = FormStartPosition.Manual;
+            Location = ScreenUtils.GetLargestScreen().WorkingArea.Location;
+            WindowState = FormWindowState.Maximized;
+            FormBorderStyle = FormBorderStyle.None;
 
             int statsPanelWidth = gameState.Grid.DimensionX;
             int statsPanelHeight = (int)(statsPanelHeightRatio * gameState.Grid.DimensionY);
@@ -34,6 +40,13 @@ namespace SpaceShooter.gui
             KeyPreview = true;
         }
 
+        public static Size GetGameGridSize()
+        {
+            Size largestResolution = ScreenUtils.GetLargestScreen().Bounds.Size;
+            int gridHeight = (int)((float)largestResolution.Height / (float)(1 + statsPanelHeightRatio));
+            return new Size(largestResolution.Width, gridHeight);
+        }
+
         protected override CreateParams CreateParams
         {
             get
@@ -43,7 +56,7 @@ namespace SpaceShooter.gui
 
                 CreateParams cp = base.CreateParams;
                 // Turn on WS_EX_COMPOSITED
-                cp.ExStyle |= 0x02000000;  
+                cp.ExStyle |= 0x02000000;
                 return cp;
             }
         }

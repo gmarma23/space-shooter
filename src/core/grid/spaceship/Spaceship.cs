@@ -42,6 +42,7 @@ namespace SpaceShooter.core
         public int MissileDamage { get; protected set; }
 
         public Spaceship(
+            GameGrid grid,
             int hp, 
             int concurrentLaserBlastsCount, 
             int laserBlastDamage, 
@@ -54,7 +55,7 @@ namespace SpaceShooter.core
         {
             defaultWidthRatio = 0.065f;
             defaultHeightRatio = 1.04f;
-            absMaxDisplacement = 240;
+            absMaxDisplacement = (int)(0.316 * grid.DimensionY); ;
 
             TotalHP = hp;
             AvailableHP = TotalHP;

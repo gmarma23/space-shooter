@@ -32,7 +32,8 @@
             // 
             // GameForm
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            ClientSize = new Size(382, 453);
+            Name = "GameForm";
             ResumeLayout(false);
         }
 

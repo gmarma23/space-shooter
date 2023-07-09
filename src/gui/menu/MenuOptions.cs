@@ -74,11 +74,7 @@ namespace SpaceShooter.gui
             menuButtons = new CustomButton[numOfButtons];
             for (int i = 0; i < menuButtons.GetLength(0); i++)
             {
-                menuButtons[i] = new CustomButton(this)
-                {
-                    Height = menuButtonHeight,
-                    Text = menuButtonsText[i]
-                };
+                menuButtons[i] = new CustomButton(this, menuButtonsText[i], 1, (float)((float)menuButtonHeight / (float)Height));
                 menuButtons[i].Click += menuButtonsEventHandlers[i];
             }
         }
