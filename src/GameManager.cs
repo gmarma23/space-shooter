@@ -146,7 +146,6 @@ namespace SpaceShooter
             };
         }
 
-
         private static void resumeGame()
         {
             Debug.Assert(gameState != null);
