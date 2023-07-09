@@ -149,8 +149,12 @@ namespace SpaceShooter
 
         private static void resumeGame()
         {
+            Debug.Assert(gameState != null);
             Debug.Assert(timeManager != null);
             Debug.Assert(gameForm != null);
+
+            if (gameState.IsGameOver())
+                return;
 
             timeManager.EnableTime();
             gameForm.Grid.ResumeGame();
@@ -158,8 +162,12 @@ namespace SpaceShooter
 
         private static void pauseGame()
         {
+            Debug.Assert(gameState != null);
             Debug.Assert(timeManager != null);
             Debug.Assert(gameForm != null);
+
+            if (gameState.IsGameOver())
+                return;
 
             timeManager.DisableTime();
             gameForm.Grid.PauseGame();
