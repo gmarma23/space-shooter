@@ -1,6 +1,4 @@
-﻿using SpaceShooter.src.gui.components;
-
-namespace SpaceShooter.gui
+﻿namespace SpaceShooter.gui
 {
     public class LabelGroup : Panel
     {

@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SpaceShooter.core
+﻿namespace SpaceShooter.core
 {
     public abstract class Missile : Ammunition
     {

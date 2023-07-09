@@ -1,6 +1,4 @@
-﻿using SpaceShooter.gui;
-
-namespace SpaceShooter.src.gui.game.grid
+﻿namespace SpaceShooter.gui
 {
     public class GamePausedPanel : Panel
     {
@@ -23,19 +21,19 @@ namespace SpaceShooter.src.gui.game.grid
             };
             gamePausedLbl.Top = Parent.ClientRectangle.Height / 2 - (int)(gameOverLabelHeightRatio * gamePausedLbl.Height);
 
-            var resumeBtn = new PauseMenuButton(this, "Resume")
+            PauseMenuButton resumeBtn = new PauseMenuButton(this, "Resume")
             {
                 Top = gamePausedLbl.Top + gamePausedLbl.Height + 20
             };
             resumeBtn.Click += onGameResume;
 
-            var optionsBtn = new PauseMenuButton(this, "Options")
+            PauseMenuButton optionsBtn = new PauseMenuButton(this, "Options")
             {
                 Top = resumeBtn.Top + resumeBtn.Height + 20,
             };
             optionsBtn.Click += AppManager.OnPauseMenuOptionOptionsClick;
 
-            var quitBtn = new PauseMenuButton(this, "Quit")
+            PauseMenuButton quitBtn = new PauseMenuButton(this, "Quit")
             {
                 Top = optionsBtn.Top + optionsBtn.Height + 20,
             };

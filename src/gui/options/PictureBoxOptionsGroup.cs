@@ -1,4 +1,4 @@
-﻿namespace SpaceShooter.src.gui.options
+﻿namespace SpaceShooter.gui
 {
     internal class PictureBoxOptionsGroup : OptionsGroup
     {
@@ -29,7 +29,7 @@
         {
             foreach ((Bitmap image, Size imageSize) in optionDetails)
             {
-                var newOption = new PictureBox()
+                PictureBox newOption = new PictureBox()
                 {
                     Parent = this,
                     

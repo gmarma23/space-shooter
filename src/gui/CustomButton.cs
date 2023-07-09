@@ -1,8 +1,7 @@
 ﻿using SpaceShooter.resources;
 using SpaceShooter.utils;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.TextBox;
 
-namespace SpaceShooter.src.gui
+namespace SpaceShooter.gui
 {
     public class CustomButton : Button
     {

@@ -1,6 +1,4 @@
 ﻿using SpaceShooter.core;
-using SpaceShooter.src.gui;
-using SpaceShooter.src.gui.game.grid;
 using System.Diagnostics;
 
 namespace SpaceShooter.gui

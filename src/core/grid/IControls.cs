@@ -1,4 +1,4 @@
-﻿namespace SpaceShooter.src.core.grid
+﻿namespace SpaceShooter.core
 {
     public interface IControls
     {

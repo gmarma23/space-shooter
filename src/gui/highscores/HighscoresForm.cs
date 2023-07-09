@@ -1,6 +1,4 @@
-﻿using SpaceShooter.src.gui;
-
-namespace SpaceShooter.gui
+﻿namespace SpaceShooter.gui
 {
     public partial class HighscoresForm : CustomForm
     {
@@ -26,32 +24,30 @@ namespace SpaceShooter.gui
             List<string> waves = highscores.Select(item => item.Item2.ToString()).ToList();
             List<string> duration = highscores.Select(item => item.Item3.ToString()).ToList();
 
-            var numsGroup = new LabelGroup(this, "No", nums)
+            LabelGroup numsGroup = new LabelGroup(this, "No", nums)
             {
                 Left = 0
             };
 
-            var scoresGroup = new LabelGroup(this, "Score", scores)
+            LabelGroup scoresGroup = new LabelGroup(this, "Score", scores)
             {
                 Left = numsGroup.Width
             };
 
-            var wavesGroup = new LabelGroup(this, "Wave", waves)
+            LabelGroup wavesGroup = new LabelGroup(this, "Wave", waves)
             {
                 Left = numsGroup.Width + scoresGroup.Width
             };
 
-            var durationGroup = new LabelGroup(this, "Duration", duration)
+            LabelGroup durationGroup = new LabelGroup(this, "Duration", duration)
             {
                 Left = numsGroup.Width + scoresGroup.Width + wavesGroup.Width
             };
 
-            var okBtn = new CustomButton(this, "OK", okBtnWidthRatio, okBtnHeightRatio)
+            OKButton okBtn = new OKButton(this, okBtnWidthRatio, okBtnHeightRatio)
             {
                 Top = numsGroup.Top + numsGroup.Height + (int)(Height * okBtnMarginRatio),
             };
-            okBtn.Left = ClientRectangle.Width / 2 - okBtn.Width / 2;
-            okBtn.Click += (sender, e) => Close();
         }
     }
 }

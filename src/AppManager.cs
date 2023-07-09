@@ -1,6 +1,5 @@
 ﻿using SpaceShooter.gui;
 using SpaceShooter.resources;
-using SpaceShooter.src.gui.options;
 using SpaceShooter.utils;
 using static SpaceShooter.utils.CustomExceptions;
 

@@ -1,6 +1,4 @@
-﻿using SpaceShooter.gui;
-
-namespace SpaceShooter.src.gui.components
+﻿namespace SpaceShooter.gui
 {
     public class LabelGroupTitleLabel : CustomLabel
     {

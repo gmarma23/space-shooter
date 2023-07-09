@@ -1,13 +1,12 @@
-﻿using SpaceShooter.gui;
-using SpaceShooter.resources;
+﻿using SpaceShooter.resources;
 using SpaceShooter.utils;
 
-namespace SpaceShooter.src.gui.options
+namespace SpaceShooter.gui
 {
     public partial class OptionsForm : CustomForm
     {
         private const float okBtnHeightRatio = 0.05f;
-        private const float okBtnWidthRatio = 0.178f;
+        private const float okBtnWidthRatio = 0.17f;
         private const float marginRatio = 0.02f;
 
         private readonly Dictionary<string, List<(Bitmap, Size)>> pictureBoxOptionDetails = new Dictionary<string, List<(Bitmap, Size)>>
@@ -53,12 +52,10 @@ namespace SpaceShooter.src.gui.options
                 Top = pictureBoxOptionGroups.Last().Top + pictureBoxOptionGroups.Last().Height + (int)(Height * marginRatio),
             };
 
-            var okBtn = new CustomButton(this, "OK", okBtnWidthRatio, okBtnHeightRatio)
+            OKButton okBtn = new OKButton(this, okBtnWidthRatio, okBtnHeightRatio)
             {
                 Top = audioOptions.Top + audioOptions.Height + (int)(Height * marginRatio),
             };
-            okBtn.Left = ClientRectangle.Width / 2 - okBtn.Width / 2;
-            okBtn.Click += (sender, e) => Close();
 
             FormClosing += onFormClosing;
         }

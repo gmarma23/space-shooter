@@ -1,6 +1,5 @@
 ﻿using SpaceShooter.core;
 using SpaceShooter.gui;
-using SpaceShooter.src.core.grid;
 using SpaceShooter.utils;
 using System.Diagnostics;
 

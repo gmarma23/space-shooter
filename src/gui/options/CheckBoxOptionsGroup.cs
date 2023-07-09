@@ -1,4 +1,4 @@
-﻿namespace SpaceShooter.src.gui.options
+﻿namespace SpaceShooter.gui
 {
     public class CheckBoxOptionsGroup : OptionsGroup
     {
@@ -24,7 +24,7 @@
         {
             foreach ((string name, Action checkedAction, Action uncheckedAction) in optionDetails)
             {
-                var newOption = new CustomCheckBox(this, name, checkedAction, uncheckedAction)
+                CustomCheckBox newOption = new CustomCheckBox(this, name, checkedAction, uncheckedAction)
                 {
                     Width = (int)(Width * optionWidthRatio),
                     Height = (int)(Height * optionHeightRatio),

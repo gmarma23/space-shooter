@@ -1,5 +1,4 @@
 ﻿using SpaceShooter.resources;
-using SpaceShooter.utils;
 
 namespace SpaceShooter.gui
 {

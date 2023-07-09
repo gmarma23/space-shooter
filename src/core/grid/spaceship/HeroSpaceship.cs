@@ -1,6 +1,4 @@
-﻿using SpaceShooter.src.core.grid;
-using SpaceShooter.utils;
-using System.Diagnostics;
+﻿using SpaceShooter.utils;
 
 namespace SpaceShooter.core
 {

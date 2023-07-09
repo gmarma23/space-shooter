@@ -1,8 +1,5 @@
 using SpaceShooter.core;
-using System.Threading.Tasks;
-using System.Windows.Forms;
-using System;
-using SpaceShooter.src.utils;
+using SpaceShooter.utils;
 
 namespace SpaceShooter.gui
 {

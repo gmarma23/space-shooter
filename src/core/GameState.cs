@@ -1,6 +1,4 @@
-﻿using SpaceShooter.src.core.grid;
-
-namespace SpaceShooter.core
+﻿namespace SpaceShooter.core
 {
     public class GameState : IGameStateUI
     {

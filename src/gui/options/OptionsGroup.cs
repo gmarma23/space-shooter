@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Drawing;
 
-namespace SpaceShooter.src.gui.options
+namespace SpaceShooter.gui
 {
     public abstract class OptionsGroup : GroupBox
     {

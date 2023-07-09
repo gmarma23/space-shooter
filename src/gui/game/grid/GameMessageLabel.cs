@@ -7,8 +7,6 @@
 
         public GameMessageLabel(Control parent, string text)
             : base(parent, text, parentHeightRatio, parentWidthRatio, FontStyle.Bold | FontStyle.Italic)
-        { 
-
-        }
+        { }
     }
 }

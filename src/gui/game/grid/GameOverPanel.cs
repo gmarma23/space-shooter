@@ -1,6 +1,4 @@
-﻿using SpaceShooter.gui;
-
-namespace SpaceShooter.src.gui.game.grid
+﻿namespace SpaceShooter.gui
 {
     public class GameOverPanel : Panel
     {

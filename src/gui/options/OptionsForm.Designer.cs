@@ -1,4 +1,4 @@
-﻿namespace SpaceShooter.src.gui.options
+﻿namespace SpaceShooter.gui
 {
     partial class OptionsForm
     {

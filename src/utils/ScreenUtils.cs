@@ -1,4 +1,4 @@
-﻿namespace SpaceShooter.src.utils
+﻿namespace SpaceShooter.utils
 {
     public static class ScreenUtils
     {

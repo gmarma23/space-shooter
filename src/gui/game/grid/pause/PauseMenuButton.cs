@@ -1,4 +1,4 @@
-﻿namespace SpaceShooter.src.gui.game.grid
+﻿namespace SpaceShooter.gui
 {
     public class PauseMenuButton : CustomButton
     {

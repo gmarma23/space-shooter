@@ -1,6 +1,6 @@
 ﻿using static SpaceShooter.utils.CustomExceptions;
 
-namespace SpaceShooter.src.gui.options
+namespace SpaceShooter.gui
 {
     public class CustomCheckBox : CheckBox
     {
