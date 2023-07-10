@@ -1,6 +1,8 @@
 # SpaceShooter
 
-A simple game made using Windows Forms UI framework, for the purposes of the OOP class semester project, University of Piraeus 2022-23. The main goal of this project was for the students to familiarise themselves with the fundamental consepts and principles of Object Oriented Programming, without focusing much on the GUI and gameplay (thus Windows Forms UI framework was selected for rendering simple graphics).
+A simple game made using Windows Forms UI framework, for the purposes of the OOP class semester project, University of Piraeus 2022-23. The main goal of this project was for the students to familiarise themselves with the fundamental consepts and principles of Object Oriented Programming, without focusing much on the GUI and gameplay (thus Windows Forms UI framework was selected for rendering simple graphics). <br>
+
+For a precompiled executable, please refer to the latest release.
 
 ## About Game
 
